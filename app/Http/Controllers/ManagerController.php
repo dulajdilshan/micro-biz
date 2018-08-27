@@ -16,5 +16,25 @@ class ManagerController extends Controller
         return view('manager.manager_loans');
     }
 
+    public function customers()
+    {
+        return view('manger.manager_customers');
+    }
+
+    public function centres()
+    {
+        return view('manager.manager_centres');
+    }
+
+    public function cashiers()
+    {
+        return view('manager.manager_cashiers');
+    }
+
+    public function groups()
+    {
+        return view('manager.manager_groups');
+    }
+
 
 }
