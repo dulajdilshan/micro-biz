@@ -41,7 +41,7 @@
                         Customers
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">View Customers</a>
+                        <a class="dropdown-item" href="{{ url('/manager-customers')}}">View Customers</a>
                         <a class="dropdown-item" href="#">View Groups</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Add New Customer</a>

@@ -25,3 +25,14 @@ Route::get('/dash','ManagerController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// -------------------------------------------------------------
+// Manager account Routes for pages
+// -------------------------------------------------------------
+Route::get('/manager-loans','ManagerController@index');
+Route::get('/manager-customers','ManagerController@customers');
+Route::get('/manager-centres','ManagerController@centres');
+Route::get('/manager-cashiers','ManagerController@cashiers');
+Route::get('/manager-groups','ManagerController@groups');
+Route::get('/manager-addnew-customer','ManagerController@groups');

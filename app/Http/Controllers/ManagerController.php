@@ -18,7 +18,7 @@ class ManagerController extends Controller
 
     public function customers()
     {
-        return view('manger.manager_customers');
+        return view('manager.manager_customers');
     }
 
     public function centres()
