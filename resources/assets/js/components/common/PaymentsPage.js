@@ -7,7 +7,7 @@ export default class PaymentsPage extends Component {
     render() {
         return(
             <div className="container">
-                <button className="btn btn-purple"> Add New Customer</button>
+                <button className="btn btn-purple"> New Payment</button>
                 <br/>
                 <br/>
                 <DataTable/>
