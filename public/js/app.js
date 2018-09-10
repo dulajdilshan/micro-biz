@@ -59922,7 +59922,7 @@ var PaymentsPage = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
                     { className: 'btn btn-purple' },
-                    ' Add New Customer'
+                    ' New Payment'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
