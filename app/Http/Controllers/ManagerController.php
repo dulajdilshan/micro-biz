@@ -36,5 +36,10 @@ class ManagerController extends Controller
         return view('manager.manager_groups');
     }
 
+    public function payments()
+    {
+        return view('manager.manager_payments');
+    }
+
 
 }

@@ -20,5 +20,10 @@
         "popper.js": "^1.12",
         "react": "^16.2.0",
         "react-dom": "^16.2.0"
+    },
+    "dependencies": {
+        "react-bootstrap": "^0.32.3",
+        "react-json-table": "^0.1.1",
+        "react-table": "^6.8.6"
     }
 }
