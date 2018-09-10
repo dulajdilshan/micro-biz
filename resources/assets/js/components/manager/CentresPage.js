@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
 
-export default class CustomerPage extends Component {
+export default class CentresPage extends Component {
     render() {
         return(
             <div className="container">
@@ -16,6 +16,6 @@ export default class CustomerPage extends Component {
     }
 }
 
-if (document.getElementById('customer-page')) {
-    ReactDOM.render(<CustomerPage/>, document.getElementById('customer-page'));
+if (document.getElementById('centres-page')) {
+    ReactDOM.render(<CentresPage/>, document.getElementById('centres-page'));
 }

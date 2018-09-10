@@ -18,4 +18,6 @@ require('./components/common/LoansPage');
 require('./components/common/CustomersPage');
 require('./components/common/PaymentsPage');
 require('./components/common/CustomerGroupsPage');
+require('./components/manager/CentresPage');
+require('./components/manager/CashiersPage');
 
