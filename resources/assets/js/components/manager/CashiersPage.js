@@ -7,7 +7,7 @@ export default class CashiersPage extends Component {
     render() {
         return(
             <div className="container">
-                <button className="btn btn-purple"> New Loan</button>
+                <button className="btn btn-purple"> New Cashier</button>
                 <br/>
                 <br/>
                 <DataTable/>
