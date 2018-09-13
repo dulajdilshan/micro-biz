@@ -37,3 +37,4 @@ Route::get('/manager-cashiers','ManagerController@cashiers');
 Route::get('/manager-groups','ManagerController@groups');
 Route::get('/manager-addnew-customer','ManagerController@groups');
 Route::get('/manager-payments','ManagerController@payments');
+Route::get('/manager-pending-loans','ManagerController@pendingLoans');

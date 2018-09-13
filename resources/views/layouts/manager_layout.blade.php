@@ -44,7 +44,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ url('/manager-loans')}}">All Loans</a>
-                        <a class="dropdown-item" href={{ url('/manager-loans') }}>Pending Loans</a>
+                        <a class="dropdown-item" href={{ url('/manager-pending-loans') }}>Pending Loans</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">

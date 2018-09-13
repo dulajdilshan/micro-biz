@@ -41,5 +41,8 @@ class ManagerController extends Controller
         return view('manager.manager_payments');
     }
 
-
+    public function pendingLoans()
+    {
+        return view('manager.manager_loans');
+    }
 }
