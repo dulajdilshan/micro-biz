@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class NewLoanForm extends Component {
+class LoanForm extends Component {
     render() {
         return (
             <div>
@@ -306,4 +306,4 @@ class NewLoanForm extends Component {
     }
 }
 
-export default NewLoanForm;
+export default LoanForm;

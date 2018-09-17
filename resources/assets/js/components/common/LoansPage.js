@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
-import NewLoanForm from "../NewLoanForm";
+import LoanForm from "../LoanForm";
 
 export default class LoansPage extends Component {
     render() {
@@ -14,7 +14,7 @@ export default class LoansPage extends Component {
                 <br/>
                 <br/>
                 <DataTable/>
-                <NewLoanForm/>
+                <LoanForm/>
             </div>
         );
     }
