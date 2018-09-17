@@ -6,12 +6,21 @@ import CustomerForm from "../CustomerForm";
 
 export default class CustomersPage extends Component {
     render() {
-        return(
+        return (
             <div className="container">
-                <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                        data-target="#customerForm">New Customer
-                </button>
-                <br/>
+                <div className="row">
+                    <div className="col-sm-2">
+                        <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
+                                data-target="#customerForm">New Customer
+                        </button>
+                    </div>
+                    <div className="col-sm-2">
+                        <button type="button" className="btn btn-outline-primary btn-lg" //data-toggle="modal"
+                            //data-target="#customerForm"
+                        >Make a group
+                        </button>
+                    </div>
+                </div>
                 <br/>
                 <DataTable/>
                 <CustomerForm/>
