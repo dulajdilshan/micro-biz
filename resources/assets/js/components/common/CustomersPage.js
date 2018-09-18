@@ -5,6 +5,13 @@ import DataTable from "../DataTable";
 import CustomerForm from "../CustomerForm";
 
 export default class CustomersPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedCustomers: [{}, {}]
+        };
+    }
+
     render() {
         return (
             <div className="container">
@@ -15,9 +22,8 @@ export default class CustomersPage extends Component {
                         </button>
                     </div>
                     <div className="col-sm-2">
-                        <button type="button" className="btn btn-outline-primary btn-lg" //data-toggle="modal"
-                            //data-target="#customerForm"
-                        >Make a group
+                        <button type="button" className="btn btn-outline-primary btn-lg">
+                            Create a group ({this.state.selectedCustomers.length})
                         </button>
                     </div>
                 </div>
