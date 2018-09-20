@@ -11,6 +11,6 @@ class CashiersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Cashier::class, 2)->create();
     }
 }
