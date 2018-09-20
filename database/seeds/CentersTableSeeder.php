@@ -11,6 +11,6 @@ class CentersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Center::class, 4)->create();
     }
 }

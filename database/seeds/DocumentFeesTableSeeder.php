@@ -9,8 +9,9 @@ class DocumentFeesTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        //
+        factory(\App\DocumentFee::class, 2)->create();
     }
 }

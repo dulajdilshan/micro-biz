@@ -11,6 +11,6 @@ class LoansTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Loan::class, 2)->create();
     }
 }
