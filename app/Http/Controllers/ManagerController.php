@@ -11,6 +11,7 @@ class ManagerController extends Controller
         $this->middleware('auth');
     }
 
+    //Pages
     public function index()
     {
         return view('manager.manager_loans');
@@ -44,5 +45,10 @@ class ManagerController extends Controller
     public function pendingLoans()
     {
         return view('manager.manager_loans');
+    }
+
+    public function getAllManagers(){
+        $managerList = \App\Manager::all();
+        return $managerList;
     }
 }
