@@ -3,21 +3,25 @@ import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import CustomerForm from "../CustomerForm";
+import {getAllCustomerData} from "../../actions/customerPageActions";
+import axios from "axios/index";
 
 export default class CustomersPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            newCustomer:{},
             selectedCustomers: [{}, {}],
+            customerList:[],
             customerTable: {
                 columns: [
-                    {Header: 'Name', accessor: 'fullName'},
+                    {Header: 'Name', accessor: 'full_name'},
                     {Header: 'NIC', accessor: 'nic'},
-                    {Header: 'Group Number', accessor: 'groupNumber'},
-                    {Header: 'Loan number', accessor: 'loanNumber'},
-                    {Header: 'Loan Amount', accessor: 'loanAmount'},
-                    {Header: 'Weekly Payment (Amount)', accessor: 'weeklyPayment'},
-                    {Header: 'Phone number', accessor: 'phoneNumber'},
+                    {Header: 'Group Number', accessor: 'group_id'},
+                    {Header: 'Loan number', accessor: 'first_name'},
+                    {Header: 'Loan Amount', accessor: 'first_name'},
+                    {Header: 'Weekly Payment (Amount)', accessor: 'gender'},
+                    {Header: 'Phone number', accessor: 'contact_no1'},
 
                 ], data: [{
                     fullName: 'Jodha Akbar',
@@ -33,7 +37,19 @@ export default class CustomersPage extends Component {
         };
     }
 
+    componentDidMount(){
+        axios.get('/api/customers')
+            .then(res => {
+                this.setState({customerList: res.data});
+            })
+            .catch(err => {
+                alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+            });
+    }
+
     render() {
+        // this.setState({customerList: getAllCustomerData()});
+
         let columns = [
             {Header: 'Name', accessor: 'fullName'},
             {Header: 'NIC', accessor: 'nic'},
@@ -68,7 +84,7 @@ export default class CustomersPage extends Component {
                     </div>
                 </div>
                 <br/>
-                <DataTable columns={this.state.customerTable.columns} data={this.state.customerTable.data}/>
+                <DataTable columns={this.state.customerTable.columns} data={this.state.customerList}/>
                 <CustomerForm/>
             </div>
         );
