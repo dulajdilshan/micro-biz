@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/users','Api\UserController@index');
 Route::get('/loans','Api\LoanController@index');
+Route::get('/payments','Api\PaymentController@index');
+Route::get('/customers','Api\CustomerController@index');
+Route::get('/groups','Api\GroupController@index');
+Route::get('/document-fees','Api\DocumentFeeController@index');
