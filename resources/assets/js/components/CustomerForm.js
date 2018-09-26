@@ -3,21 +3,6 @@ import React, {Component} from 'react';
 class CustomerForm extends Component {
     constructor(props) {
         super(props);
-        this.initialState = {
-            customer: {
-                first_name: '',
-                last_name: '',
-                age: '',
-                nic: '',
-                gender: 'male',
-                married: 'single',
-                contact_no1: '',
-                contact_no2: '',
-                address_1: '',
-                address_2: ''
-            }
-        };
-        this.state = this.initialState;
     }
 
     handleNicChange(event) {
