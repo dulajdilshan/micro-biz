@@ -3,18 +3,36 @@ import React, {Component} from 'react';
 class CustomerForm extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isError: false,
+        }
     }
 
     handleNicChange(event) {
         this.props._handleNicChange(event);
+        if (event.target.value.length !== 10 || event.target.value[event.target.value.length - 1] !== 'v') {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleFirstNameChange(event) {
         this.props._handleFirstNameChange(event);
+        if (event.target.value.length < 3) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleLastNameChange(event) {
         this.props._handleLastNameChange(event);
+        if (event.target.value.length < 3) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleAgeChange(event) {
@@ -27,18 +45,40 @@ class CustomerForm extends Component {
 
     handleAddress1Change(event) {
         this.props._handleAddress1Change(event);
+        if (event.target.value.length < 3) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleAddress2Change(event) {
         this.props._handleAddress2Change(event);
+        if (event.target.value.length < 3) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleContactNo1Change(event) {
         this.props._handleContactNo1Change(event);
+        let regex = /^[0-9]\d*$/;
+        if (event.target.value.length !== 10 || !regex.test(event.target.value)) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleContactNo2Change(event) {
         this.props._handleContactNo2Change(event);
+        let regex = /^[0-9]\d*$/;
+        if (event.target.value.length !== 10 || !regex.test(event.target.value)) {
+            this.setState({isError: true})
+        } else {
+            this.setState({isError: false})
+        }
     }
 
     handleGenderChange(event) {
@@ -66,10 +106,13 @@ class CustomerForm extends Component {
                             <h4 className="modal-title">Add Customer</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
+                        <div style={{margin: '10px', display: this.state.isError ? 'block' : 'none'}}>
+                            <h5 style={{color: 'red'}}>***Please put valid Details</h5>
+                        </div>
                         <form action="" method="post">
                             <div className="modal-body">
                                 <div className="row">
-                                    <div className="col-sm-2 form-group">
+                                    <div className="col-sm-3 form-group">
                                         <label for="customer_nic"> NIC</label>
                                         <input type="text" className="form-control" id="nic"
                                                name="customer_nic" required="" maxlength="50"
@@ -79,7 +122,7 @@ class CustomerForm extends Component {
                                                }}
                                         />
                                     </div>
-                                    <div className="col-sm-2 form-group">
+                                    <div className="col-sm-3 form-group">
                                         <label for="customer_name"> First Name</label>
                                         <input type="text" className="form-control" id="first_name"
                                                name="customer_name" required="" maxlength="50"
@@ -97,12 +140,14 @@ class CustomerForm extends Component {
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label for="customer_bday"> Birthday</label>
-                                        <input type="text" className="form-control" id="birthday"
+                                        <input type="date" className="form-control" id="birthday"
                                                name="customer_bday" required="" maxlength="50"
                                                value={this.props.newCustomer.birthday}
                                                onChange={this.handleBirthdayChange.bind(this)}
                                         />
                                     </div>
+                                </div>
+                                <div className="row">
                                     <div className="col-sm-2 form-group">
                                         <label for="customer_age"> Age</label>
                                         <input type="text" className="form-control" id="age"
@@ -111,9 +156,7 @@ class CustomerForm extends Component {
                                                onChange={this.handleAgeChange.bind(this)}
                                         />
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-3 form-group">
+                                    <div className="col-sm-2 form-group">
                                         <label for="customer_gender"> Gender</label>
                                         <select className="form-control" name="gender"
                                                 id="customer_gender" onChange={this.handleGenderChange.bind(this)}
@@ -122,7 +165,7 @@ class CustomerForm extends Component {
                                             <option className="form-control" id='female' value="female">Female</option>
                                         </select>
                                     </div>
-                                    <div className="col-sm-3 form-group">
+                                    <div className="col-sm-2 form-group">
                                         <label for="customer_married"> Married / Single</label>
                                         <select className="form-control" name="married"
                                                 value={this.props.newCustomer.married}
