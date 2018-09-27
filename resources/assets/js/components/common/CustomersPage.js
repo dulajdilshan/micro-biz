@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import CustomerForm from "../CustomerForm";
-import {getAllCustomerData} from "../../actions/customerPageActions";
 import axios from "axios/index";
 
 export default class CustomersPage extends Component {
@@ -183,6 +182,7 @@ export default class CustomersPage extends Component {
             weeklyPayment: 21300,
             phoneNumber: '0712345678'
         }];
+
         return (
             <div className="container">
                 <div className="row">
