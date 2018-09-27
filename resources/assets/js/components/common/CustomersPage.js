@@ -157,6 +157,10 @@ export default class CustomersPage extends Component {
             });
     }
 
+    handleCreateGroup() {
+        //Handle create group
+    }
+
     render() {
         // this.setState({customerList: getAllCustomerData()});
 
@@ -189,8 +193,9 @@ export default class CustomersPage extends Component {
                         </button>
                     </div>
                     <div className="col-sm-3">
-                        <button type="button" className="btn btn-outline-primary btn-lg">
-                            Create a group ({this.state.selectedCustomers.length})
+                        <button type="button" className="btn btn-outline-primary btn-lg"
+                                onClick={this.handleCreateGroup.bind(this)}>
+                             Create a group ({this.state.selectedCustomers.length})
                         </button>
                     </div>
                 </div>
