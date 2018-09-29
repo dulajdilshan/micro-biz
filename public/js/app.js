@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,7 +84,7 @@ if (false) {
 "use strict";
 
 
-var bind = __webpack_require__(14);
+var bind = __webpack_require__(15);
 var isBuffer = __webpack_require__(31);
 
 /*global toString:true*/
@@ -492,16 +492,21 @@ var DataTable = function (_Component) {
     }
 
     _createClass(DataTable, [{
-        key: 'render',
+        key: "render",
         value: function render() {
-            var data = [{
-                name: 'Tanner Linsley',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23
-                }
-            }];
+            // let data = [{
+            //     fullName: 'Jodha Akbar',
+            //     nic: '956722345v',
+            //     groupNumber: 3,
+            //     loanNumber:2,
+            //     loanAmount:23000,
+            //     weeklyPayment:21300,
+            //     phoneNumber:'0712345678'
+            //     // friend: {
+            //     //     name: 'Jason Maurer',
+            //     //     age: 23,
+            //     // }
+            // }];
 
             // let columns = [{
             //     Header: 'Name',
@@ -519,12 +524,21 @@ var DataTable = function (_Component) {
             //     accessor: 'friend.age'
             // }];
 
-            var columns = [];
+            // let columns = [
+            //     {Header: 'Name', accessor: 'fullName'},
+            //     {Header: 'NIC', accessor: 'nic'},
+            //     {Header: 'Group Number', accessor: 'groupNumber'},
+            //     {Header: 'Loan number', accessor: 'loanNumber'},
+            //     {Header: 'Loan Amount', accessor: 'loanAmount'},
+            //     {Header: 'Weekly Payment (Amount)', accessor: 'weeklyPayment'},
+            //     {Header: 'Phone number', accessor: 'phoneNumber'},
+            //
+            // ];
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                "div",
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_table__["a" /* default */], { data: data, columns: columns, className: '-striped -highlight', filterable: true })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_table__["a" /* default */], { data: this.props.data, columns: this.props.columns, className: "-striped -highlight", filterable: true })
             );
         }
     }]);
@@ -597,6 +611,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(30);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -617,10 +637,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(15);
+    adapter = __webpack_require__(16);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(15);
+    adapter = __webpack_require__(16);
   }
   return adapter;
 }
@@ -698,7 +718,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -795,7 +815,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -837,7 +857,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -853,7 +873,7 @@ module.exports = emptyFunction;
 var printWarning = function() {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(22);
+  var ReactPropTypesSecret = __webpack_require__(23);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -935,7 +955,7 @@ module.exports = checkPropTypes;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1171,7 +1191,7 @@ function normalizeComponent(Comp) {
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy91dGlscy5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsImNsYXNzbmFtZXMiLCJnZXQiLCJzZXQiLCJ0YWtlUmlnaHQiLCJsYXN0Iiwib3JkZXJCeSIsInJhbmdlIiwicmVtb3ZlIiwiY2xvbmUiLCJnZXRGaXJzdERlZmluZWQiLCJzdW0iLCJtYWtlVGVtcGxhdGVDb21wb25lbnQiLCJncm91cEJ5IiwiaXNBcnJheSIsInNwbGl0UHJvcHMiLCJjb21wYWN0T2JqZWN0IiwiaXNTb3J0aW5nRGVzYyIsIm5vcm1hbGl6ZUNvbXBvbmVudCIsImFzUHgiLCJvYmoiLCJwYXRoIiwiZGVmIiwicGF0aE9iaiIsIm1ha2VQYXRoQXJyYXkiLCJ2YWwiLCJyZWR1Y2UiLCJjdXJyZW50IiwicGF0aFBhcnQiLCJlIiwidmFsdWUiLCJrZXlzIiwia2V5UGFydCIsImN1cnNvciIsInNoaWZ0IiwibGVuZ3RoIiwiYXJyIiwibiIsInN0YXJ0Iiwic2xpY2UiLCJpIiwicHVzaCIsImZ1bmNzIiwiZGlycyIsImluZGV4S2V5Iiwic29ydCIsInJvd0EiLCJyb3dCIiwiY29tcCIsImRlc2MiLCJzb3J0SW50IiwiYSIsImIiLCJmaWx0ZXIiLCJvIiwiciIsInNwbGljZSIsIkpTT04iLCJwYXJzZSIsInN0cmluZ2lmeSIsImtleSIsInRvU3RyaW5nIiwiY29tcENsYXNzIiwiZGlzcGxheU5hbWUiLCJFcnJvciIsImNtcCIsImNoaWxkcmVuIiwiY2xhc3NOYW1lIiwicmVzdCIsInhzIiwicnYiLCJ4IiwicmVzS2V5IiwiTnVtYmVyIiwiaXNOYU4iLCJBcnJheSIsImZsYXR0ZW5EZWVwIiwiam9pbiIsInJlcGxhY2UiLCJzcGxpdCIsIm5ld0FyciIsInN0eWxlIiwibmV3T2JqIiwiT2JqZWN0IiwibWFwIiwicHJvdG90eXBlIiwiaGFzT3duUHJvcGVydHkiLCJjYWxsIiwidW5kZWZpbmVkIiwiZCIsImFzYyIsIkNvbXAiLCJwYXJhbXMiLCJmYWxsYmFjayIsImdldFByb3RvdHlwZU9m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VUgsTUFBVixDQURGLEdBR0VELEtBQUtDLE1BQUwsQ0FKRyxHQU9MQyxRQVBGO0FBU0QiLCJmaWxlIjoidXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgY2xhc3NuYW1lcyBmcm9tICdjbGFzc25hbWVzJ1xuLy9cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZ2V0LFxuICBzZXQsXG4gIHRha2VSaWdodCxcbiAgbGFzdCxcbiAgb3JkZXJCeSxcbiAgcmFuZ2UsXG4gIHJlbW92ZSxcbiAgY2xvbmUsXG4gIGdldEZpcnN0RGVmaW5lZCxcbiAgc3VtLFxuICBtYWtlVGVtcGxhdGVDb21wb25lbnQsXG4gIGdyb3VwQnksXG4gIGlzQXJyYXksXG4gIHNwbGl0UHJvcHMsXG4gIGNvbXBhY3RPYmplY3QsXG4gIGlzU29ydGluZ0Rlc2MsXG4gIG5vcm1hbGl6ZUNvbXBvbmVudCxcbiAgYXNQeCxcbn1cblxuZnVuY3Rpb24gZ2V0IChvYmosIHBhdGgsIGRlZikge1xuICBpZiAoIXBhdGgpIHtcbiAgICByZXR1cm4gb2JqXG4gIH1cbiAgY29uc3QgcGF0aE9iaiA9IG1ha2VQYXRoQXJyYXkocGF0aClcbiAgbGV0IHZhbFxuICB0cnkge1xuICAgIHZhbCA9IHBhdGhPYmoucmVkdWNlKChjdXJyZW50LCBwYXRoUGFydCkgPT4gY3VycmVudFtwYXRoUGFydF0sIG9iailcbiAgfSBjYXRjaCAoZSkge1xuICAgIC8vIGNvbnRpbnVlIHJlZ2FyZGxlc3Mgb2YgZXJyb3JcbiAgfVxuICByZXR1cm4gdHlwZW9mIHZhbCAhPT0gJ3VuZGVmaW5lZCcgPyB2YWwgOiBkZWZcbn1cblxuZnVuY3Rpb24gc2V0IChvYmogPSB7fSwgcGF0aCwgdmFsdWUpIHtcbiAgY29uc3Qga2V5cyA9IG1ha2VQYXRoQXJyYXkocGF0aClcbiAgbGV0IGtleVBhcnRcbiAgbGV0IGN1cnNvciA9IG9ialxuICB3aGlsZSAoKGtleVBhcnQgPSBrZXlzLnNoaWZ0KCkpICYmIGtleXMubGVuZ3RoKSB7XG4gICAgaWYgKCFjdXJzb3Jba2V5UGFydF0pIHtcbiAgICAgIGN1cnNvcltrZXlQYXJ0XSA9IHt9XG4gICAgfVxuICAgIGN1cnNvciA9IGN1cnNvcltrZXlQYXJ0XVxuICB9XG4gIGN1cnNvcltrZXlQYXJ0XSA9IHZhbHVlXG4gIHJldHVybiBvYmpcbn1cblxuZnVuY3Rpb24gdGFrZVJpZ2h0IChhcnIsIG4pIHtcbiAgY29uc3Qgc3RhcnQgPSBuID4gYXJyLmxlbmd0aCA/IDAgOiBhcnIubGVuZ3RoIC0gblxuICByZXR1cm4gYXJyLnNsaWNlKHN0YXJ0KVxufVxuXG5mdW5jdGlvbiBsYXN0IChhcnIpIHtcbiAgcmV0dXJuIGFyclthcnIubGVuZ3RoIC0gMV1cbn1cblxuZnVuY3Rpb24gcmFuZ2UgKG4pIHtcbiAgY29uc3QgYXJyID0gW11cbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBuOyBpICs9IDEpIHtcbiAgICBhcnIucHVzaChuKVxuICB9XG4gIHJldHVybiBhcnJcbn1cblxuZnVuY3Rpb24gb3JkZXJCeSAoYXJyLCBmdW5jcywgZGlycywgaW5kZXhLZXkpIHtcbiAgcmV0dXJuIGFyci5zb3J0KChyb3dBLCByb3dCKSA9PiB7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBmdW5jcy5sZW5ndGg7IGkgKz0gMSkge1xuICAgICAgY29uc3QgY29tcCA9IGZ1bmNzW2ldXG4gICAgICBjb25zdCBkZXNjID0gZGlyc1tpXSA9PT0gZmFsc2UgfHwgZGlyc1tpXSA9PT0gJ2Rlc2MnXG4gICAgICBjb25zdCBzb3J0SW50ID0gY29tcChyb3dBLCByb3dCKVxuICAgICAgaWYgKHNvcnRJbnQpIHtcbiAgICAgICAgcmV0dXJuIGRlc2MgPyAtc29ydEludCA6IHNvcnRJbnRcbiAgICAgIH1cbiAgICB9XG4gICAgLy8gVXNlIHRoZSByb3cgaW5kZXggZm9yIHRpZSBicmVha2Vyc1xuICAgIHJldHVybiBkaXJzWzBdID8gcm93QVtpbmRleEtleV0gLSByb3dCW2luZGV4S2V5XSA6IHJvd0JbaW5kZXhLZXldIC0gcm93QVtpbmRleEtleV1cbiAgfSlcbn1cblxuZnVuY3Rpb24gcmVtb3ZlIChhLCBiKSB7XG4gIHJldHVybiBhLmZpbHRlcigobywgaSkgPT4ge1xuICAgIGNvbnN0IHIgPSBiKG8pXG4gICAgaWYgKHIpIHtcbiAgICAgIGEuc3BsaWNlKGksIDEpXG4gICAgICByZXR1cm4gdHJ1ZVxuICAgIH1cbiAgICByZXR1cm4gZmFsc2VcbiAgfSlcbn1cblxuZnVuY3Rpb24gY2xvbmUgKGEpIHtcbiAgdHJ5IHtcbiAgICByZXR1cm4gSlNPTi5wYXJzZShcbiAgICAgIEpTT04uc3RyaW5naWZ5KGEsIChrZXksIHZhbHVlKSA9PiB7XG4gICAgICAgIGlmICh0eXBlb2YgdmFsdWUgPT09ICdmdW5jdGlvbicpIHtcbiAgICAgICAgICByZXR1cm4gdmFsdWUudG9TdHJpbmcoKVxuICAgICAgICB9XG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSlcbiAgICApXG4gIH0gY2F0Y2ggKGUpIHtcbiAgICByZXR1cm4gYVxuICB9XG59XG5cbmZ1bmN0aW9uIGdldEZpcnN0RGVmaW5lZCAoLi4uYXJncykge1xuICBmb3IgKGxldCBpID0gMDsgaSA8IGFyZ3MubGVuZ3RoOyBpICs9IDEpIHtcbiAgICBpZiAodHlwZW9mIGFyZ3NbaV0gIT09ICd1bmRlZmluZWQnKSB7XG4gICAgICByZXR1cm4gYXJnc1tpXVxuICAgIH1cbiAgfVxufVxuXG5mdW5jdGlvbiBzdW0gKGFycikge1xuICByZXR1cm4gYXJyLnJlZHVjZSgoYSwgYikgPT4gYSArIGIsIDApXG59XG5cbmZ1bmN0aW9uIG1ha2VUZW1wbGF0ZUNvbXBvbmVudCAoY29tcENsYXNzLCBkaXNwbGF5TmFtZSkge1xuICBpZiAoIWRpc3BsYXlOYW1lKSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKCdObyBkaXNwbGF5TmFtZSBmb3VuZCBmb3IgdGVtcGxhdGUgY29tcG9uZW50OicsIGNvbXBDbGFzcylcbiAgfVxuICBjb25zdCBjbXAgPSAoeyBjaGlsZHJlbiwgY2xhc3NOYW1lLCAuLi5yZXN0IH0pID0+IChcbiAgICA8ZGl2IGNsYXNzTmFtZT17Y2xhc3NuYW1lcyhjb21wQ2xhc3MsIGNsYXNzTmFtZSl9IHsuLi5yZXN0fT5cbiAgICAgIHtjaGlsZHJlbn1cbiAgICA8L2Rpdj5cbiAgKVxuICBjbXAuZGlzcGxheU5hbWUgPSBkaXNwbGF5TmFtZVxuICByZXR1cm4gY21wXG59XG5cbmZ1bmN0aW9uIGdyb3VwQnkgKHhzLCBrZXkpIHtcbiAgcmV0dXJuIHhzLnJlZHVjZSgocnYsIHgsIGkpID0+IHtcbiAgICBjb25zdCByZXNLZXkgPSB0eXBlb2Yga2V5ID09PSAnZnVuY3Rpb24nID8ga2V5KHgsIGkpIDogeFtrZXldXG4gICAgcnZbcmVzS2V5XSA9IGlzQXJyYXkocnZbcmVzS2V5XSkgPyBydltyZXNLZXldIDogW11cbiAgICBydltyZXNLZXldLnB1c2goeClcbiAgICByZXR1cm4gcnZcbiAgfSwge30pXG59XG5cbmZ1bmN0aW9uIGFzUHggKHZhbHVlKSB7XG4gIHZhbHVlID0gTnVtYmVyKHZhbHVlKVxuICByZXR1cm4gTnVtYmVyLmlzTmFOKHZhbHVlKSA/IG51bGwgOiBgJHt2YWx1ZX1weGBcbn1cblxuZnVuY3Rpb24gaXNBcnJheSAoYSkge1xuICByZXR1cm4gQXJyYXkuaXNBcnJheShhKVxufVxuXG4vLyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyNcbi8vIE5vbi1leHBvcnRlZCBIZWxwZXJzXG4vLyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyNcblxuZnVuY3Rpb24gbWFrZVBhdGhBcnJheSAob2JqKSB7XG4gIHJldHVybiBmbGF0dGVuRGVlcChvYmopXG4gICAgLmpvaW4oJy4nKVxuICAgIC5yZXBsYWNlKC9cXFsvZywgJy4nKVxuICAgIC5yZXBsYWNlKC9cXF0vZywgJycpXG4gICAgLnNwbGl0KCcuJylcbn1cblxuZnVuY3Rpb24gZmxhdHRlbkRlZXAgKGFyciwgbmV3QXJyID0gW10pIHtcbiAgaWYgKCFpc0FycmF5KGFycikpIHtcbiAgICBuZXdBcnIucHVzaChhcnIpXG4gIH0gZWxzZSB7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBhcnIubGVuZ3RoOyBpICs9IDEpIHtcbiAgICAgIGZsYXR0ZW5EZWVwKGFycltpXSwgbmV3QXJyKVxuICAgIH1cbiAgfVxuICByZXR1cm4gbmV3QXJyXG59XG5cbmZ1bmN0aW9uIHNwbGl0UHJvcHMgKHsgY2xhc3NOYW1lLCBzdHlsZSwgLi4ucmVzdCB9KSB7XG4gIHJldHVybiB7XG4gICAgY2xhc3NOYW1lLFxuICAgIHN0eWxlLFxuICAgIHJlc3Q6IHJlc3QgfHwge30sXG4gIH1cbn1cblxuZnVuY3Rpb24gY29tcGFjdE9iamVjdCAob2JqKSB7XG4gIGNvbnN0IG5ld09iaiA9IHt9XG4gIGlmIChvYmopIHtcbiAgICBPYmplY3Qua2V5cyhvYmopLm1hcChrZXkgPT4ge1xuICAgICAgaWYgKFxuICAgICAgICBPYmplY3QucHJvdG90eXBlLmhhc093blByb3BlcnR5LmNhbGwob2JqLCBrZXkpICYmXG4gICAgICAgIG9ialtrZXldICE9PSB1bmRlZmluZWQgJiZcbiAgICAgICAgdHlwZW9mIG9ialtrZXldICE9PSAndW5kZWZpbmVkJ1xuICAgICAgKSB7XG4gICAgICAgIG5ld09ialtrZXldID0gb2JqW2tleV1cbiAgICAgIH1cbiAgICAgIHJldHVybiB0cnVlXG4gICAgfSlcbiAgfVxuICByZXR1cm4gbmV3T2JqXG59XG5cbmZ1bmN0aW9uIGlzU29ydGluZ0Rlc2MgKGQpIHtcbiAgcmV0dXJuICEhKGQuc29ydCA9PT0gJ2Rlc2MnIHx8IGQuZGVzYyA9PT0gdHJ1ZSB8fCBkLmFzYyA9PT0gZmFsc2UpXG59XG5cbmZ1bmN0aW9uIG5vcm1hbGl6ZUNvbXBvbmVudCAoQ29tcCwgcGFyYW1zID0ge30sIGZhbGxiYWNrID0gQ29tcCkge1xuICByZXR1cm4gdHlwZW9mIENvbXAgPT09ICdmdW5jdGlvbicgPyAoXG4gICAgT2JqZWN0LmdldFByb3RvdHlwZU9mKENvbXApLmlzUmVhY3RDb21wb25lbnQgPyAoXG4gICAgICA8Q29tcCB7Li4ucGFyYW1zfSAvPlxuICAgICkgOiAoXG4gICAgICBDb21wKHBhcmFtcylcbiAgICApXG4gICkgOiAoXG4gICAgZmFsbGJhY2tcbiAgKVxufVxuIl19
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1198,7 +1218,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3736,10 +3756,10 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(12)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -14110,7 +14130,7 @@ return jQuery;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14128,7 +14148,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14139,7 +14159,7 @@ var settle = __webpack_require__(35);
 var buildURL = __webpack_require__(37);
 var parseHeaders = __webpack_require__(38);
 var isURLSameOrigin = __webpack_require__(39);
-var createError = __webpack_require__(16);
+var createError = __webpack_require__(17);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(40);
 
 module.exports = function xhrAdapter(config) {
@@ -14315,7 +14335,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14340,7 +14360,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14352,7 +14372,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14378,7 +14398,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14437,7 +14457,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14460,7 +14480,7 @@ if (true) {
 module.exports = emptyObject;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14474,7 +14494,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -14528,7 +14548,7 @@ if (true) {
 module.exports = warning;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14547,15 +14567,15 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(24);
-module.exports = __webpack_require__(82);
+__webpack_require__(25);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -14564,7 +14584,7 @@ module.exports = __webpack_require__(82);
  * building robust, powerful web applications using React + Laravel.
  */
 
-__webpack_require__(25);
+__webpack_require__(26);
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -14576,18 +14596,18 @@ __webpack_require__(25);
 // require('./components/manager/ManagerNavBar');
 __webpack_require__(49);
 __webpack_require__(75);
-__webpack_require__(77);
 __webpack_require__(78);
-__webpack_require__(80);
+__webpack_require__(79);
 __webpack_require__(81);
+__webpack_require__(82);
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(26);
-window.Popper = __webpack_require__(12).default;
+window._ = __webpack_require__(27);
+window.Popper = __webpack_require__(13).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14596,9 +14616,9 @@ window.Popper = __webpack_require__(12).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(13);
+  window.$ = window.jQuery = __webpack_require__(14);
 
-  __webpack_require__(28);
+  __webpack_require__(29);
 } catch (e) {}
 
 /**
@@ -14607,7 +14627,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(29);
+window.axios = __webpack_require__(6);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -14643,7 +14663,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31753,10 +31773,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(27)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(28)(module)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -31784,7 +31804,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -31793,7 +31813,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(13), __webpack_require__(12)) :
+   true ? factory(exports, __webpack_require__(14), __webpack_require__(13)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35734,12 +35754,6 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(30);
-
-/***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35747,9 +35761,9 @@ module.exports = __webpack_require__(30);
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(14);
+var bind = __webpack_require__(15);
 var Axios = __webpack_require__(32);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 
 /**
  * Create an instance of Axios
@@ -35782,9 +35796,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(18);
+axios.Cancel = __webpack_require__(19);
 axios.CancelToken = __webpack_require__(47);
-axios.isCancel = __webpack_require__(17);
+axios.isCancel = __webpack_require__(18);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -35832,7 +35846,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(42);
 var dispatchRequest = __webpack_require__(43);
@@ -36127,7 +36141,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(16);
+var createError = __webpack_require__(17);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -36560,8 +36574,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(44);
-var isCancel = __webpack_require__(17);
-var defaults = __webpack_require__(6);
+var isCancel = __webpack_require__(18);
+var defaults = __webpack_require__(7);
 var isAbsoluteURL = __webpack_require__(45);
 var combineURLs = __webpack_require__(46);
 
@@ -36720,7 +36734,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(18);
+var Cancel = __webpack_require__(19);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -36900,12 +36914,12 @@ if (true) {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(7);
-var invariant = __webpack_require__(19);
-var emptyObject = __webpack_require__(20);
-var warning = __webpack_require__(21);
-var emptyFunction = __webpack_require__(8);
-var checkPropTypes = __webpack_require__(9);
+var _assign = __webpack_require__(8);
+var invariant = __webpack_require__(20);
+var emptyObject = __webpack_require__(21);
+var warning = __webpack_require__(22);
+var emptyFunction = __webpack_require__(9);
+var checkPropTypes = __webpack_require__(10);
 
 // TODO: this is special because it gets imported during build.
 
@@ -38393,17 +38407,17 @@ if (true) {
   (function() {
 'use strict';
 
-var invariant = __webpack_require__(19);
+var invariant = __webpack_require__(20);
 var React = __webpack_require__(0);
-var warning = __webpack_require__(21);
+var warning = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(52);
-var _assign = __webpack_require__(7);
-var emptyFunction = __webpack_require__(8);
-var checkPropTypes = __webpack_require__(9);
+var _assign = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
+var checkPropTypes = __webpack_require__(10);
 var getActiveElement = __webpack_require__(53);
 var shallowEqual = __webpack_require__(54);
 var containsNode = __webpack_require__(55);
-var emptyObject = __webpack_require__(20);
+var emptyObject = __webpack_require__(21);
 var hyphenateStyleName = __webpack_require__(58);
 var camelizeStyleName = __webpack_require__(60);
 
@@ -56776,7 +56790,7 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lifecycle__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__methods__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__defaultProps__ = __webpack_require__(69);
@@ -57720,7 +57734,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(11);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58470,7 +58484,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pagination__ = __webpack_require__(70);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -59254,10 +59268,10 @@ if (true) {
 
 
 
-var assign = __webpack_require__(7);
+var assign = __webpack_require__(8);
 
-var ReactPropTypesSecret = __webpack_require__(22);
-var checkPropTypes = __webpack_require__(9);
+var ReactPropTypesSecret = __webpack_require__(23);
+var checkPropTypes = __webpack_require__(10);
 
 var printWarning = function() {};
 
@@ -60519,6 +60533,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_table_react_table_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_table_react_table_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DataTable__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CustomerForm__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios_index__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -60526,6 +60542,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -60541,15 +60558,183 @@ var CustomersPage = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (CustomersPage.__proto__ || Object.getPrototypeOf(CustomersPage)).call(this, props));
 
+        _this.initialState = {
+            customer: {
+                first_name: '',
+                last_name: '',
+                age: '',
+                nic: '',
+                gender: 'male',
+                married: 'single',
+                contact_no1: '',
+                contact_no2: '',
+                address_1: '',
+                address_2: ''
+            }
+        };
         _this.state = {
-            selectedCustomers: [{}, {}]
+            isFormVisible: false,
+            customer: _this.initialState.customer,
+            selectedCustomers: [{}, {}],
+            customerList: [],
+            customerTable: {
+                columns: [{ Header: 'Name', accessor: 'full_name' }, { Header: 'NIC', accessor: 'nic' }, { Header: 'Group Number', accessor: 'group_id' }, { Header: 'Loan number', accessor: 'first_name' }, { Header: 'Loan Amount', accessor: 'first_name' }, { Header: 'Weekly Payment (Amount)', accessor: 'gender' }, { Header: 'Phone number', accessor: 'contact_no1' }], data: [{
+                    fullName: 'Jodha Akbar',
+                    nic: '956722345v',
+                    groupNumber: 3,
+                    loanNumber: 2,
+                    loanAmount: 23000,
+                    weeklyPayment: 21300,
+                    phoneNumber: '0712345678'
+                }]
+            }
+
         };
         return _this;
     }
 
     _createClass(CustomersPage, [{
+        key: '_handleNicChange',
+        value: function _handleNicChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { nic: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleFirstNameChange',
+        value: function _handleFirstNameChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { first_name: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleLastNameChange',
+        value: function _handleLastNameChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { last_name: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleAgeChange',
+        value: function _handleAgeChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { age: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleBirthdayChange',
+        value: function _handleBirthdayChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { birthday: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleAddress1Change',
+        value: function _handleAddress1Change(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { address_1: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleAddress2Change',
+        value: function _handleAddress2Change(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { address_2: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleContactNo1Change',
+        value: function _handleContactNo1Change(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { contact_no1: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleContactNo2Change',
+        value: function _handleContactNo2Change(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { contact_no2: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleGenderChange',
+        value: function _handleGenderChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { gender: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleMarriedSingleChange',
+        value: function _handleMarriedSingleChange(event) {
+            var newCustomer = Object.assign({}, this.state.customer, { married: event.target.value });
+            this.setState({
+                customer: newCustomer
+            });
+        }
+    }, {
+        key: '_handleCloseButton',
+        value: function _handleCloseButton(event) {
+            console.log(this.state);
+            this.setState(this.initialState);
+            console.log(this.state);
+        }
+    }, {
+        key: '_resetNewCustomerForm',
+        value: function _resetNewCustomerForm() {
+            this.setState(this.initialState);
+        }
+    }, {
+        key: '_makeNewCustomerFormVisible',
+        value: function _makeNewCustomerFormVisible() {
+            this.setState({ isFormVisible: true });
+        }
+    }, {
+        key: '_makeNewCustomerFormInvisible',
+        value: function _makeNewCustomerFormInvisible() {
+            this.setState({ isFormVisible: false });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_5_axios_index___default.a.get('/api/customers').then(function (res) {
+                _this2.setState({ customerList: res.data });
+            }).catch(function (err) {
+                alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+            });
+        }
+    }, {
+        key: 'handleCreateGroup',
+        value: function handleCreateGroup() {
+            //Handle create group
+        }
+    }, {
         key: 'render',
         value: function render() {
+            // this.setState({customerList: getAllCustomerData()});
+
+            var columns = [{ Header: 'Name', accessor: 'fullName' }, { Header: 'NIC', accessor: 'nic' }, { Header: 'Group Number', accessor: 'groupNumber' }, { Header: 'Loan number', accessor: 'loanNumber' }, { Header: 'Loan Amount', accessor: 'loanAmount' }, { Header: 'Weekly Payment (Amount)', accessor: 'weeklyPayment' }, { Header: 'Phone number', accessor: 'phoneNumber' }];
+            var data = [{
+                fullName: 'Jodha Akbar',
+                nic: '956722345v',
+                groupNumber: 3,
+                loanNumber: 2,
+                loanAmount: 23000,
+                weeklyPayment: 21300,
+                phoneNumber: '0712345678'
+            }];
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'container' },
@@ -60558,20 +60743,21 @@ var CustomersPage = function (_Component) {
                     { className: 'row' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col-sm-2' },
+                        { className: 'col-sm-3' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
                             { type: 'button', className: 'btn btn-secondary btn-lg', 'data-toggle': 'modal',
-                                'data-target': '#customerForm' },
+                                'data-target': '#customerForm', onClick: this._resetNewCustomerForm.bind(this) },
                             'New Customer'
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col-sm-2' },
+                        { className: 'col-sm-3' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
-                            { type: 'button', className: 'btn btn-outline-primary btn-lg' },
+                            { type: 'button', className: 'btn btn-outline-primary btn-lg',
+                                onClick: this.handleCreateGroup.bind(this) },
                             'Create a group (',
                             this.state.selectedCustomers.length,
                             ')'
@@ -60579,8 +60765,22 @@ var CustomersPage = function (_Component) {
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataTable__["a" /* default */], null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CustomerForm__["a" /* default */], null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataTable__["a" /* default */], { columns: this.state.customerTable.columns, data: this.state.customerList }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CustomerForm__["a" /* default */], { newCustomer: this.state.customer,
+                    isVisible: this.state.isFormVisible,
+                    _handleNicChange: this._handleNicChange.bind(this),
+                    makeInvisible: this._makeNewCustomerFormInvisible,
+                    _handleFirstNameChange: this._handleFirstNameChange.bind(this),
+                    _handleLastNameChange: this._handleLastNameChange.bind(this),
+                    _handleAgeChange: this._handleAgeChange.bind(this),
+                    _handleBirthdayChange: this._handleBirthdayChange.bind(this),
+                    _handleAddress1Change: this._handleAddress1Change.bind(this),
+                    _handleAddress2Change: this._handleAddress2Change.bind(this),
+                    _handleContactNo1Change: this._handleContactNo1Change.bind(this),
+                    _handleContactNo2Change: this._handleContactNo2Change.bind(this),
+                    _handleGenderChange: this._handleGenderChange.bind(this),
+                    _handleMarriedSingleChange: this._handleMarriedSingleChange.bind(this)
+                })
             );
         }
     }]);
@@ -60615,205 +60815,368 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CustomerForm = function (_Component) {
     _inherits(CustomerForm, _Component);
 
-    function CustomerForm() {
+    function CustomerForm(props) {
         _classCallCheck(this, CustomerForm);
 
-        return _possibleConstructorReturn(this, (CustomerForm.__proto__ || Object.getPrototypeOf(CustomerForm)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CustomerForm.__proto__ || Object.getPrototypeOf(CustomerForm)).call(this, props));
+
+        _this.state = {
+            isError: false
+        };
+        return _this;
     }
 
     _createClass(CustomerForm, [{
-        key: "render",
+        key: 'handleNicChange',
+        value: function handleNicChange(event) {
+            this.props._handleNicChange(event);
+            if (event.target.value.length !== 10 || event.target.value[event.target.value.length - 1] !== 'v') {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleFirstNameChange',
+        value: function handleFirstNameChange(event) {
+            this.props._handleFirstNameChange(event);
+            if (event.target.value.length < 3) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleLastNameChange',
+        value: function handleLastNameChange(event) {
+            this.props._handleLastNameChange(event);
+            if (event.target.value.length < 3) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleAgeChange',
+        value: function handleAgeChange(event) {
+            this.props._handleAgeChange(event);
+        }
+    }, {
+        key: 'handleBirthdayChange',
+        value: function handleBirthdayChange(event) {
+            this.props._handleBirthdayChange(event);
+        }
+    }, {
+        key: 'handleAddress1Change',
+        value: function handleAddress1Change(event) {
+            this.props._handleAddress1Change(event);
+            if (event.target.value.length < 3) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleAddress2Change',
+        value: function handleAddress2Change(event) {
+            this.props._handleAddress2Change(event);
+            if (event.target.value.length < 3) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleContactNo1Change',
+        value: function handleContactNo1Change(event) {
+            this.props._handleContactNo1Change(event);
+            var regex = /^[0-9]\d*$/;
+            if (event.target.value.length !== 10 || !regex.test(event.target.value)) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleContactNo2Change',
+        value: function handleContactNo2Change(event) {
+            this.props._handleContactNo2Change(event);
+            var regex = /^[0-9]\d*$/;
+            if (event.target.value.length !== 10 || !regex.test(event.target.value)) {
+                this.setState({ isError: true });
+            } else {
+                this.setState({ isError: false });
+            }
+        }
+    }, {
+        key: 'handleGenderChange',
+        value: function handleGenderChange(event) {
+            this.props._handleGenderChange(event);
+        }
+    }, {
+        key: 'handleMarriedSingleChange',
+        value: function handleMarriedSingleChange(event) {
+            this.props._handleMarriedSingleChange(event);
+        }
+    }, {
+        key: 'handleCloseButton',
+        value: function handleCloseButton(event) {
+            //Close the Form button
+        }
+    }, {
+        key: 'handleAddCustomerButton',
+        value: function handleAddCustomerButton(event) {
+            //Add new Customer Button
+        }
+    }, {
+        key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "modal fade", id: "customerForm", role: "dialog" },
+                'div',
+                { className: 'modal fade', id: 'customerForm', role: 'dialog' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "modal-dialog modal-lg" },
+                    'div',
+                    { className: 'modal-dialog modal-lg' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "modal-content" },
+                        'div',
+                        { className: 'modal-content' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "div",
-                            { className: "modal-header" },
+                            'div',
+                            { className: 'modal-header' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "h4",
-                                { className: "modal-title" },
-                                "Add Customer"
+                                'h4',
+                                { className: 'modal-title' },
+                                'Add Customer'
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "button",
-                                { type: "button", className: "close", "data-dismiss": "modal" },
-                                "\xD7"
+                                'button',
+                                { type: 'button', className: 'close', 'data-dismiss': 'modal' },
+                                '\xD7'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "form",
-                            { action: "", method: "post" },
+                            'div',
+                            { style: { margin: '10px', display: this.state.isError ? 'block' : 'none' } },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "div",
-                                { className: "modal-body" },
+                                'h5',
+                                { style: { color: 'red' } },
+                                '***Please put valid Details'
+                            )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'form',
+                            { action: '', method: 'post' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'modal-body' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    "div",
-                                    { className: "row" },
+                                    'div',
+                                    { className: 'row' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-2 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_nic" },
-                                            " NIC"
+                                            'label',
+                                            { 'for': 'customer_nic' },
+                                            ' NIC'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_nic",
-                                            name: "customer_nic", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'nic',
+                                            name: 'customer_nic', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.nic,
+                                            onChange: function onChange(event) {
+                                                _this2.handleNicChange(event);
+                                            }
+                                        })
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-5 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_name" },
-                                            " Name"
+                                            'label',
+                                            { 'for': 'customer_name' },
+                                            ' First Name'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_name",
-                                            name: "customer_name", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'first_name',
+                                            name: 'customer_name', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.first_name,
+                                            onChange: this.handleFirstNameChange.bind(this)
+                                        })
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-3 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_bday" },
-                                            " Birthday"
+                                            'label',
+                                            { htmlFor: 'customer_name' },
+                                            ' Last Name'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_bday",
-                                            name: "customer_bday", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'last_name',
+                                            name: 'customer_name', required: '', maxLength: '50',
+                                            value: this.props.newCustomer.last_name,
+                                            onChange: this.handleLastNameChange.bind(this)
+                                        })
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-2 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_age" },
-                                            " Age"
+                                            'label',
+                                            { 'for': 'customer_bday' },
+                                            ' Birthday'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_age",
-                                            name: "customer_age", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'date', className: 'form-control', id: 'birthday',
+                                            name: 'customer_bday', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.birthday,
+                                            onChange: this.handleBirthdayChange.bind(this)
+                                        })
                                     )
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    "div",
-                                    { className: "row" },
+                                    'div',
+                                    { className: 'row' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-3 form-group" },
+                                        'div',
+                                        { className: 'col-sm-2 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_gender" },
-                                            " Gender"
+                                            'label',
+                                            { 'for': 'customer_age' },
+                                            ' Age'
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'age',
+                                            name: 'customer_age', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.age,
+                                            onChange: this.handleAgeChange.bind(this)
+                                        })
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'div',
+                                        { className: 'col-sm-2 form-group' },
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'label',
+                                            { 'for': 'customer_gender' },
+                                            ' Gender'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "select",
-                                            { className: "form-control", name: "customer_gender",
-                                                id: "customer_gender" },
+                                            'select',
+                                            { className: 'form-control', name: 'gender',
+                                                id: 'customer_gender', onChange: this.handleGenderChange.bind(this),
+                                                value: this.props.newCustomer.gender },
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "option",
-                                                { className: "form-control", value: "male" },
-                                                "Male"
+                                                'option',
+                                                { className: 'form-control', id: 'male', value: 'male' },
+                                                'Male'
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "option",
-                                                { className: "form-control", value: "Female" },
-                                                "Female"
+                                                'option',
+                                                { className: 'form-control', id: 'female', value: 'female' },
+                                                'Female'
                                             )
                                         )
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-3 form-group" },
+                                        'div',
+                                        { className: 'col-sm-2 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_married" },
-                                            " Married / Single"
+                                            'label',
+                                            { 'for': 'customer_married' },
+                                            ' Married / Single'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "select",
-                                            { className: "form-control", name: "customer_married",
-                                                id: "customer_married" },
+                                            'select',
+                                            { className: 'form-control', name: 'married',
+                                                value: this.props.newCustomer.married,
+                                                id: 'customer_married',
+                                                onChange: this.handleMarriedSingleChange.bind(this)
+                                            },
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "option",
-                                                { className: "form-control", value: "married" },
-                                                "Married"
+                                                'option',
+                                                { className: 'form-control', value: 'married' },
+                                                'Married'
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "option",
-                                                { className: "form-control", value: "single" },
-                                                "Single"
+                                                'option',
+                                                { className: 'form-control', value: 'single' },
+                                                'Single'
                                             )
                                         )
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-3 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_contact1" },
-                                            " Phone no"
+                                            'label',
+                                            { 'for': 'customer_contact1' },
+                                            ' Phone no'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_contact1",
-                                            name: "customer_contact1", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'contact_no1',
+                                            name: 'customer_contact1', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.contact_no1,
+                                            onChange: this.handleContactNo1Change.bind(this)
+                                        })
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-3 form-group" },
+                                        'div',
+                                        { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_contact2" },
-                                            " Mobile no"
+                                            'label',
+                                            { 'for': 'customer_contact2' },
+                                            ' Mobile no'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_contact2",
-                                            name: "customer_contact2", required: "", maxlength: "50" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'contact_no2',
+                                            name: 'customer_contact2', required: '', maxlength: '50',
+                                            value: this.props.newCustomer.contact_no2,
+                                            onChange: this.handleContactNo2Change.bind(this)
+                                        })
                                     )
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    "div",
-                                    { className: "row" },
+                                    'div',
+                                    { className: 'row' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-6 form-group" },
+                                        'div',
+                                        { className: 'col-sm-6 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_address1" },
-                                            " Address 1"
+                                            'label',
+                                            { 'for': 'customer_address1' },
+                                            ' Address 1'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_address1",
-                                            name: "customer_address1", required: "", maxlength: "70" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'address_1',
+                                            name: 'customer_address1', required: '', maxlength: '70',
+                                            value: this.props.newCustomer.address_1,
+                                            onChange: this.handleAddress1Change.bind(this)
+                                        })
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "div",
-                                        { className: "col-sm-6 form-group" },
+                                        'div',
+                                        { className: 'col-sm-6 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "label",
-                                            { "for": "customer_address1" },
-                                            " Address 2"
+                                            'label',
+                                            { 'for': 'customer_address1' },
+                                            ' Address 2'
                                         ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control", id: "customer_address2",
-                                            name: "customer_address2", required: "", maxlength: "70" })
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'address_2',
+                                            name: 'customer_address2', required: '', maxlength: '70',
+                                            value: this.props.newCustomer.address_2,
+                                            onChange: this.handleAddress2Change.bind(this)
+                                        })
                                     )
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "div",
-                                { className: "modal-footer" },
+                                'div',
+                                { className: 'modal-footer' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    "button",
-                                    { type: "submit", className: "btn btn-primary" },
-                                    "ADD"
+                                    'button',
+                                    { type: 'submit', className: 'btn btn-primary' },
+                                    'Add'
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    "button",
-                                    { type: "reset", className: "btn btn-default", "data-dismiss": "modal" },
-                                    "Close"
+                                    'button',
+                                    { className: 'btn btn-default', 'data-dismiss': 'modal',
+                                        onClick: this.handleCloseButton.bind(this) },
+                                    'Close'
                                 )
                             )
                         )
@@ -60829,7 +61192,8 @@ var CustomerForm = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (CustomerForm);
 
 /***/ }),
-/* 77 */
+/* 77 */,
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60892,7 +61256,7 @@ if (document.getElementById('payments-page')) {
 }
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60904,7 +61268,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_table_react_table_css__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_table_react_table_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_table_react_table_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DataTable__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GroupForm__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GroupForm__ = __webpack_require__(80);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -60959,7 +61323,7 @@ if (document.getElementById('customer-groups-page')) {
 }
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61192,7 +61556,7 @@ var GroupForm = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (GroupForm);
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61255,7 +61619,7 @@ if (document.getElementById('centres-page')) {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61318,7 +61682,7 @@ if (document.getElementById('cashiers-page')) {
 }
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
