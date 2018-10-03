@@ -152,6 +152,7 @@ export default class CustomersPage extends Component {
                 this.setState({customerList: res.data});
             })
             .catch(err => {
+                console.log(err);
                 alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
             });
     }
