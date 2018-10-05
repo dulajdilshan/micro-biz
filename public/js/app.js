@@ -60711,6 +60711,7 @@ var CustomersPage = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_5_axios_index___default.a.get('/api/customers').then(function (res) {
                 _this2.setState({ customerList: res.data });
             }).catch(function (err) {
+                console.log(err);
                 alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
             });
         }
