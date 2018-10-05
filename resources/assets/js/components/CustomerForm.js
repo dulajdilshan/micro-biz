@@ -93,8 +93,8 @@ class CustomerForm extends Component {
         //Close the Form button
     }
 
-    handleAddCustomerButton(event) {
-        //Add new Customer Button
+    handleOnSubmit(event) {
+        this.props._handleCreateCustomer(event);
     }
 
     render() {
@@ -109,7 +109,7 @@ class CustomerForm extends Component {
                         <div style={{margin: '10px', display: this.state.isError ? 'block' : 'none'}}>
                             <h5 style={{color: 'red'}}>***Please put valid Details</h5>
                         </div>
-                        <form action="" method="post">
+                        <form onSubmit={(event) => this.handleOnSubmit(event)}>
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-sm-3 form-group">

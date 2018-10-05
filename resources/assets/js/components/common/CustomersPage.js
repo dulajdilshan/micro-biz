@@ -156,8 +156,8 @@ export default class CustomersPage extends Component {
             });
     }
 
-    handleCreateGroup() {
-        //Handle create group
+    _handleCreateCustomer(event) {
+        event.preventDefault();
     }
 
     render() {
@@ -173,15 +173,6 @@ export default class CustomersPage extends Component {
             {Header: 'Phone number', accessor: 'phoneNumber'},
 
         ];
-        let data = [{
-            fullName: 'Jodha Akbar',
-            nic: '956722345v',
-            groupNumber: 3,
-            loanNumber: 2,
-            loanAmount: 23000,
-            weeklyPayment: 21300,
-            phoneNumber: '0712345678'
-        }];
 
         return (
             <div className="container">
@@ -203,6 +194,7 @@ export default class CustomersPage extends Component {
                 <DataTable columns={this.state.customerTable.columns} data={this.state.customerList}/>
                 <CustomerForm newCustomer={this.state.customer}
                               isVisible={this.state.isFormVisible}
+                              _handleCreateCustomer={this._handleCreateCustomer.bind(this)}
                               _handleNicChange={this._handleNicChange.bind(this)}
                               makeInvisible={this._makeNewCustomerFormInvisible}
                               _handleFirstNameChange={this._handleFirstNameChange.bind(this)}
