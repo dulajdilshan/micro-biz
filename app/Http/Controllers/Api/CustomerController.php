@@ -21,13 +21,33 @@ class CustomerController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $newCustomer = new Customer();
-        return response()->json($request);
+        $customer = new Customer();
+        $customer['nic'] = '908968345v';
+        $customer['first_name'] = 'First Name';
+        $customer['last_name'] = 'Last Name';
+        $customer['full_name'] = 'First Name Last Name';
+        $customer['name_prefix'] = 'Mr';
+        $customer['birthday'] = '1990-06-20';
+        $customer['age'] = 12;
+        $customer['gender'] = 'male';
+        $customer['married'] = 1;
+        $customer['contact_no1'] = '089877';
+        $customer['contact_no2'] = '332333';
+        $customer['address_1'] = 'AFSFASF';
+        $customer['address_2'] = 'ddddd';
+        $customer['gs_division'] = 'ddd';
+        $customer['group_id'] = 1;
+        $customer['center_id'] = 2;
+        $customer['branch_id'] = 2;
+        $customer['center_code'] = 's';
+        $customer['center_name'] = 's';
+        $customer['is_loan_settled'] = 0;
+        return response()->json($customer);
     }
 
     /**
@@ -38,7 +58,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response();
     }
 
     /**
@@ -49,7 +69,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        return response();
     }
 
     /**
@@ -60,7 +80,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response();
     }
 
     /**
@@ -72,7 +92,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return response();
     }
 
     /**
@@ -83,7 +103,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return response();
     }
 
     public function getAllWithNoGroup()
