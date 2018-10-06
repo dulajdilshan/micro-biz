@@ -27,29 +27,30 @@ class CustomerController extends Controller
      */
     public function create(Request $request)
     {
-//        $customer = new Customer();
-//        $customer['nic'] = $request['nic'];
-//        $customer['first_name'] =
-//        $customer['last_name'] =
-//        $customer['full_name'] =
-//        $customer['name_prefix'] =
-//        $customer['birthday'] =
-//        $customer['age'] =
-//        $customer['gender'] =
-//        $customer['married'] =
-//        $customer['contact_no1'] =
-//        $customer['contact_no2'] =
-//        $customer['address_1'] =
-//        $customer['address_2'] =
-//        $customer['gs_division'] =
-//        $customer['group_id'] =
-//        $customer['center_id'] =
-//        $customer['branch_id'] =
-//        $customer['center_code'] =
-//        $customer['center_name'] =
-//        $customer['is_loan_settled'] =
-//        return response()->json($customer);
-        return response()->json($request);
+        $customer = new Customer();
+        $customer['nic'] = $request['nic'];
+        $customer['first_name'] =$request['first_name'];
+        $customer['last_name'] =$request['last_name'];
+        $customer['full_name'] =$request['full_name'];
+        $customer['name_prefix'] =$request['name_prefix'];
+        $customer['birthday'] =$request['birthday'];
+        $customer['age'] =$request['age'];
+        $customer['gender'] =$request['gender'];
+        $customer['married'] =$request['married'];
+        $customer['contact_no1'] =$request['contact_no1'];
+        $customer['contact_no2'] =$request['contact_no2'];
+        $customer['address_1'] =$request['address_1'];
+        $customer['address_2'] =$request['address_2'];
+        $customer['gs_division'] =$request['gs_division'];
+        $customer['group_id'] =$request['group_id'];
+        $customer['center_id'] =$request['center_id'];
+        $customer['branch_id'] =$request['branch_id'];
+        $customer['center_code'] =$request['center_code'];
+        $customer['center_name'] =$request['center_name'];
+        $customer['is_loan_settled'] =$request['is_loan_settled'];
+        $customer->save();
+        return response()->json($customer);
+//        return response()->json($request);
     }
 
     /**

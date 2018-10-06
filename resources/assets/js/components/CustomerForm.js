@@ -173,8 +173,8 @@ class CustomerForm extends Component {
                                                 id="customer_married"
                                                 onChange={this.handleMarriedSingleChange.bind(this)}
                                         >
-                                            <option className="form-control" value="married">Married</option>
-                                            <option className="form-control" value="single">Single</option>
+                                            <option className="form-control" value='1'>Married</option>
+                                            <option className="form-control" value='0'>Single</option>
                                         </select>
                                     </div>
                                     <div className="col-sm-3 form-group">

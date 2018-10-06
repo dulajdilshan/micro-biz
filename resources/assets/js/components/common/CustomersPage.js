@@ -8,23 +8,56 @@ import axios from "axios/index";
 export default class CustomersPage extends Component {
     constructor(props) {
         super(props);
+        this.customerDulaj = {
+            first_name: "Dulaj",
+            last_name: "Dilshan",
+            age: 12,
+            nic: "951113247v",
+            gender: "female",
+            contact_no1: "0710889867",
+            contact_no2: "0710889867",
+            address_1: "skjdvhckshvbsv",
+            address_2: "lksfhfvbkjsfhv",
+            birthday: "2011-12-21",
+            gs_division: "n/a",
+            group_id: 2,
+            center_id: 1,
+            branch_id: 1,
+            center_code: "n/a",
+            center_name: "n/a",
+            married: 0,
+            is_loan_settled: 0,
+            name_prefix: "n/a",
+            full_name: "Dulaj Dilshan"
+        };
         this.initialState = {
             customer: {
                 first_name: '',
                 last_name: '',
                 age: '',
+                birthday: '',
                 nic: '',
                 gender: 'male',
-                married: 'single',
                 contact_no1: '',
                 contact_no2: '',
                 address_1: '',
-                address_2: ''
+                address_2: '',
+                gs_division: 'n/a',
+                group_id: 2,
+                center_id: 1,
+                branch_id: 1,
+                center_code: 'n/a',
+                center_name: 'n/a',
+                married: 0,
+                is_loan_settled: 0,
+                name_prefix: '',
+                full_name: ''
             }
         };
         this.state = {
             isFormVisible: false,
-            customer: this.initialState.customer,
+            // customer: this.initialState.customer,
+            customer: this.customerDulaj,
             selectedCustomers: [{}, {}],
             customerList: [],
             customerTable: {
@@ -59,21 +92,22 @@ export default class CustomersPage extends Component {
     }
 
     _handleFirstNameChange(event) {
-        let newCustomer = Object.assign({}, this.state.customer, {first_name: event.target.value});
+        let newCustomer = Object.assign({}, this.state.customer, {first_name: event.target.value, name_prefix: 'n/a'});
         this.setState({
             customer: newCustomer
         });
     }
 
     _handleLastNameChange(event) {
-        let newCustomer = Object.assign({}, this.state.customer, {last_name: event.target.value});
+        let full_name = this.state.customer.first_name + " " + event.target.value;
+        let newCustomer = Object.assign({}, this.state.customer, {last_name: event.target.value, full_name: full_name});
         this.setState({
             customer: newCustomer
         });
     }
 
     _handleAgeChange(event) {
-        let newCustomer = Object.assign({}, this.state.customer, {age: event.target.value});
+        let newCustomer = Object.assign({}, this.state.customer, {age: parseInt(event.target.value)});
         this.setState({
             customer: newCustomer
         });
@@ -122,7 +156,7 @@ export default class CustomersPage extends Component {
     }
 
     _handleMarriedSingleChange(event) {
-        let newCustomer = Object.assign({}, this.state.customer, {married: event.target.value});
+        let newCustomer = Object.assign({}, this.state.customer, {married: parseInt(event.target.value)});
         this.setState({
             customer: newCustomer
         });
@@ -152,6 +186,7 @@ export default class CustomersPage extends Component {
                 console.log(res);
             })
             .then(error => {
+                alert(error);
                 console.log(error);
             })
     }
