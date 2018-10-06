@@ -94,6 +94,7 @@ class CustomerForm extends Component {
     }
 
     handleOnSubmit(event) {
+        event.preventDefault();
         this.props._handleCreateCustomer(event);
     }
 
@@ -109,13 +110,13 @@ class CustomerForm extends Component {
                         <div style={{margin: '10px', display: this.state.isError ? 'block' : 'none'}}>
                             <h5 style={{color: 'red'}}>***Please put valid Details</h5>
                         </div>
-                        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+                        <form onSubmit={this.handleOnSubmit.bind(this)}>
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
-                                        <label for="customer_nic"> NIC</label>
+                                        <label> NIC</label>
                                         <input type="text" className="form-control" id="nic"
-                                               name="customer_nic" required="" maxlength="50"
+                                               name="customer_nic" required=""
                                                value={this.props.newCustomer.nic}
                                                onChange={(event) => {
                                                    this.handleNicChange(event);
@@ -123,25 +124,25 @@ class CustomerForm extends Component {
                                         />
                                     </div>
                                     <div className="col-sm-3 form-group">
-                                        <label for="customer_name"> First Name</label>
+                                        <label> First Name</label>
                                         <input type="text" className="form-control" id="first_name"
-                                               name="customer_name" required="" maxlength="50"
+                                               name="customer_name" required=""
                                                value={this.props.newCustomer.first_name}
                                                onChange={this.handleFirstNameChange.bind(this)}
                                         />
                                     </div>
                                     <div className="col-sm-3 form-group">
-                                        <label htmlFor="customer_name"> Last Name</label>
+                                        <label> Last Name</label>
                                         <input type="text" className="form-control" id="last_name"
-                                               name="customer_name" required="" maxLength="50"
+                                               name="customer_name" required=""
                                                value={this.props.newCustomer.last_name}
                                                onChange={this.handleLastNameChange.bind(this)}
                                         />
                                     </div>
                                     <div className="col-sm-3 form-group">
-                                        <label for="customer_bday"> Birthday</label>
+                                        <label> Birthday</label>
                                         <input type="date" className="form-control" id="birthday"
-                                               name="customer_bday" required="" maxlength="50"
+                                               name="customer_bday" required=""
                                                value={this.props.newCustomer.birthday}
                                                onChange={this.handleBirthdayChange.bind(this)}
                                         />
@@ -149,15 +150,15 @@ class CustomerForm extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-2 form-group">
-                                        <label for="customer_age"> Age</label>
+                                        <label> Age</label>
                                         <input type="text" className="form-control" id="age"
-                                               name="customer_age" required="" maxlength="50"
+                                               name="customer_age" required=""
                                                value={this.props.newCustomer.age}
                                                onChange={this.handleAgeChange.bind(this)}
                                         />
                                     </div>
                                     <div className="col-sm-2 form-group">
-                                        <label for="customer_gender"> Gender</label>
+                                        <label> Gender</label>
                                         <select className="form-control" name="gender"
                                                 id="customer_gender" onChange={this.handleGenderChange.bind(this)}
                                                 value={this.props.newCustomer.gender}>
@@ -166,7 +167,7 @@ class CustomerForm extends Component {
                                         </select>
                                     </div>
                                     <div className="col-sm-2 form-group">
-                                        <label for="customer_married"> Married / Single</label>
+                                        <label> Married / Single</label>
                                         <select className="form-control" name="married"
                                                 value={this.props.newCustomer.married}
                                                 id="customer_married"
@@ -177,17 +178,17 @@ class CustomerForm extends Component {
                                         </select>
                                     </div>
                                     <div className="col-sm-3 form-group">
-                                        <label for="customer_contact1"> Phone no</label>
+                                        <label> Phone no</label>
                                         <input type="text" className="form-control" id="contact_no1"
-                                               name="customer_contact1" required="" maxlength="50"
+                                               name="customer_contact1" required=""
                                                value={this.props.newCustomer.contact_no1}
                                                onChange={this.handleContactNo1Change.bind(this)}
                                         />
                                     </div>
                                     <div className="col-sm-3 form-group">
-                                        <label for="customer_contact2"> Mobile no</label>
+                                        <label> Mobile no</label>
                                         <input type="text" className="form-control" id="contact_no2"
-                                               name="customer_contact2" required="" maxlength="50"
+                                               name="customer_contact2" required=""
                                                value={this.props.newCustomer.contact_no2}
                                                onChange={this.handleContactNo2Change.bind(this)}
                                         />
@@ -195,17 +196,17 @@ class CustomerForm extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-6 form-group">
-                                        <label for="customer_address1"> Address 1</label>
+                                        <label> Address 1</label>
                                         <input type="text" className="form-control" id="address_1"
-                                               name="customer_address1" required="" maxlength="70"
+                                               name="customer_address1" required=""
                                                value={this.props.newCustomer.address_1}
                                                onChange={this.handleAddress1Change.bind(this)}
                                         />
                                     </div>
                                     <div className="col-sm-6 form-group">
-                                        <label for="customer_address1"> Address 2</label>
+                                        <label> Address 2</label>
                                         <input type="text" className="form-control" id="address_2"
-                                               name="customer_address2" required="" maxlength="70"
+                                               name="customer_address2" required=""
                                                value={this.props.newCustomer.address_2}
                                                onChange={this.handleAddress2Change.bind(this)}
                                         />

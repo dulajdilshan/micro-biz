@@ -146,6 +146,20 @@ export default class CustomersPage extends Component {
         this.setState({isFormVisible: false});
     }
 
+    _handleCreateCustomer(event) {
+        axios.post('/api/customer/create', this.state.customer)
+            .then(res => {
+                console.log(res);
+            })
+            .then(error => {
+                console.log(error);
+            })
+    }
+
+    handleCreateGroup() {
+        console.log("Group is created");
+    }
+
     componentDidMount() {
         axios.get('/api/customers')
             .then(res => {
@@ -157,9 +171,6 @@ export default class CustomersPage extends Component {
             });
     }
 
-    _handleCreateCustomer(event) {
-        event.preventDefault();
-    }
 
     render() {
         // this.setState({customerList: getAllCustomerData()});
@@ -187,7 +198,7 @@ export default class CustomersPage extends Component {
                     <div className="col-sm-3">
                         <button type="button" className="btn btn-outline-primary btn-lg"
                                 onClick={this.handleCreateGroup.bind(this)}>
-                             Create a group ({this.state.selectedCustomers.length})
+                            Create a group ({this.state.selectedCustomers.length})
                         </button>
                     </div>
                 </div>

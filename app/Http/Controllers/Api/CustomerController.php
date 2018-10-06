@@ -22,32 +22,34 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $customer = new Customer();
-        $customer['nic'] = '908968345v';
-        $customer['first_name'] = 'First Name';
-        $customer['last_name'] = 'Last Name';
-        $customer['full_name'] = 'First Name Last Name';
-        $customer['name_prefix'] = 'Mr';
-        $customer['birthday'] = '1990-06-20';
-        $customer['age'] = 12;
-        $customer['gender'] = 'male';
-        $customer['married'] = 1;
-        $customer['contact_no1'] = '089877';
-        $customer['contact_no2'] = '332333';
-        $customer['address_1'] = 'AFSFASF';
-        $customer['address_2'] = 'ddddd';
-        $customer['gs_division'] = 'ddd';
-        $customer['group_id'] = 1;
-        $customer['center_id'] = 2;
-        $customer['branch_id'] = 2;
-        $customer['center_code'] = 's';
-        $customer['center_name'] = 's';
-        $customer['is_loan_settled'] = 0;
-        return response()->json($customer);
+//        $customer = new Customer();
+//        $customer['nic'] = $request['nic'];
+//        $customer['first_name'] =
+//        $customer['last_name'] =
+//        $customer['full_name'] =
+//        $customer['name_prefix'] =
+//        $customer['birthday'] =
+//        $customer['age'] =
+//        $customer['gender'] =
+//        $customer['married'] =
+//        $customer['contact_no1'] =
+//        $customer['contact_no2'] =
+//        $customer['address_1'] =
+//        $customer['address_2'] =
+//        $customer['gs_division'] =
+//        $customer['group_id'] =
+//        $customer['center_id'] =
+//        $customer['branch_id'] =
+//        $customer['center_code'] =
+//        $customer['center_name'] =
+//        $customer['is_loan_settled'] =
+//        return response()->json($customer);
+        return response()->json($request);
     }
 
     /**

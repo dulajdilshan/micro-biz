@@ -60704,6 +60704,20 @@ var CustomersPage = function (_Component) {
             this.setState({ isFormVisible: false });
         }
     }, {
+        key: '_handleCreateCustomer',
+        value: function _handleCreateCustomer(event) {
+            __WEBPACK_IMPORTED_MODULE_5_axios_index___default.a.post('/api/customer/create', this.state.customer).then(function (res) {
+                console.log(res);
+            }).then(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'handleCreateGroup',
+        value: function handleCreateGroup() {
+            console.log("Group is created");
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -60716,25 +60730,11 @@ var CustomersPage = function (_Component) {
             });
         }
     }, {
-        key: 'handleCreateGroup',
-        value: function handleCreateGroup() {
-            //Handle create group
-        }
-    }, {
         key: 'render',
         value: function render() {
             // this.setState({customerList: getAllCustomerData()});
 
             var columns = [{ Header: 'Name', accessor: 'fullName' }, { Header: 'NIC', accessor: 'nic' }, { Header: 'Group Number', accessor: 'groupNumber' }, { Header: 'Loan number', accessor: 'loanNumber' }, { Header: 'Loan Amount', accessor: 'loanAmount' }, { Header: 'Weekly Payment (Amount)', accessor: 'weeklyPayment' }, { Header: 'Phone number', accessor: 'phoneNumber' }];
-            var data = [{
-                fullName: 'Jodha Akbar',
-                nic: '956722345v',
-                groupNumber: 3,
-                loanNumber: 2,
-                loanAmount: 23000,
-                weeklyPayment: 21300,
-                phoneNumber: '0712345678'
-            }];
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -60769,6 +60769,7 @@ var CustomersPage = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataTable__["a" /* default */], { columns: this.state.customerTable.columns, data: this.state.customerList }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CustomerForm__["a" /* default */], { newCustomer: this.state.customer,
                     isVisible: this.state.isFormVisible,
+                    _handleCreateCustomer: this._handleCreateCustomer.bind(this),
                     _handleNicChange: this._handleNicChange.bind(this),
                     makeInvisible: this._makeNewCustomerFormInvisible,
                     _handleFirstNameChange: this._handleFirstNameChange.bind(this),
@@ -60925,9 +60926,10 @@ var CustomerForm = function (_Component) {
             //Close the Form button
         }
     }, {
-        key: 'handleAddCustomerButton',
-        value: function handleAddCustomerButton(event) {
-            //Add new Customer Button
+        key: 'handleOnSubmit',
+        value: function handleOnSubmit(event) {
+            event.preventDefault();
+            this.props._handleCreateCustomer(event);
         }
     }, {
         key: 'render',
@@ -60968,7 +60970,7 @@ var CustomerForm = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'form',
-                            { action: '', method: 'post' },
+                            { onSubmit: this.handleOnSubmit.bind(this) },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'modal-body' },
@@ -60980,11 +60982,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_nic' },
+                                            null,
                                             ' NIC'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'nic',
-                                            name: 'customer_nic', required: '', maxlength: '50',
+                                            name: 'customer_nic', required: '',
                                             value: this.props.newCustomer.nic,
                                             onChange: function onChange(event) {
                                                 _this2.handleNicChange(event);
@@ -60996,11 +60998,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_name' },
+                                            null,
                                             ' First Name'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'first_name',
-                                            name: 'customer_name', required: '', maxlength: '50',
+                                            name: 'customer_name', required: '',
                                             value: this.props.newCustomer.first_name,
                                             onChange: this.handleFirstNameChange.bind(this)
                                         })
@@ -61010,11 +61012,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { htmlFor: 'customer_name' },
+                                            null,
                                             ' Last Name'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'last_name',
-                                            name: 'customer_name', required: '', maxLength: '50',
+                                            name: 'customer_name', required: '',
                                             value: this.props.newCustomer.last_name,
                                             onChange: this.handleLastNameChange.bind(this)
                                         })
@@ -61024,11 +61026,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_bday' },
+                                            null,
                                             ' Birthday'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'date', className: 'form-control', id: 'birthday',
-                                            name: 'customer_bday', required: '', maxlength: '50',
+                                            name: 'customer_bday', required: '',
                                             value: this.props.newCustomer.birthday,
                                             onChange: this.handleBirthdayChange.bind(this)
                                         })
@@ -61042,11 +61044,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-2 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_age' },
+                                            null,
                                             ' Age'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'age',
-                                            name: 'customer_age', required: '', maxlength: '50',
+                                            name: 'customer_age', required: '',
                                             value: this.props.newCustomer.age,
                                             onChange: this.handleAgeChange.bind(this)
                                         })
@@ -61056,7 +61058,7 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-2 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_gender' },
+                                            null,
                                             ' Gender'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61081,7 +61083,7 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-2 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_married' },
+                                            null,
                                             ' Married / Single'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61108,11 +61110,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_contact1' },
+                                            null,
                                             ' Phone no'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'contact_no1',
-                                            name: 'customer_contact1', required: '', maxlength: '50',
+                                            name: 'customer_contact1', required: '',
                                             value: this.props.newCustomer.contact_no1,
                                             onChange: this.handleContactNo1Change.bind(this)
                                         })
@@ -61122,11 +61124,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-3 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_contact2' },
+                                            null,
                                             ' Mobile no'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'contact_no2',
-                                            name: 'customer_contact2', required: '', maxlength: '50',
+                                            name: 'customer_contact2', required: '',
                                             value: this.props.newCustomer.contact_no2,
                                             onChange: this.handleContactNo2Change.bind(this)
                                         })
@@ -61140,11 +61142,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-6 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_address1' },
+                                            null,
                                             ' Address 1'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'address_1',
-                                            name: 'customer_address1', required: '', maxlength: '70',
+                                            name: 'customer_address1', required: '',
                                             value: this.props.newCustomer.address_1,
                                             onChange: this.handleAddress1Change.bind(this)
                                         })
@@ -61154,11 +61156,11 @@ var CustomerForm = function (_Component) {
                                         { className: 'col-sm-6 form-group' },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'label',
-                                            { 'for': 'customer_address1' },
+                                            null,
                                             ' Address 2'
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'address_2',
-                                            name: 'customer_address2', required: '', maxlength: '70',
+                                            name: 'customer_address2', required: '',
                                             value: this.props.newCustomer.address_2,
                                             onChange: this.handleAddress2Change.bind(this)
                                         })
