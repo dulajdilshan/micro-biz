@@ -184,9 +184,10 @@ export default class CustomersPage extends Component {
         axios.post('/api/customer/create', this.state.customer)
             .then(res => {
                 console.log(res);
+                alert("Customer Added Successfully")
             })
-            .then(error => {
-                alert(error);
+            .catch(error => {
+                alert("[ FAILED ] Customer not added");
                 console.log(error);
             })
     }

@@ -48,7 +48,7 @@ class CustomerController extends Controller
         $customer['center_code'] =$request['center_code'];
         $customer['center_name'] =$request['center_name'];
         $customer['is_loan_settled'] =$request['is_loan_settled'];
-        $customer->save();
+//        $customer->save();
         return response()->json($customer);
 //        return response()->json($request);
     }
