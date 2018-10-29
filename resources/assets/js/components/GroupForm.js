@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
+import '../../css/groups_modal.css'
 
 class GroupForm extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            name:''
+        }
+    }
     render() {
         return (
-            <div className="modal fade" id="groupForm" role="dialog">
+            <div className="modal fade show" id={this.props.name} >
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Add  Group</h4>
+                            <h4 className="modal-title">Add Group</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
                         <form action="" method="post">

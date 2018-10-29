@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 class DataTable extends Component {
     constructor(props) {
         super(props);
+        this.state = {selected: {}}
     }
 
     render() {
@@ -50,7 +51,27 @@ class DataTable extends Component {
 
         return (
             <div>
-                <ReactTable data={this.props.data} columns={this.props.columns} className="-striped -highlight" filterable/>
+                <ReactTable
+                    data={this.props.data} columns={this.props.columns} className="-striped -highlight"
+                    filterable
+                    getTrProps={(state, rowInfo) => {
+                        if (rowInfo && rowInfo.row) {
+                            return {
+                                onClick: (e) => {
+                                    this.setState({
+                                        selected: rowInfo
+                                    });
+                                },
+                                style: {
+                                    background: rowInfo.index === this.state.selected.index ? '#00afec' : 'white',
+                                    color: rowInfo.index === this.state.selected.index ? 'white' : 'black'
+                                }
+                            }
+                        } else {
+                            return {}
+                        }
+                    }}
+                />
             </div>
         );
     }
