@@ -4,6 +4,7 @@ import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import CustomerForm from "../CustomerForm";
 import axios from "axios/index";
+import FormCustomer from "../FormCustomer"
 
 export default class CustomersPage extends Component {
     constructor(props) {

@@ -227,3 +227,5 @@ class FormCustomer extends Component{
         );
     }
 }
+
+export default FormCustomer
