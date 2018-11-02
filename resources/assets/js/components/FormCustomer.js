@@ -91,6 +91,7 @@ class FormCustomer extends Component{
 
     handleCloseButton(event) {
         //Close the Form button
+        //Test comment
     }
 
     handleOnSubmit(event) {
