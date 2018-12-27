@@ -212,18 +212,6 @@ export default class CustomersPage extends Component {
 
     render() {
         // this.setState({customerList: getAllCustomerData()});
-
-        let columns = [
-            {Header: 'Name', accessor: 'fullName'},
-            {Header: 'NIC', accessor: 'nic'},
-            {Header: 'Group Number', accessor: 'groupNumber'},
-            {Header: 'Loan number', accessor: 'loanNumber'},
-            {Header: 'Loan Amount', accessor: 'loanAmount'},
-            {Header: 'Weekly Payment (Amount)', accessor: 'weeklyPayment'},
-            {Header: 'Phone number', accessor: 'phoneNumber'},
-
-        ];
-
         return (
             <div className="container">
                 <div className="row">
@@ -233,12 +221,12 @@ export default class CustomersPage extends Component {
                             Customer
                         </button>
                     </div>
-                    <div className="col-sm-3">
-                        <button type="button" className="btn btn-outline-primary btn-lg"
-                                onClick={this.handleCreateGroup.bind(this)}>
-                            Create a group ({this.state.selectedCustomers.length})
-                        </button>
-                    </div>
+                    {/*<div className="col-sm-3">*/}
+                        {/*<button type="button" className="btn btn-outline-primary btn-lg"*/}
+                                {/*onClick={this.handleCreateGroup.bind(this)}>*/}
+                            {/*Create a group ({this.state.selectedCustomers.length})*/}
+                        {/*</button>*/}
+                    {/*</div>*/}
                 </div>
                 <br/>
                 <DataTable columns={this.state.customerTable.columns} data={this.state.customerList}/>
