@@ -100,7 +100,7 @@ class FormCustomer extends Component{
     }
     render() {
         return (
-            <Modal isOpen={true}>
+            <Modal isOpen={false}>
                 <div role="dialog">
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
