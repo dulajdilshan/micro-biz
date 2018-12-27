@@ -95,10 +95,12 @@ class CustomerForm extends Component {
 
     handleOnSubmit(event) {
         event.preventDefault();
+        $('#customerForm').modal('hide');
         this.props._handleCreateCustomer(event);
     }
 
     render() {
+        console.log('Customer Form Loading');
         return (
             <div className="modal fade" id="customerForm" role="dialog">
                 <div className="modal-dialog modal-lg">
