@@ -258,22 +258,23 @@ export default class CustomersPage extends Component {
                               _handleGenderChange={this._handleGenderChange.bind(this)}
                               _handleMarriedSingleChange={this._handleMarriedSingleChange.bind(this)}
                 />
-                <FormCustomer newCustomer={this.state.customer}
-                              isVisible={this.state.isFormVisible}
-                              _handleCreateCustomer={this._handleCreateCustomer.bind(this)}
-                              _handleNicChange={this._handleNicChange.bind(this)}
-                              makeInvisible={this._makeNewCustomerFormInvisible}
-                              _handleFirstNameChange={this._handleFirstNameChange.bind(this)}
-                              _handleLastNameChange={this._handleLastNameChange.bind(this)}
-                              _handleAgeChange={this._handleAgeChange.bind(this)}
-                              _handleBirthdayChange={this._handleBirthdayChange.bind(this)}
-                              _handleAddress1Change={this._handleAddress1Change.bind(this)}
-                              _handleAddress2Change={this._handleAddress2Change.bind(this)}
-                              _handleContactNo1Change={this._handleContactNo1Change.bind(this)}
-                              _handleContactNo2Change={this._handleContactNo2Change.bind(this)}
-                              _handleGenderChange={this._handleGenderChange.bind(this)}
-                              _handleMarriedSingleChange={this._handleMarriedSingleChange.bind(this)}
-                />
+
+                {/*<FormCustomer newCustomer={this.state.customer}*/}
+                              {/*isVisible={this.state.isFormVisible}*/}
+                              {/*_handleCreateCustomer={this._handleCreateCustomer.bind(this)}*/}
+                              {/*_handleNicChange={this._handleNicChange.bind(this)}*/}
+                              {/*makeInvisible={this._makeNewCustomerFormInvisible}*/}
+                              {/*_handleFirstNameChange={this._handleFirstNameChange.bind(this)}*/}
+                              {/*_handleLastNameChange={this._handleLastNameChange.bind(this)}*/}
+                              {/*_handleAgeChange={this._handleAgeChange.bind(this)}*/}
+                              {/*_handleBirthdayChange={this._handleBirthdayChange.bind(this)}*/}
+                              {/*_handleAddress1Change={this._handleAddress1Change.bind(this)}*/}
+                              {/*_handleAddress2Change={this._handleAddress2Change.bind(this)}*/}
+                              {/*_handleContactNo1Change={this._handleContactNo1Change.bind(this)}*/}
+                              {/*_handleContactNo2Change={this._handleContactNo2Change.bind(this)}*/}
+                              {/*_handleGenderChange={this._handleGenderChange.bind(this)}*/}
+                              {/*_handleMarriedSingleChange={this._handleMarriedSingleChange.bind(this)}*/}
+                {/*/>*/}
             </div>
         );
     }
