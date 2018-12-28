@@ -13,7 +13,17 @@ export default class CustomerGroupsPage extends Component {
         super(props);
         this.state = {
             groupList: [],
-            newGroup: {},
+            newGroup: {
+                branch_id: '',
+                center_code: '',
+                center_name: '',
+                customer_1: {},
+                customer_2: {},
+                customer_3: {},
+                customer_4: {},
+                customer_5: {},
+            },
+            grouplessCustomers: [],
             selectedGroup: {},
             page: {
                 columns: [
@@ -42,6 +52,10 @@ export default class CustomerGroupsPage extends Component {
             });
     }
 
+    handleNewGroupOpen() {
+
+    }
+
     render() {
         return (
             <div className="container">
@@ -49,7 +63,7 @@ export default class CustomerGroupsPage extends Component {
                     <div className="row">
                         <div className="col-sm-3">
                             <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                                    data-target="#newGroupForm">New Group
+                                    data-target="#newGroupForm" onClick={this.handleNewGroupOpen.bind(this)}>New Group
                             </button>
                         </div>
                         <div className="col-sm-2">

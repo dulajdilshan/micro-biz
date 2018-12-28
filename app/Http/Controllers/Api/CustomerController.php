@@ -54,6 +54,16 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get group-less customers
+     * @return \Illuminate\Http\Response
+     */
+    public function getGrouplessCustomers()
+    {
+        $customers = Customer::where('group_id','=',0)->get();
+        return response()->json($customers);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request

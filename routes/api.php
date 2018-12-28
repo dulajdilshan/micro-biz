@@ -25,3 +25,4 @@ Route::get('/customers-with-nogroup','Api\CustomerController@getAllWithNoGroup')
 Route::get('/groups','Api\GroupController@index');
 Route::get('/document-fees','Api\DocumentFeeController@index');
 Route::post('/customer/create','Api\CustomerController@create');
+Route::post('/customer/get-groupless','Api\CustomerController@getGrouplessCustomers');
