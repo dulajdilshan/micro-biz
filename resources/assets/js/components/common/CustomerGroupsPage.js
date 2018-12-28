@@ -45,21 +45,24 @@ export default class CustomerGroupsPage extends Component {
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-sm-3">
-                        <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#groupForm">New Group
-                        </button>
-                    </div>
-                    <div className="col-sm-3">
-                        <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#editGroup">Edit
-                        </button>
+                <div className="col-sm-12">
+                    <div className="row">
+                        <div className="col-sm-3">
+                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
+                                    data-target="#newGroupForm">New Group
+                            </button>
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
+                                    data-target="#editGroup">Edit
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <br/>
                 <br/>
                 <DataTable columns={this.state.page.columns} data={this.state.groupList}/>
+                <GroupForm name="newGroupForm"/>
                 <GroupForm name="editGroup"/>
             </div>
         );
