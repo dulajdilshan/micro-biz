@@ -118,10 +118,4 @@ class CustomerController extends Controller
     {
         return response();
     }
-
-    public function getAllWithNoGroup()
-    {
-        $customersWithNoGroup = Customer::where('group_id', '=', '0')->get();
-        return response()->json($customersWithNoGroup);
-    }
 }
