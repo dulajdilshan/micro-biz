@@ -49,11 +49,26 @@ export default class CustomerGroupsPage extends Component {
             .catch(err => {
                 console.log(err);
                 alert("Groups loading failed !! server may be down ..try starting the server and reload the page again");
-            });
+            })
+            .then(() => axios.get('/api/customer/get-groupless')
+                .then(res => {
+                    this.setState({grouplessCustomers: res.data});
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+                }));
     }
 
     handleNewGroupOpen() {
-
+        // axios.get('/api/customer/get-groupless')
+        //     .then(res => {
+        //         this.setState({grouplessCustomers: res.data});
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //         alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+        //     });
     }
 
     render() {
@@ -67,7 +82,7 @@ export default class CustomerGroupsPage extends Component {
                             </button>
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
+                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal" disabled
                                     data-target="#editGroup">Edit
                             </button>
                         </div>
@@ -76,8 +91,8 @@ export default class CustomerGroupsPage extends Component {
                 <br/>
                 <br/>
                 <DataTable columns={this.state.page.columns} data={this.state.groupList}/>
-                <GroupForm name="newGroupForm"/>
-                <GroupForm name="editGroup"/>
+                <GroupForm name="newGroupForm" grouplessCustomers={this.state.grouplessCustomers}/>
+                {/*<GroupForm name="editGroup"/>*/}
             </div>
         );
     }

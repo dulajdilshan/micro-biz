@@ -2,15 +2,40 @@ import React, {Component} from 'react';
 import '../../css/groups_modal.css'
 
 class GroupForm extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            name:''
-        }
+        this.state = {
+            newGroup: {
+                branch_id: '',
+                center_code: '',
+                center_name: '',
+                selectedCustomers: {
+                    customer_1: {},
+                    customer_2: {},
+                    customer_3: {},
+                    customer_4: {},
+                    customer_5: {}
+                }
+            },
+            customerPool: [],
+            isCenterEntered: false
+        };
     }
+
+    handleOnChangeCenterCode() {
+        this.setState({customerPool: [...this.props.grouplessCustomers]});
+        //Checking whether the center code is valid or not. Then,
+        this.setState({isCenterEntered:true})
+    }
+
+    getCustomer(id){
+
+    }
+
+
     render() {
         return (
-            <div className="modal fade show" id={this.props.name} >
+            <div className="modal fade show" id={this.props.name}>
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -28,7 +53,9 @@ class GroupForm extends Component {
                                     <div className="col-sm-5 form-group">
                                         <label for="center_code"> Center Code</label>
                                         <input type="text" className="form-control" id="center_code"
-                                               name="center_code" required="" maxlength="50"/>
+                                               name="center_code"
+                                               onChange={this.handleOnChangeCenterCode.bind(this)}
+                                               required="" maxlength="50"/>
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label for="center_name"> Center Name</label>
@@ -39,16 +66,25 @@ class GroupForm extends Component {
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label for="customer_1"> Customer 1 </label>
-                                        <select className="form-control" name="customer_1"
-                                                id="customer_1">
-                                            <option className="form-control" value="male">Male</option>
-                                            <option className="form-control" value="Female">Female</option>
-                                        </select>
+                                        {<select className="form-control" name="customer_1" id="customer_1"
+                                                 disabled={!this.state.isCenterEntered}
+                                                 onChange={(event) => {
+                                                     console.log(event.target.value);
+                                                 }
+                                                 }>
+                                            <option key='0' className="form-control" value='0'>NOT SELECTED</option>
+                                            {this.state.customerPool.map(c =>
+                                                <option key={c.id}
+                                                        className="form-control"
+                                                        value={c.id}>{c.nic}
+                                                </option>
+                                            )}
+                                        </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label for="customer1_name"> Customer 1 Name</label>
                                         <input type="text" className="form-control" id="customer1_name"
-                                               name="customer1_name" disabled maxLength="50"/>
+                                               name="customer1_name" disabled maxLength="50" value={this}/>
                                     </div>
                                 </div>
                                 <div className="row">
