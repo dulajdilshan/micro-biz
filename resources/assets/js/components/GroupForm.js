@@ -25,12 +25,29 @@ class GroupForm extends Component {
     handleOnChangeCenterCode() {
         this.setState({customerPool: [...this.props.grouplessCustomers]});
         //Checking whether the center code is valid or not. Then,
-        this.setState({isCenterEntered:true})
+        this.setState({isCenterEntered: true})
     }
 
-    getCustomer(id){
-
+    handleOnChangeSelectCustomer(event) {
+        let selectElement = event.target;
+        let optionIndex = selectElement.selectedIndex;
+        let selectedCustomerNIC = selectElement.options[optionIndex].text;
+        let selectedCustomerId = selectElement.options[optionIndex].value;
+        console.log(
+            "ID:" + selectedCustomerId +
+            " | " + selectedCustomerNIC + " Selected!"
+        );
     }
+
+    handleMapCustomerOptions(customer){
+        return(
+            <option key={customer.id}
+                    className="form-control"
+                    value={customer.id}>{customer.nic}
+            </option>
+        )
+    }
+
 
 
     render() {
@@ -68,17 +85,9 @@ class GroupForm extends Component {
                                         <label for="customer_1"> Customer 1 </label>
                                         {<select className="form-control" name="customer_1" id="customer_1"
                                                  disabled={!this.state.isCenterEntered}
-                                                 onChange={(event) => {
-                                                     console.log(event.target.value);
-                                                 }
-                                                 }>
+                                                 onChange={(event) => this.handleOnChangeSelectCustomer(event)}>
                                             <option key='0' className="form-control" value='0'>NOT SELECTED</option>
-                                            {this.state.customerPool.map(c =>
-                                                <option key={c.id}
-                                                        className="form-control"
-                                                        value={c.id}>{c.nic}
-                                                </option>
-                                            )}
+                                            {this.state.customerPool.map(this.handleMapCustomerOptions.bind(this))}
                                         </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
