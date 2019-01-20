@@ -99,11 +99,12 @@ class GroupForm extends Component {
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer_2"> Customer 2 </label>
-                                        <select className="form-control" name="customer_2"
-                                                id="customer_2">
-                                            <option className="form-control" value="male">Male</option>
-                                            <option className="form-control" value="Female">Female</option>
-                                        </select>
+                                        {<select className="form-control" name="customer_2" id="customer_2"
+                                                 disabled={!this.state.isCenterEntered}
+                                                 onChange={(event) => this.handleOnChangeSelectCustomer(event)}>
+                                            <option key='0' className="form-control" value='0'>NOT SELECTED</option>
+                                            {this.state.customerPool.map(this.handleMapCustomerOptions.bind(this))}
+                                        </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer2_name"> Customer 2 Name</label>
@@ -114,11 +115,12 @@ class GroupForm extends Component {
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer_3"> Customer 3 </label>
-                                        <select className="form-control" name="customer_3"
-                                                id="customer_3">
-                                            <option className="form-control" value="male">Male</option>
-                                            <option className="form-control" value="Female">Female</option>
-                                        </select>
+                                        {<select className="form-control" name="customer_3" id="customer_3"
+                                                 disabled={!this.state.isCenterEntered}
+                                                 onChange={(event) => this.handleOnChangeSelectCustomer(event)}>
+                                            <option key='0' className="form-control" value='0'>NOT SELECTED</option>
+                                            {this.state.customerPool.map(this.handleMapCustomerOptions.bind(this))}
+                                        </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer3_name"> Customer 3 Name</label>
@@ -129,11 +131,12 @@ class GroupForm extends Component {
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer_4"> Customer 4 </label>
-                                        <select className="form-control" name="customer_4"
-                                                id="customer_4">
-                                            <option className="form-control" value="male">Male</option>
-                                            <option className="form-control" value="Female">Female</option>
-                                        </select>
+                                        {<select className="form-control" name="customer_4" id="customer_4"
+                                                 disabled={!this.state.isCenterEntered}
+                                                 onChange={(event) => this.handleOnChangeSelectCustomer(event)}>
+                                            <option key='0' className="form-control" value='0'>NOT SELECTED</option>
+                                            {this.state.customerPool.map(this.handleMapCustomerOptions.bind(this))}
+                                        </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer4_name"> Customer 4 Name</label>
@@ -144,11 +147,12 @@ class GroupForm extends Component {
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer_5"> Customer 5 </label>
-                                        <select className="form-control" name="customer_5"
-                                                id="customer_5">
-                                            <option className="form-control" value="male">Male</option>
-                                            <option className="form-control" value="Female">Female</option>
-                                        </select>
+                                        {<select className="form-control" name="customer_5" id="customer_5"
+                                                 disabled={!this.state.isCenterEntered}
+                                                 onChange={(event) => this.handleOnChangeSelectCustomer(event)}>
+                                            <option key='0' className="form-control" value='0'>NOT SELECTED</option>
+                                            {this.state.customerPool.map(this.handleMapCustomerOptions.bind(this))}
+                                        </select>}
                                     </div>
                                     <div className="col-sm-3 form-group">
                                         <label htmlFor="customer5_name"> Customer 5 Name</label>
