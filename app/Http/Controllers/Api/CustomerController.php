@@ -49,8 +49,18 @@ class CustomerController extends Controller
         $customer['center_name'] =$request['center_name'];
         $customer['is_loan_settled'] =$request['is_loan_settled'];
         $customer->save();
-        return response()->json($customer);
-//        return response()->json($request);
+//        return response()->json($customer);
+        return redirect('/manager-customers');
+    }
+
+    /**
+     * Get group-less customers
+     * @return \Illuminate\Http\Response
+     */
+    public function getGrouplessCustomers()
+    {
+        $customers = Customer::where('group_id','=',0)->get();
+        return response()->json($customers);
     }
 
     /**
@@ -107,11 +117,5 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         return response();
-    }
-
-    public function getAllWithNoGroup()
-    {
-        $customersWithNoGroup = Customer::where('group_id', '=', '0')->get();
-        return response()->json($customersWithNoGroup);
     }
 }

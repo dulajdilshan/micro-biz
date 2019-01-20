@@ -13,7 +13,17 @@ export default class CustomerGroupsPage extends Component {
         super(props);
         this.state = {
             groupList: [],
-            newGroup: {},
+            newGroup: {
+                branch_id: '',
+                center_code: '',
+                center_name: '',
+                customer_1: {},
+                customer_2: {},
+                customer_3: {},
+                customer_4: {},
+                customer_5: {},
+            },
+            grouplessCustomers: [],
             selectedGroup: {},
             page: {
                 columns: [
@@ -39,28 +49,50 @@ export default class CustomerGroupsPage extends Component {
             .catch(err => {
                 console.log(err);
                 alert("Groups loading failed !! server may be down ..try starting the server and reload the page again");
-            });
+            })
+            .then(() => axios.get('/api/customer/get-groupless')
+                .then(res => {
+                    this.setState({grouplessCustomers: res.data});
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+                }));
+    }
+
+    handleNewGroupOpen() {
+        // axios.get('/api/customer/get-groupless')
+        //     .then(res => {
+        //         this.setState({grouplessCustomers: res.data});
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //         alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+        //     });
     }
 
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-sm-3">
-                        <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#groupForm">New Group
-                        </button>
-                    </div>
-                    <div className="col-sm-3">
-                        <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#editGroup">Edit
-                        </button>
+                <div className="col-sm-12">
+                    <div className="row">
+                        <div className="col-sm-3">
+                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
+                                    data-target="#newGroupForm" onClick={this.handleNewGroupOpen.bind(this)}>New Group
+                            </button>
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal" disabled
+                                    data-target="#editGroup">Edit
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <br/>
                 <br/>
                 <DataTable columns={this.state.page.columns} data={this.state.groupList}/>
-                <GroupForm name="editGroup"/>
+                <GroupForm name="newGroupForm" grouplessCustomers={this.state.grouplessCustomers}/>
+                {/*<GroupForm name="editGroup"/>*/}
             </div>
         );
     }
