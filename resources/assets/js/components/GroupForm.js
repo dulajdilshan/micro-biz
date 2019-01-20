@@ -17,6 +17,7 @@ class GroupForm extends Component {
                     customer_5: {}
                 }
             },
+            selectedCustomers: [],
             customerPool: [],
             isCenterEntered: false
         };
@@ -24,7 +25,6 @@ class GroupForm extends Component {
 
     handleOnChangeCenterCode() {
         this.setState({customerPool: [...this.props.grouplessCustomers]});
-        //Checking whether the center code is valid or not. Then,
         this.setState({isCenterEntered: true})
     }
 
@@ -33,7 +33,6 @@ class GroupForm extends Component {
         let selectElement = event.target;
         let optionIndex = selectElement.selectedIndex;
         let selectedCustomerId = selectElement.options[optionIndex].value;
-        console.log(selectedCustomerId);
         let newGroup = Object.assign({}, this.state.newGroup);
         var selectedCustomer = {};
         for (let x in cPool) {
@@ -41,14 +40,29 @@ class GroupForm extends Component {
                 selectedCustomer = cPool[x];
                 newGroup.selectedCustomers[selectElement.id] = selectedCustomer;
                 this.setState({newGroup});
-                return;
+                break;
             } else if (selectedCustomerId == 0) {
                 selectedCustomer.full_name = "[[NOT AVAILABLE]]";
                 newGroup.selectedCustomers[selectElement.id] = selectedCustomer;
                 this.setState({newGroup});
-                return;
+                break;
             }
         }
+        this.filterCustomers();
+    }
+
+    filterCustomers() {
+        let ungroupCustomers = this.props.grouplessCustomers;
+        let selCus = this.state.newGroup.selectedCustomers;
+        var newUngroupCustomers = ungroupCustomers.filter((value, index, arr) => {
+            if (selCus.customer_1.id === value.id) return false;
+            else if (selCus.customer_2.id === value.id) return false;
+            else if (selCus.customer_3.id === value.id) return false;
+            else if (selCus.customer_4.id === value.id) return false;
+            else if (selCus.customer_5.id === value.id) return false;
+            return true;
+        });
+        this.setState({customerPool: newUngroupCustomers})
     }
 
     handleMapCustomerOptions(customer) {
@@ -60,6 +74,19 @@ class GroupForm extends Component {
         )
     }
 
+    handleOnSubmit(event) {
+        event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to add this group?');
+        if (retConfirm) {
+            $('#newGroupForm').modal('hide');
+            console.log(this.state.newGroup);
+            axios.post('/api/group/create', this.state.newGroup)
+                .then(res => alert("Group Added Successfully"))
+                .catch(error => alert("[ FAILED ] Group NOT Added"));
+        } else {
+            alert("[ FAILED ] Group NOT Added");
+        }
+    }
 
     render() {
         return (
@@ -70,7 +97,7 @@ class GroupForm extends Component {
                             <h4 className="modal-title">Add Group</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <form action="" method="post">
+                        <form onSubmit={this.handleOnSubmit.bind(this)}>
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-sm-2 form-group">
@@ -178,7 +205,9 @@ class GroupForm extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">ADD</button>
+                                <button type="submit" className="btn btn-primary"
+                                        onClick={this.handleOnSubmit.bind(this)}>ADD
+                                </button>
                                 <button type="reset" className="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
