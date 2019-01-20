@@ -101,7 +101,8 @@ export default class CustomersPage extends Component {
 
     _handleLastNameChange(event) {
         let full_name = this.state.customer.first_name + " " + event.target.value;
-        let newCustomer = Object.assign({}, this.state.customer, {last_name: event.target.value, full_name: full_name});
+        let newCustomer =
+            Object.assign({}, this.state.customer, {last_name: event.target.value, full_name: full_name});
         this.setState({
             customer: newCustomer
         });
@@ -222,10 +223,10 @@ export default class CustomersPage extends Component {
                         </button>
                     </div>
                     {/*<div className="col-sm-3">*/}
-                        {/*<button type="button" className="btn btn-outline-primary btn-lg"*/}
-                                {/*onClick={this.handleCreateGroup.bind(this)}>*/}
-                            {/*Create a group ({this.state.selectedCustomers.length})*/}
-                        {/*</button>*/}
+                    {/*<button type="button" className="btn btn-outline-primary btn-lg"*/}
+                    {/*onClick={this.handleCreateGroup.bind(this)}>*/}
+                    {/*Create a group ({this.state.selectedCustomers.length})*/}
+                    {/*</button>*/}
                     {/*</div>*/}
                 </div>
                 <br/>
@@ -248,20 +249,20 @@ export default class CustomersPage extends Component {
                 />
 
                 {/*<FormCustomer newCustomer={this.state.customer}*/}
-                              {/*isVisible={this.state.isFormVisible}*/}
-                              {/*_handleCreateCustomer={this._handleCreateCustomer.bind(this)}*/}
-                              {/*_handleNicChange={this._handleNicChange.bind(this)}*/}
-                              {/*makeInvisible={this._makeNewCustomerFormInvisible}*/}
-                              {/*_handleFirstNameChange={this._handleFirstNameChange.bind(this)}*/}
-                              {/*_handleLastNameChange={this._handleLastNameChange.bind(this)}*/}
-                              {/*_handleAgeChange={this._handleAgeChange.bind(this)}*/}
-                              {/*_handleBirthdayChange={this._handleBirthdayChange.bind(this)}*/}
-                              {/*_handleAddress1Change={this._handleAddress1Change.bind(this)}*/}
-                              {/*_handleAddress2Change={this._handleAddress2Change.bind(this)}*/}
-                              {/*_handleContactNo1Change={this._handleContactNo1Change.bind(this)}*/}
-                              {/*_handleContactNo2Change={this._handleContactNo2Change.bind(this)}*/}
-                              {/*_handleGenderChange={this._handleGenderChange.bind(this)}*/}
-                              {/*_handleMarriedSingleChange={this._handleMarriedSingleChange.bind(this)}*/}
+                {/*isVisible={this.state.isFormVisible}*/}
+                {/*_handleCreateCustomer={this._handleCreateCustomer.bind(this)}*/}
+                {/*_handleNicChange={this._handleNicChange.bind(this)}*/}
+                {/*makeInvisible={this._makeNewCustomerFormInvisible}*/}
+                {/*_handleFirstNameChange={this._handleFirstNameChange.bind(this)}*/}
+                {/*_handleLastNameChange={this._handleLastNameChange.bind(this)}*/}
+                {/*_handleAgeChange={this._handleAgeChange.bind(this)}*/}
+                {/*_handleBirthdayChange={this._handleBirthdayChange.bind(this)}*/}
+                {/*_handleAddress1Change={this._handleAddress1Change.bind(this)}*/}
+                {/*_handleAddress2Change={this._handleAddress2Change.bind(this)}*/}
+                {/*_handleContactNo1Change={this._handleContactNo1Change.bind(this)}*/}
+                {/*_handleContactNo2Change={this._handleContactNo2Change.bind(this)}*/}
+                {/*_handleGenderChange={this._handleGenderChange.bind(this)}*/}
+                {/*_handleMarriedSingleChange={this._handleMarriedSingleChange.bind(this)}*/}
                 {/*/>*/}
             </div>
         );
