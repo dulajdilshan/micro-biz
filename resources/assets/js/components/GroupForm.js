@@ -205,9 +205,7 @@ class GroupForm extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary"
-                                        onClick={this.handleOnSubmit.bind(this)}>ADD
-                                </button>
+                                <button type="submit" className="btn btn-primary">ADD</button>
                                 <button type="reset" className="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
