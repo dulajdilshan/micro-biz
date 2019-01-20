@@ -24,5 +24,15 @@ Route::get('/customers','Api\CustomerController@index');
 Route::get('/customer/get-groupless','Api\CustomerController@getGrouplessCustomers');
 Route::get('/groups','Api\GroupController@index');
 Route::get('/document-fees','Api\DocumentFeeController@index');
-Route::post('/customer/create','Api\CustomerController@create');
+
+//----------------------------------------
+//Create Routes
+//----------------------------------------
+Route::post('/customer/create','Api\CustomerController@create');            //Customer
+Route::post('/group/create','Api\GroupController@create');                  //Group
+Route::post('/Center/create','Api\CenterController@create');                //Center
+Route::post('/Branch/create','Api\BranchController@create');                //Branch
+Route::post('/Loan/create','Api\LoanController@create');                    //Loan
+Route::post('/Payment/create','Api\PaymentController@create');              //Payment
+Route::post('/Cashier/create','Api\CashierController@create');              //Cashier
 
