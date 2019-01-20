@@ -1,23 +1,9 @@
 import React, {Component} from 'react';
 import '../../css/groups_modal.css'
 
-class GroupForm extends Component {
+class Form extends Component {
     constructor(props) {
-        super(props)
-    }
-
-    handleOnSubmit(event) {
-        event.preventDefault();       //This makes not to load again
-        let retConfirm = confirm('Are you sure you want to add this group?');
-        if (retConfirm) {
-            $('#newGroupForm').modal('hide');
-            console.log(this.state.newGroup);
-            axios.post('/api/group/create', this.state.newGroup)
-                .then(res => alert("Group Added Successfully"))
-                .catch(error => alert("[ FAILED ] Group NOT Added"));
-        } else {
-            alert("[ FAILED ] Group NOT Added");
-        }
+        super(props);
     }
 
     render() {
@@ -26,17 +12,33 @@ class GroupForm extends Component {
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Add Group</h4>
+                            <h4 className="modal-title">{this.props.title}</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
                         <form onSubmit={this.handleOnSubmit.bind(this)}>
                             <div className="modal-body">
-                                
+                                {this.props.rows.map((row, index) => (
+                                    <div key={index} className="row">
+                                        {row.map((col, index) => (
+                                            <UInput key={index} label={col.label} id={col.id} name={col.name}
+                                                    required={col.required}
+                                                    pattern={col.pattern}
+                                                    message={col.message}
+                                                    value={col.value}
+                                                    onChange={col.onChange}/>
+                                        ))}
+                                    </div>
+                                ))}
+                                <div className="row">
+                                    <UInput label="Name" id="id" name="name" required={true}
+                                            pattern="[A-Za-z]+$"
+                                            message="Three letter country code"
+                                            value={this.state.name}
+                                            onChange={(event) => this.setState({name: event.target.value})}/>
+                                </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary"
-                                        onClick={this.handleOnSubmit.bind(this)}>ADD
-                                </button>
+                                <button type="submit" className="btn btn-primary">ADD</button>
                                 <button type="reset" className="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -47,4 +49,20 @@ class GroupForm extends Component {
     }
 }
 
-export default GroupForm;
+const UInput = (props) => {
+    const className = "col-sm-".concat(props.colSize ? props.colSize : "3").concat(" form-group");
+    return (
+        <div className={className}>
+            <label>{props.label}</label>
+            <input type={props.type ? props.type : "text"} className="form-control" id={props.id}
+                   name={props.name} required={props.required}
+                   pattern={props.pattern}
+                   title={props.message}
+                   value={props.value}
+                   onChange={props.onChange}
+            />
+        </div>
+    )
+};
+
+export default Form;
