@@ -23,9 +23,10 @@ class GroupForm extends Component {
         };
     }
 
-    handleOnChangeCenterCode() {
-        this.setState({customerPool: [...this.props.grouplessCustomers]});
-        this.setState({isCenterEntered: true})
+    handleOnChangeCenterCode(event) {
+        let newGroup = Object.assign({}, this.state.newGroup, {center_code: event.target.value});
+        this.setState({newGroup: newGroup, customerPool: [...this.props.grouplessCustomers]});
+        this.setState({isCenterEntered: this.state.newGroup.center_code !== ''});
     }
 
     handleOnChangeSelectCustomer(event) {
@@ -81,7 +82,10 @@ class GroupForm extends Component {
             $('#newGroupForm').modal('hide');
             console.log(this.state.newGroup);
             axios.post('/api/group/create', this.state.newGroup)
-                .then(res => alert("Group Added Successfully"))
+                .then(res => {
+                    alert("Group Added Successfully");
+                    console.log(res)
+                })
                 .catch(error => alert("[ FAILED ] Group NOT Added"));
         } else {
             alert("[ FAILED ] Group NOT Added");
