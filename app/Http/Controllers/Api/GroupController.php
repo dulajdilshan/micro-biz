@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Branch;
+use App\Center;
 use App\Customer;
 use App\Group;
 use Illuminate\Http\Request;
@@ -31,19 +32,28 @@ class GroupController extends Controller
     public function create(Request $request)
     {
         DB::beginTransaction();
+
+        //Create the Group
         try {
-            $branch = Branch::where('id', $request['branch_id'])->first();
-            if ($branch==null){
-                return response('Error');
+            $branch = Branch::where('id', (int)$request['branch_id'])->first();
+            $center = Center::where('center_code', $request['center_code'])->first();
+
+            $success_msg = 'Group Adding Successful branch_id:' . $branch['id'] . ' center_id:' . $center['id'];
+            $failed_msg = 'Group Adding Failed. branch_id:' . $branch['id'] . ' center_id:' . $center['id'];
+            if ($branch == null or $center == null) {
+                return response($failed_msg);
             }
-        }catch (Exception $e){
+            $group = new Group();
+            $group['branch_id'] = $branch['id'];
+            $group['center_code'] = $center['center_code'];
+            $group['center_name'] = $center['center_name'];
+            $newGroup = $group->save();
+        } catch (Exception $e) {
             DB::rollBack();
             return redirect('manager-groups');
         }
-        
 
-        //Save the Created Group
-        $group = new Group();
+        //Assigning groups for the ungrouped customers
         $ungrouped_customers = Customer::where('group_id', 0)->get();
 
         $customer1 = $request['selectedCustomers']['customer_1'];
@@ -51,7 +61,9 @@ class GroupController extends Controller
         $customer3 = $request['selectedCustomers']['customer_3'];
         $customer4 = $request['selectedCustomers']['customer_4'];
         $customer5 = $request['selectedCustomers']['customer_5'];
-        return response()->json($request['selectedCustomers']['customer_1']);
+
+        DB::commit();
+        return response($success_msg);
     }
 
     /**

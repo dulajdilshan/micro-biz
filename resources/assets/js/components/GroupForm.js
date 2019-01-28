@@ -6,7 +6,7 @@ class GroupForm extends Component {
         super(props);
         this.state = {
             newGroup: {
-                branch_id: '',
+                branch_id: '4',
                 center_code: '',
                 center_name: '',
                 selectedCustomers: {
@@ -23,10 +23,18 @@ class GroupForm extends Component {
         };
     }
 
+    handleOnChangeBranchId(event) {
+        let newGroup = Object.assign({}, this.state.newGroup, {branch_id: event.target.value});
+        this.setState({newGroup: newGroup, isCenterEntered: this.state.newGroup.center_code !== ''})
+    }
+
     handleOnChangeCenterCode(event) {
         let newGroup = Object.assign({}, this.state.newGroup, {center_code: event.target.value});
-        this.setState({newGroup: newGroup, customerPool: [...this.props.grouplessCustomers]});
-        this.setState({isCenterEntered: this.state.newGroup.center_code !== ''});
+        this.setState({
+            newGroup: newGroup,
+            customerPool: [...this.props.grouplessCustomers],
+            isCenterEntered: this.state.newGroup.center_code !== ''
+        });
     }
 
     handleOnChangeSelectCustomer(event) {
@@ -83,8 +91,9 @@ class GroupForm extends Component {
             console.log(this.state.newGroup);
             axios.post('/api/group/create', this.state.newGroup)
                 .then(res => {
-                    alert("Group Added Successfully");
-                    console.log(res)
+                    alert(res.data);
+                    console.log(res);
+                    window.location = '/manager-groups'
                 })
                 .catch(error => alert("[ FAILED ] Group NOT Added"));
         } else {
@@ -107,7 +116,9 @@ class GroupForm extends Component {
                                     <div className="col-sm-2 form-group">
                                         <label for="branch_id"> Branch ID</label>
                                         <input type="text" className="form-control" id="branch_id"
-                                               name="branch_id" required="" maxlength="50"/>
+                                               name="branch_id"
+                                               onChange={this.handleOnChangeBranchId.bind(this)} required=""
+                                               maxlength="50"/>
                                     </div>
                                     <div className="col-sm-5 form-group">
                                         <label for="center_code"> Center Code</label>
