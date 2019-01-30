@@ -30,9 +30,9 @@ Route::get('/document-fees','Api\DocumentFeeController@index');
 //----------------------------------------
 Route::post('/customer/create','Api\CustomerController@create');            //Customer
 Route::post('/group/create','Api\GroupController@create');                  //Group
-Route::post('/Center/create','Api\CenterController@create');                //Center
-Route::post('/Branch/create','Api\BranchController@create');                //Branch
+//Route::post('/Center/create','Api\CenterController@create');                //Center
+//Route::post('/Branch/create','Api\BranchController@create');                //Branch
 Route::post('/Loan/create','Api\LoanController@create');                    //Loan
 Route::post('/Payment/create','Api\PaymentController@create');              //Payment
-Route::post('/Cashier/create','Api\CashierController@create');              //Cashier
+//Route::post('/Cashier/create','Api\CashierController@create');              //Cashier
 
