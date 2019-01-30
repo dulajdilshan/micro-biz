@@ -33,6 +33,14 @@ class GroupController extends Controller
     {
         DB::beginTransaction();
 
+        //Get last group
+        try {
+            $next_group_id = Group::all()->last()['id'] + 1;
+            if ($next_group_id == null) $next_group_id = 1;
+        } catch (Exception $e) {
+            return redirect('manager-groups');
+        }
+
         //Create the Group
         try {
             $branch = Branch::where('id', (int)$request['branch_id'])->first();
@@ -47,21 +55,31 @@ class GroupController extends Controller
             $group['branch_id'] = $branch['id'];
             $group['center_code'] = $center['center_code'];
             $group['center_name'] = $center['center_name'];
-            $newGroup = $group->save();
+            $group->save();
         } catch (Exception $e) {
             DB::rollBack();
             return redirect('manager-groups');
         }
 
         //Assigning groups for the ungrouped customers
-        $ungrouped_customers = Customer::where('group_id', 0)->get();
+        $customer1_id = $request['selectedCustomers']['customer_1']['id'];
+        $customer2_id = $request['selectedCustomers']['customer_2']['id'];
+        $customer3_id = $request['selectedCustomers']['customer_3']['id'];
+        $customer4_id = $request['selectedCustomers']['customer_4']['id'];
+        $customer5_id = $request['selectedCustomers']['customer_5']['id'];
 
-        $customer1 = $request['selectedCustomers']['customer_1'];
-        $customer2 = $request['selectedCustomers']['customer_2'];
-        $customer3 = $request['selectedCustomers']['customer_3'];
-        $customer4 = $request['selectedCustomers']['customer_4'];
-        $customer5 = $request['selectedCustomers']['customer_5'];
+        $ungrouped_customer_ids = [$customer1_id, $customer2_id, $customer3_id, $customer4_id, $customer5_id];
 
+        try{
+            for($i=0; $i < count($ungrouped_customer_ids); $i ++){
+                $customer = Customer::where('id',$ungrouped_customer_ids[$i])->first();
+                $customer['group_id'] = $next_group_id;
+                $customer->save();
+            }
+        } catch (Exception $e){
+            DB::rollBack();
+            return redirect('manager-groups');
+        }
         DB::commit();
         return response($success_msg);
     }
