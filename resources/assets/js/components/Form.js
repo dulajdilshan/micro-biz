@@ -4,18 +4,21 @@ import '../../css/groups_modal.css'
 class Form extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            name:''
+        }
     }
 
     render() {
         return (
-            <div className="modal fade show" id={this.props.name}>
+                <div className="modal fade show" id={this.props.name}>
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">{this.props.title}</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <form onSubmit={this.handleOnSubmit.bind(this)}>
+                        <form onSubmit={this.props.handleOnSubmit.bind(this)}>
                             <div className="modal-body">
                                 {this.props.rows.map((row, index) => (
                                     <div key={index} className="row">
@@ -29,13 +32,6 @@ class Form extends Component {
                                         ))}
                                     </div>
                                 ))}
-                                <div className="row">
-                                    <UInput label="Name" id="id" name="name" required={true}
-                                            pattern="[A-Za-z]+$"
-                                            message="Three letter country code"
-                                            value={this.state.name}
-                                            onChange={(event) => this.setState({name: event.target.value})}/>
-                                </div>
                             </div>
                             <div className="modal-footer">
                                 <button type="submit" className="btn btn-primary">ADD</button>
