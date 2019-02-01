@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import Form from "../Form";
+import axios from "axios";
 
 export default class CentresPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            newCenter: {
+                branch_id: '',
+                center_code: '',
+                center_name: ''
+            },
             centerTable: {
                 columns: [
                     {Header: 'Branch ID', accessor: 'branch_id'},
@@ -16,6 +22,7 @@ export default class CentresPage extends Component {
                     {Header: 'Options', accessor: 'options'},
                 ],
             },
+            centerTableData: [],
             dummyCenterTableData: [
                 {
                     branch_id: 0,
@@ -24,6 +31,36 @@ export default class CentresPage extends Component {
                     options: '~~~~~~'
                 },
             ]
+        };
+
+    }
+
+    componentDidMount() {
+        axios.get('/api/centers')
+            .then(res => {
+                this.setState({centerTableData: res.data});
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Centers loading failed !! server may be down ..try starting the server and reload the page again");
+            });
+    }
+
+    handleOnSubmit(event) {
+        event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to add this group?');
+        if (retConfirm) {
+            $('#newCenterForm').modal('hide');
+            console.log(this.state.newCenter);
+            axios.post('/api/center/create', this.state.newCenter)
+                .then(res => {
+                    alert(res.data);
+                    console.log(res);
+                    window.location = '/manager-centres'
+                })
+                .catch(error => alert("[ FAILED ] Center NOT Added"));
+        } else {
+            alert("[ FAILED ] Center NOT Added");
         }
     }
 
@@ -36,27 +73,36 @@ export default class CentresPage extends Component {
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Numeric Only",
-                value: this.state.center.branch_id,
-                onChange: () => console.log('typing..'),
-            },{
+                value: this.state.newCenter.branch_id,
+                onChange: (event) =>
+                    this.setState({
+                        newCenter: Object.assign({}, this.state.newCenter, {branch_id: event.target.value})
+                    }),
+            }, {
                 label: "Center Code",
                 id: "center_code",
                 name: "center_code",
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Numeric Only",
-                value: this.state.center.center_code,
-                onChange: () => console.log('typing..'),
-            },{
+                value: this.state.newCenter.center_code,
+                onChange: (event) =>
+                    this.setState({
+                        newCenter: Object.assign({}, this.state.newCenter, {center_code: event.target.value})
+                    }),
+            }, {
                 label: "Center Name",
                 id: "center_name",
                 name: "center_name",
                 required: true,
                 pattern: "^[A-Za-z]+$",
                 message: "invalid",
-                value: this.state.center.center_name,
-                onChange: () => console.log('typing..'),
-            }],
+                value: this.state.newCenter.center_name,
+                onChange: (event) =>
+                    this.setState({
+                        newCenter: Object.assign({}, this.state.newCenter, {center_name: event.target.value})
+                    }),
+            }]
         ];
         return (
             <div className="container">
@@ -69,7 +115,8 @@ export default class CentresPage extends Component {
                 </div>
                 <br/>
                 <DataTable columns={this.state.centerTable.columns} data={this.state.dummyCenterTableData}/>
-                <Form name="newCenterForm" title="Add Center"/>
+                <Form name="newCenterForm" title="Add Center" rows={newCenterFormStructure}
+                      handleOnSubmit={this.handleOnSubmit.bind(this)}/>
             </div>
         );
     }
