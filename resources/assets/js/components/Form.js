@@ -24,6 +24,7 @@ class Form extends Component {
                                     <div key={index} className="row">
                                         {row.map((col, index) => (
                                             <UInput key={index} label={col.label} id={col.id} name={col.name}
+                                                    colSize={col.colSize}
                                                     required={col.required}
                                                     pattern={col.pattern}
                                                     message={col.message}
