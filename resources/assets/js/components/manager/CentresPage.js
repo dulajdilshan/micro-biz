@@ -83,7 +83,7 @@ export default class CentresPage extends Component {
                 id: "center_code",
                 name: "center_code",
                 required: true,
-                pattern: "^[0-9]+$",
+                pattern: "^[A-Za-z]+$",
                 message: "Numeric Only",
                 value: this.state.newCenter.center_code,
                 onChange: (event) =>
@@ -114,7 +114,7 @@ export default class CentresPage extends Component {
                     </div>
                 </div>
                 <br/>
-                <DataTable columns={this.state.centerTable.columns} data={this.state.dummyCenterTableData}/>
+                <DataTable columns={this.state.centerTable.columns} data={this.state.centerTableData}/>
                 <Form name="newCenterForm" title="Add Center" rows={newCenterFormStructure}
                       handleOnSubmit={this.handleOnSubmit.bind(this)}/>
             </div>
