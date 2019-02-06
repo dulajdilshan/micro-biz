@@ -150,6 +150,7 @@ export default class CashiersPage extends Component {
                 id: "age",
                 name: "age",
                 required: true,
+                type:'number',
                 colSize:'2',
                 pattern: "^[0-9]*$",
                 message: "Age is not valid",
