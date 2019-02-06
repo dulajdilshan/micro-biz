@@ -136,6 +136,7 @@ export default class CashiersPage extends Component {
                 id: "birthday",
                 name: "birthday",
                 required: true,
+                type:'date',
                 colSize:'3',
                 pattern: "^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
                 message: "Date format not valid",

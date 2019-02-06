@@ -5,13 +5,13 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:''
+            name: ''
         }
     }
 
     render() {
         return (
-                <div className="modal fade show" id={this.props.name}>
+            <div className="modal fade show" id={this.props.name}>
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -24,6 +24,7 @@ class Form extends Component {
                                     <div key={index} className="row">
                                         {row.map((col, index) => (
                                             <UInput key={index} label={col.label} id={col.id} name={col.name}
+                                                    type={col.type}
                                                     colSize={col.colSize}
                                                     required={col.required}
                                                     pattern={col.pattern}
