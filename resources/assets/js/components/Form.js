@@ -23,14 +23,24 @@ class Form extends Component {
                                 {this.props.rows.map((row, index) => (
                                     <div key={index} className="row">
                                         {row.map((col, index) => (
-                                            <UInput key={index} label={col.label} id={col.id} name={col.name}
-                                                    type={col.type}
-                                                    colSize={col.colSize}
-                                                    required={col.required}
-                                                    pattern={col.pattern}
-                                                    message={col.message}
-                                                    value={col.value}
-                                                    onChange={col.onChange}/>
+                                            col.button ?
+                                                <UButton key={index}
+                                                         buttonId={col.id}
+                                                         buttonName={col.name}
+                                                         onClick={()=>console.log("clicking...")}
+                                                         buttonLabel={col.label}
+                                                         colSize={col.colSize}
+                                                         buttonClass={col.buttonClass}
+                                                         buttonClassOptions={col.buttonClassOptions}
+                                                         buttonStyle={col.buttonStyle}/> :
+                                                <UInput key={index} label={col.label} id={col.id} name={col.name}
+                                                        type={col.type}
+                                                        colSize={col.colSize}
+                                                        required={col.required}
+                                                        pattern={col.pattern}
+                                                        message={col.message}
+                                                        value={col.value}
+                                                        onChange={col.onChange}/>
                                         ))}
                                     </div>
                                 ))}
@@ -47,6 +57,7 @@ class Form extends Component {
     }
 }
 
+// Props (all:10, opt:2): label, id, name, required, pattern, message, value, onChange, colSize, type,
 const UInput = (props) => {
     const className = "col-sm-".concat(props.colSize ? props.colSize : "3").concat(" form-group");
     return (
@@ -57,10 +68,31 @@ const UInput = (props) => {
                    pattern={props.pattern}
                    title={props.message}
                    value={props.value}
-                   onChange={props.onChange}
+                   onChange={props.onChange ? props.onChange : () => console.log(props.name + " onChange ..")}
             />
         </div>
     )
+};
+
+// Props (all:7, opt:2) : buttonId, buttonName, onClick, buttonLabel, colSize, buttonClass, buttonClassOptions, buttonStyle
+const UButton = (props) => {
+    const className = "col-sm-".concat(props.colSize ? props.colSize : "3").concat(" form-group");
+    const buttonClassName = "btn btn-"
+        .concat(props.buttonClass ? props.buttonClass : "default")
+        .concat(props.buttonClassOptions ? " " + props.buttonClassOptions : " ")
+        .concat("form-control");
+    const divStyle = {
+        marginTop: '28px',
+        border: '2px solid green',
+        backgroundColor: 'yellow'
+    };
+    return (
+        <div className={className}>
+            <button style={props.buttonStyle ? props.buttonStyle : divStyle} id={props.buttonId}
+                   name={props.buttonName} className={buttonClassName}
+                    onClick={props.onClick} >{props.buttonLabel}</button>
+        </div>
+    );
 };
 
 export default Form;
