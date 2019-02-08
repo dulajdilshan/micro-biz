@@ -37,6 +37,7 @@ class Form extends Component {
                                                         type={col.type}
                                                         colSize={col.colSize}
                                                         required={col.required}
+                                                        disabled={col.disabled}
                                                         pattern={col.pattern}
                                                         message={col.message}
                                                         value={col.value}
@@ -65,6 +66,7 @@ const UInput = (props) => {
             <label>{props.label}</label>
             <input type={props.type ? props.type : "text"} className="form-control" id={props.id}
                    name={props.name} required={props.required}
+                   disabled={props.disabled}
                    pattern={props.pattern}
                    title={props.message}
                    value={props.value}
