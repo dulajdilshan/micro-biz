@@ -27,7 +27,7 @@ class Form extends Component {
                                                 <UButton key={index}
                                                          buttonId={col.id}
                                                          buttonName={col.name}
-                                                         onClick={()=>console.log("clicking...")}
+                                                         onClick={col.onClick}
                                                          buttonLabel={col.label}
                                                          colSize={col.colSize}
                                                          buttonClass={col.buttonClass}
