@@ -184,7 +184,17 @@ export default class LoansPage extends Component {
                 label: "Calculate",
                 id: "calculate",
                 name: "calculate",
-                onClick: (event) => console.log("calculate pressed..")
+                onClick: (event) => {
+                    let loan = this.state.newLoan.loan_amount; let irate = this.state.newLoan.rate / 100;
+                    let no_of_weeks = this.state.newLoan.weeks;
+                    let interest = loan * irate * no_of_weeks;
+                    let net = parseInt(loan) +  parseInt(interest);
+                    let weekly_in = net / no_of_weeks;
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {
+                            net_amount: net, weekly_installment: weekly_in, total_interest: interest
+                        })})
+                }
             }], [{
                 label: "Net Amount",
                 id: "net_amount",
@@ -197,7 +207,7 @@ export default class LoansPage extends Component {
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {net_amount: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Weekly Installment",
                 id: "weekly_installment",
                 name: "weekly_installment",
@@ -209,7 +219,7 @@ export default class LoansPage extends Component {
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {weekly_installment: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Total Interest",
                 id: "total_interest",
                 name: "total_interest",
@@ -227,7 +237,7 @@ export default class LoansPage extends Component {
                 id: "reset",
                 name: "reset",
                 onClick: (event) => console.log("RESET pressed .. ")
-            }],[{
+            }], [{
                 label: "Loan number",
                 id: "loan_number",
                 name: "loan_number",
