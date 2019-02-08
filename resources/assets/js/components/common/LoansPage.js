@@ -33,7 +33,20 @@ export default class LoansPage extends Component {
                 ],
             },
             newLoan: {
-                branch_id: '', center_id: '', nic: '',
+                obtained_date: '',
+                user_id: '',
+                branch_id: '',
+                center_id: '',
+                nic: '',
+                customer_name: '',
+                group_id: '',
+                loan_amount: '',
+                weeks: '',
+                rate: '',
+                net_amount: '',
+                weekly_installment: '',
+                total_interest: '',
+                loan_number: ''
             }
         }
     }
@@ -45,6 +58,19 @@ export default class LoansPage extends Component {
     render() {
         const newLoanFormStructure = [
             [{
+                label: "Date",
+                id: "obtained_date",
+                name: "obtained_date",
+                required: true,
+                type: 'date',
+                pattern: "^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
+                message: "Dates Only",
+                value: this.state.newLoan.obtained_date,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {obtained_date: event.target.value})
+                    }),
+            }, {
                 label: "Branch ID",
                 id: "branch_id",
                 name: "branch_id",
@@ -69,23 +95,156 @@ export default class LoansPage extends Component {
                         newLoan: Object.assign({}, this.state.newLoan, {center_id: event.target.value})
                     }),
             }, {
+                label: "USER ID",
+                id: "user_id",
+                name: "user_id",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.user_id,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {user_id: event.target.value})
+                    }),
+            }], [{
                 label: "NIC",
                 id: "nic",
                 name: "nic",
                 required: true,
-                pattern: "^[A-Za-z]+$",
-                message: "invalid",
+                pattern: "^[0-9]{9}[x|X|v|V]$",
+                message: "NIC Only",
                 value: this.state.newLoan.nic,
                 onChange: (event) =>
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {nic: event.target.value})
                     }),
             }, {
+                label: "Customer Name",
+                id: "customer_name",
+                name: "customer_name",
+                required: true,
+                colSize: 6,
+                pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$",
+                message: "names only",
+                value: this.state.newLoan.customer_name,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {customer_name: event.target.value})
+                    }),
+            }, {
+                label: "Group ID",
+                id: "group_id",
+                name: "group_id",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.group_id,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {group_id: event.target.value})
+                    }),
+            }], [{
+                label: "Loan Amount",
+                id: "loan_amount",
+                name: "loan_amount",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.loan_amount,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {loan_amount: event.target.value})
+                    }),
+            }, {
+                label: "Weeks",
+                id: "weeks",
+                name: "weeks",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.weeks,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {weeks: event.target.value})
+                    }),
+            }, {
+                label: "Interest Rate",
+                id: "rate",
+                name: "rate",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.rate,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {rate: event.target.value})
+                    }),
+            }, {
                 button: true,
                 label: "Calculate",
                 id: "calculate",
                 name: "calculate",
-                onClick: (event) => console.log(event)
+                onClick: (event) => console.log("calculate pressed..")
+            }], [{
+                label: "Net Amount",
+                id: "net_amount",
+                name: "net_amount",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.net_amount,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {net_amount: event.target.value})
+                    }),
+            },{
+                label: "Weekly Installment",
+                id: "weekly_installment",
+                name: "weekly_installment",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.weekly_installment,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {weekly_installment: event.target.value})
+                    }),
+            },{
+                label: "Total Interest",
+                id: "total_interest",
+                name: "total_interest",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.total_interest,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {total_interest: event.target.value})
+                    }),
+            }, {
+                button: true,
+                label: "RESET",
+                id: "reset",
+                name: "reset",
+                onClick: (event) => console.log("RESET pressed .. ")
+            }],[{
+                label: "Loan number",
+                id: "loan_number",
+                name: "loan_number",
+                required: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newLoan.loan_number,
+                onChange: (event) =>
+                    this.setState({
+                        newLoan: Object.assign({}, this.state.newLoan, {loan_number: event.target.value})
+                    }),
+            }, {
+                button: true,
+                label: "Generate Loan Number",
+                id: "generate_loan_num",
+                name: "generate_loan_num",
+                onClick: (event) => console.log("generate_loan_num pressed .. ")
             }]
         ];
         return (
