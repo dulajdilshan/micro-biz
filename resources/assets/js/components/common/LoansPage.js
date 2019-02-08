@@ -185,15 +185,17 @@ export default class LoansPage extends Component {
                 id: "calculate",
                 name: "calculate",
                 onClick: (event) => {
-                    let loan = this.state.newLoan.loan_amount; let irate = this.state.newLoan.rate / 100;
+                    let loan = this.state.newLoan.loan_amount;
+                    let irate = this.state.newLoan.rate / 100;
                     let no_of_weeks = this.state.newLoan.weeks;
                     let interest = loan * irate * no_of_weeks;
-                    let net = parseInt(loan) +  parseInt(interest);
+                    let net = parseInt(loan) + parseInt(interest);
                     let weekly_in = net / no_of_weeks;
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {
                             net_amount: net, weekly_installment: weekly_in, total_interest: interest
-                        })})
+                        })
+                    })
                 }
             }], [{
                 label: "Net Amount",
