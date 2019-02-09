@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import Form from "../Form";
+import axios from "axios";
 
 export default class LoansPage extends Component {
     constructor(props) {
@@ -49,6 +50,25 @@ export default class LoansPage extends Component {
                 loan_number: ''
             }
         }
+    }
+
+    componentDidMount() {
+        axios.get('/api/groups')
+            .then(res => {
+                this.setState({groupList: res.data});
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Groups loading failed !! server may be down ..try starting the server and reload the page again");
+            })
+            .then(() => axios.get('/api/customer/get-groupless')
+                .then(res => {
+                    this.setState({grouplessCustomers: res.data});
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
+                }));
     }
 
     handleOnSubmit() {
