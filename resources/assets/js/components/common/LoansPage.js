@@ -4,6 +4,7 @@ import "react-table/react-table.css";
 import DataTable from "../DataTable";
 import Form from "../Form";
 import axios from "axios";
+import {round} from "lodash";
 
 export default class LoansPage extends Component {
     constructor(props) {
@@ -107,7 +108,7 @@ export default class LoansPage extends Component {
                 id: "center_id",
                 name: "center_id",
                 required: true,
-                pattern: "^[A-Za-z]+$",
+                pattern: "^[0-9]+$",
                 message: "Numeric Only",
                 value: this.state.newLoan.center_id,
                 onChange: (event) =>
@@ -193,8 +194,8 @@ export default class LoansPage extends Component {
                 id: "rate",
                 name: "rate",
                 required: true,
-                pattern: "^[0-9]+$",
-                message: "Numbers Only",
+                pattern: "",
+                message: "Not in correct format",
                 value: this.state.newLoan.rate,
                 onChange: (event) =>
                     this.setState({
@@ -211,7 +212,7 @@ export default class LoansPage extends Component {
                     let no_of_weeks = this.state.newLoan.weeks;
                     let interest = loan * irate * no_of_weeks;
                     let net = parseInt(loan) + parseInt(interest);
-                    let weekly_in = net / no_of_weeks;
+                    let weekly_in = round(net / no_of_weeks);
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {
                             net_amount: net, weekly_installment: weekly_in, total_interest: interest
