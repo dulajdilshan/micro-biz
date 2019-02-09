@@ -194,8 +194,8 @@ export default class LoansPage extends Component {
                 id: "rate",
                 name: "rate",
                 required: true,
-                pattern: "",
-                message: "Not in correct format",
+                pattern: "[-+]?[0-9]*\.?[0-9]*",
+                message: "Should be a integer number or decimal number",
                 value: this.state.newLoan.rate,
                 onChange: (event) =>
                     this.setState({
