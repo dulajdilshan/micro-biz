@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Loan;
+use App\Branch;
+use App\Center;
 use App\Http\Controllers\Controller;
+use App\Loan;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoanController extends Controller
 {
@@ -26,27 +30,47 @@ class LoanController extends Controller
      */
     public function create(Request $request)
     {
-        $loan = new Loan();
-        $loan['loan_number'] = $request['loan_number'];
-        $loan['customer_id'] = $request['customer_id'];
-        $loan['group_id'] = $request['group_id'];
-        $loan['branch_id'] = $request['branch_id'];
-        $loan['center_id'] = $request['center_id'];
-        $loan['cashier_id'] = $request['cashier_id'];
-        $loan['is_settled'] = $request['is_settled'];
-        $loan['is_approved'] = $request['is_approved'];
-        $loan['loan_amount'] = $request['loan_amount'];
-        $loan['net_amount'] = $request['net_amount'];
-        $loan['rate'] = $request['rate'];
-        $loan['weeks'] = $request['weeks'];
-        $loan['remaining_weeks'] = $request['remaining_weeks'];
-        $loan['paid_weeks'] = $request['paid_weeks'];
-        $loan['weekly_installment']['weekly_installment'];
-        $loan['paid_amount'] = $request['paid_amount'];
-        $loan['balance'] = $request['balance'];
-        $loan['next_payment_date'] = $request['next_payment_date'];
-        $loan['obtained_date'] = $request['obtained_date'];
-        $loan['end_date'] = $request['end_date'];
+        $wrongBranchIdResponse = '{success:false,message:\'Branch Id is not match with a current one\'}';
+        $wrongCenterIdResponse = '{success:false,message:\'Center Id is not match with a current one\'}';
+        $failedOperation = '{success:false, message:\'Operation Failed\'}';
+        $successOperation = '{success:true, message:\'Loan added successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $branch = Branch::where('id', (int)$request['branch_id'])->first();
+            if ($branch == null) return response()->json($wrongBranchIdResponse);
+
+            $center = Center::where('id',(int)$request['center_id'])->first();
+            if ($center == null) return response()->json($wrongCenterIdResponse);
+
+            $loan = new Loan();
+            $loan['loan_number'] = $request['loan_number'];
+            $loan['customer_id'] = $request['customer_id'];
+            $loan['group_id'] = $request['group_id'];
+            $loan['branch_id'] = $request['branch_id'];
+            $loan['center_id'] = $request['center_id'];
+            $loan['cashier_id'] = $request['cashier_id'];
+            $loan['is_settled'] = 0;
+            $loan['is_approved'] = 0;
+            $loan['loan_amount'] = $request['loan_amount'];
+            $loan['net_amount'] = $request['net_amount'];
+            $loan['rate'] = $request['rate'];
+            $loan['weeks'] = $request['weeks'];
+            $loan['remaining_weeks'] = $request['weeks'];
+            $loan['paid_weeks'] = 0;
+            $loan['weekly_installment']= $request['weekly_installment'];
+            $loan['paid_amount'] = 0;
+            $loan['balance'] = $request['net_amount'];
+            $loan['next_payment_date'] = $request['obtained_date'];
+            $loan['obtained_date'] = $request['obtained_date'];
+            $loan['end_date'] = $request['obtained_date'];
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**
