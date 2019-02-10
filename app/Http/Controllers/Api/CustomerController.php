@@ -64,6 +64,16 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get customers who have settled loans or no loans
+     * @return \Illuminate\Http\Response
+     */
+    public function getCustomersWithNoLoans()
+    {
+        $customers = Customer::where('is_loan_settled',0)->get();
+        return response()->json($customers);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
