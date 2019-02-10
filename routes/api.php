@@ -23,6 +23,7 @@ Route::get('/loans','Api\LoanController@index');
 Route::get('/payments','Api\PaymentController@index');
 Route::get('/customers','Api\CustomerController@index');
 Route::get('/customer/get-groupless','Api\CustomerController@getGrouplessCustomers');
+Route::get('/customer/get-no-loans','Api\CustomerController@getCustomersWithNoLoans');
 Route::get('/groups','Api\GroupController@index');
 Route::get('/centers','Api\CenterController@index');
 Route::get('/document-fees','Api\DocumentFeeController@index');
