@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
 
     /**
      * Display a listing of the resource.
@@ -94,5 +95,11 @@ class UserController extends Controller
     public function get(Request $request)
     {
       return view('Dash');
+    }
+    
+    public function current_user(Request $request)
+    {
+        $a = Auth::user()->manager()->exists();
+        return response($a);
     }
 }
