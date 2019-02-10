@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Branch;
 use App\Center;
+use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Loan;
 use Exception;
@@ -19,8 +20,25 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $loans = Loan::all();
-        return response()->json($loans);
+        $loans_all = Loan::all();
+        $loan_list = array();
+        foreach ($loans_all as $element) {
+            $loan_customer = Customer::where('id', $element['customer_id'])->first();
+
+            $loan['id'] = $element['id'];
+            $loan['loan_number'] = $element['loan_number'];
+            $loan['nic'] = $loan_customer['nic'];
+            $loan['customer_name'] = $loan_customer['full_name'];
+            $loan['customer_id'] = $element['customer_id'];
+            $loan['loan_amount'] = $element['loan_amount'];
+            $loan['rate'] = $element['rate'];
+            $loan['net_amount'] = $element['net_amount'];
+            $loan['weeks'] = $element['weeks'];
+            $loan['balance'] = $element['balance'];
+
+            $loan_list[] = $loan;
+        }
+        return response()->json($loan_list);
     }
 
     /**
@@ -41,7 +59,7 @@ class LoanController extends Controller
             $branch = Branch::where('id', (int)$request['branch_id'])->first();
             if ($branch == null) return response()->json($wrongBranchIdResponse);
 
-            $center = Center::where('id',(int)$request['center_id'])->first();
+            $center = Center::where('id', (int)$request['center_id'])->first();
             if ($center == null) return response()->json($wrongCenterIdResponse);
 
             $loan = new Loan();
@@ -59,7 +77,7 @@ class LoanController extends Controller
             $loan['weeks'] = $request['weeks'];
             $loan['remaining_weeks'] = $request['weeks'];
             $loan['paid_weeks'] = 0;
-            $loan['weekly_installment']= $request['weekly_installment'];
+            $loan['weekly_installment'] = $request['weekly_installment'];
             $loan['paid_amount'] = 0;
             $loan['balance'] = $request['net_amount'];
             $loan['next_payment_date'] = $request['obtained_date'];

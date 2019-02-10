@@ -34,6 +34,7 @@ export default class LoansPage extends Component {
                     }
                 ],
             },
+            loanList:[],
             newLoan: {
                 obtained_date: '',
                 user_id: '',
@@ -54,13 +55,13 @@ export default class LoansPage extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/groups')
+        axios.get('/api/loans')
             .then(res => {
-                this.setState({groupList: res.data});
+                this.setState({loanList: res.data});
             })
             .catch(err => {
                 console.log(err);
-                alert("Groups loading failed !! server may be down ..try starting the server and reload the page again");
+                alert("Loans loading failed !! server may be down ..try starting the server and reload the page again");
             })
             .then(() => axios.get('/api/customer/get-groupless')
                 .then(res => {
@@ -291,7 +292,7 @@ export default class LoansPage extends Component {
                 </button>
                 <br/>
                 <br/>
-                <DataTable columns={this.state.loanTable.columns} data={this.state.loanTable.dummyLoanTableData}/>
+                <DataTable columns={this.state.loanTable.columns} data={this.state.loanList}/>
                 <Form name="newLoanForm" title="Add Loan" rows={newLoanFormStructure}
                       handleOnSubmit={this.handleOnSubmit.bind(this)}/>
             </div>
