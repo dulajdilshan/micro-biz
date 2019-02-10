@@ -76,8 +76,9 @@ export default class LoansPage extends Component {
                         c.group_id = list[cus].group_id;
                         cusList.push(c);
                     }
-                    return cusList;})
-                .then((cusList)=>this.setState({customerList: cusList}))
+                    return cusList;
+                })
+                .then((cusList) => this.setState({customerList: cusList}))
                 .catch(err => {
                     console.log(err);
                     alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
@@ -145,39 +146,47 @@ export default class LoansPage extends Component {
                 name: "nic",
                 required: true,
                 select: true,
-                options:this.state.customerList,
+                options: this.state.customerList,
                 // pattern: "^[0-9]{9}[x|X|v|V]$",
                 message: "NIC Only",
                 value: this.state.newLoan.nic,
-                onChange: (event) =>
+                onChange: (event) => {
+                    let cus = this.state.customerList.filter(function (item) {
+                        return item.value === event.target.value;
+                    })[0];
                     this.setState({
-                        newLoan: Object.assign({}, this.state.newLoan, {nic: event.target.value})
-                    }),
+                        newLoan: Object.assign({}, this.state.newLoan, {
+                            nic: event.target.value,
+                            customer_name: cus? cus.full_name : '',
+                            group_id: cus? cus.group_id : ''
+                        })
+                    })
+                },
             }, {
                 label: "Customer Name",
                 id: "customer_name",
                 name: "customer_name",
-                required: true,
+                disabled: true,
                 colSize: 6,
                 pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$",
                 message: "names only",
                 value: this.state.newLoan.customer_name,
-                onChange: (event) =>
-                    this.setState({
-                        newLoan: Object.assign({}, this.state.newLoan, {customer_name: event.target.value})
-                    }),
+                // onChange: (event) =>
+                //     this.setState({
+                //         newLoan: Object.assign({}, this.state.newLoan, {customer_name: event.target.value})
+                //     }),
             }, {
                 label: "Group ID",
                 id: "group_id",
                 name: "group_id",
-                required: true,
+                disabled: true,
                 pattern: "^[0-9]+$",
                 message: "Numbers Only",
                 value: this.state.newLoan.group_id,
-                onChange: (event) =>
-                    this.setState({
-                        newLoan: Object.assign({}, this.state.newLoan, {group_id: event.target.value})
-                    }),
+                // onChange: (event) =>
+                //     this.setState({
+                //         newLoan: Object.assign({}, this.state.newLoan, {group_id: event.target.value})
+                //     }),
             }], [{
                 label: "Loan Amount",
                 id: "loan_amount",
