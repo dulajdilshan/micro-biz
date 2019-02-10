@@ -36,6 +36,7 @@ export default class LoansPage extends Component {
             },
             loanList: [],
             newLoan: {
+                customer_id: '',
                 obtained_date: '',
                 user_id: '',
                 branch_id: '',
@@ -286,7 +287,19 @@ export default class LoansPage extends Component {
                 label: "Generate Loan Number",
                 id: "generate_loan_num",
                 name: "generate_loan_num",
-                onClick: (event) => console.log("generate_loan_num pressed .. ")
+                onClick: (event) => {
+                    if (this.state.newLoan.branch_id !== '' &&
+                        this.state.newLoan.center_id !== '' &&
+                        this.state.newLoan.customer_id !== '') {
+                        let l_number = this.state.newLoan.branch_id +
+                            '/' + this.state.newLoan.center_id
+                            + '/' + this.state.newLoan.customer_id;
+                        this.setState({newLoan: Object.assign({}, this.state.newLoan, {loan_number: l_number})});
+                    }else{
+                        alert("Branch ID, Center ID or Customer ID not found")
+                    }
+
+                }
             }]
         ];
         return (
