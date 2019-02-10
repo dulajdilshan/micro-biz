@@ -34,7 +34,7 @@ export default class LoansPage extends Component {
                     }
                 ],
             },
-            loanList:[],
+            loanList: [],
             newLoan: {
                 obtained_date: '',
                 user_id: '',
@@ -182,7 +182,7 @@ export default class LoansPage extends Component {
                 id: "weeks",
                 name: "weeks",
                 required: true,
-                type:'number',
+                type: 'number',
                 pattern: "^[0-9]+$",
                 message: "Numbers Only",
                 value: this.state.newLoan.weeks,
@@ -208,9 +208,9 @@ export default class LoansPage extends Component {
                 id: "calculate",
                 name: "calculate",
                 onClick: (event) => {
-                    let loan = this.state.newLoan.loan_amount;
-                    let irate = this.state.newLoan.rate / 100;
-                    let no_of_weeks = this.state.newLoan.weeks;
+                    let loan = this.state.newLoan.loan_amount === '' ? 0 : this.state.newLoan.loan_amount;
+                    let irate = (this.state.newLoan.rate === '' ? 0 : this.state.newLoan.rate) / 100;
+                    let no_of_weeks = this.state.newLoan.weeks === '' ? 0 : this.state.newLoan.weeks;
                     let interest = loan * irate * no_of_weeks;
                     let net = parseInt(loan) + parseInt(interest);
                     let weekly_in = round(net / no_of_weeks);
@@ -226,7 +226,7 @@ export default class LoansPage extends Component {
                 name: "net_amount",
                 required: true,
                 pattern: "^[0-9]+$",
-                disabled:true,
+                disabled: true,
                 message: "Numbers Only",
                 value: this.state.newLoan.net_amount,
                 onChange: (event) =>
@@ -238,7 +238,7 @@ export default class LoansPage extends Component {
                 id: "weekly_installment",
                 name: "weekly_installment",
                 required: true,
-                disabled:true,
+                disabled: true,
                 pattern: "^[0-9]+$",
                 message: "Numbers Only",
                 value: this.state.newLoan.weekly_installment,
@@ -251,7 +251,7 @@ export default class LoansPage extends Component {
                 id: "total_interest",
                 name: "total_interest",
                 required: true,
-                disabled:true,
+                disabled: true,
                 pattern: "^[0-9]+$",
                 message: "Numbers Only",
                 value: this.state.newLoan.total_interest,
@@ -264,7 +264,11 @@ export default class LoansPage extends Component {
                 label: "RESET",
                 id: "reset",
                 name: "reset",
-                onClick: (event) => console.log("RESET pressed .. ")
+                onClick: (event) => this.setState({
+                    newLoan: Object.assign({}, this.state.newLoan, {
+                        loan_amount: '', weeks: '', rate: '', net_amount: '', weekly_installment: '', total_interest: ''
+                    })
+                })
             }], [{
                 label: "Loan number",
                 id: "loan_number",
