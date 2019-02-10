@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return response()->json($request);
 });
 
+Route::get('/this-user','Api\UserController@current_user');
 Route::get('/users','Api\UserController@index');
 Route::get('/loans','Api\LoanController@index');
 Route::get('/payments','Api\PaymentController@index');
