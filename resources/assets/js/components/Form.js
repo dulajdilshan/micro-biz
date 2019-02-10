@@ -33,15 +33,25 @@ class Form extends Component {
                                                          buttonClass={col.buttonClass}
                                                          buttonClassOptions={col.buttonClassOptions}
                                                          buttonStyle={col.buttonStyle}/> :
-                                                <UInput key={index} label={col.label} id={col.id} name={col.name}
-                                                        type={col.type}
-                                                        colSize={col.colSize}
-                                                        required={col.required}
-                                                        disabled={col.disabled}
-                                                        pattern={col.pattern}
-                                                        message={col.message}
-                                                        value={col.value}
-                                                        onChange={col.onChange}/>
+                                                col.select ?
+                                                    <USelect key={index} label={col.label} id={col.id} name={col.name}
+                                                             colSize={col.colSize}
+                                                             required={col.required}
+                                                             disabled={col.disabled}
+                                                             message={col.message}
+                                                             value={col.value}
+                                                             onChange={col.onChange}
+                                                             options={col.options}
+                                                    /> :
+                                                    <UInput key={index} label={col.label} id={col.id} name={col.name}
+                                                            type={col.type}
+                                                            colSize={col.colSize}
+                                                            required={col.required}
+                                                            disabled={col.disabled}
+                                                            pattern={col.pattern}
+                                                            message={col.message}
+                                                            value={col.value}
+                                                            onChange={col.onChange}/>
                                         ))}
                                     </div>
                                 ))}
@@ -91,10 +101,31 @@ const UButton = (props) => {
     return (
         <div className={className}>
             <button style={props.buttonStyle ? props.buttonStyle : divStyle} id={props.buttonId}
-                   name={props.buttonName} className={buttonClassName}
-                    onClick={props.onClick} >{props.buttonLabel}</button>
+                    name={props.buttonName} className={buttonClassName}
+                    onClick={props.onClick}>{props.buttonLabel}</button>
         </div>
     );
+};
+
+// Props (all:10, opt:2): label, id, name, required, pattern, message, value, onChange, colSize, type,
+const USelect = (props) => {
+    const className = "col-sm-".concat(props.colSize ? props.colSize : "3").concat(" form-group");
+    return (
+        <div className={className}>
+            <label>{props.label}</label>
+            <select className="form-control" id={props.id}
+                    name={props.name} required={props.required}
+                    disabled={props.disabled}
+                    title={props.message}
+                    value={props.value}
+                    onChange={props.onChange ? props.onChange : () => console.log(props.name + " onChange ..")}>
+                <option className="form-control" value='0'>Not Selected</option>
+                {props.options.map((option, index) => (
+                    <option key={index} className="form-control" value={option.id}>{option.value}</option>
+                ))}
+            </select>
+        </div>
+    )
 };
 
 export default Form;
