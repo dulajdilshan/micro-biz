@@ -34,6 +34,7 @@ export default class LoansPage extends Component {
                     }
                 ],
             },
+            customerList: [],
             loanList: [],
             newLoan: {
                 customer_id: '',
@@ -64,10 +65,19 @@ export default class LoansPage extends Component {
                 console.log(err);
                 alert("Loans loading failed !! server may be down ..try starting the server and reload the page again");
             })
-            .then(() => axios.get('/api/customer/get-groupless')
+            .then(() => axios.get('/api/customer/get-no-loans')
                 .then(res => {
-                    this.setState({grouplessCustomers: res.data});
-                })
+                    let list = res.data;
+                    let cusList = [];
+                    for (let cus in list) {
+                        let c = {};
+                        c.value = list[cus].nic;
+                        c.full_name = list[cus].full_name;
+                        c.group_id = list[cus].group_id;
+                        cusList.push(c);
+                    }
+                    return cusList;})
+                .then((cusList)=>this.setState({customerList: cusList}))
                 .catch(err => {
                     console.log(err);
                     alert("Customers loading failed !! server may be down ..try starting the server and reload the page again");
@@ -134,7 +144,9 @@ export default class LoansPage extends Component {
                 id: "nic",
                 name: "nic",
                 required: true,
-                pattern: "^[0-9]{9}[x|X|v|V]$",
+                select: true,
+                options:this.state.customerList,
+                // pattern: "^[0-9]{9}[x|X|v|V]$",
                 message: "NIC Only",
                 value: this.state.newLoan.nic,
                 onChange: (event) =>
@@ -295,7 +307,7 @@ export default class LoansPage extends Component {
                             '/' + this.state.newLoan.center_id
                             + '/' + this.state.newLoan.customer_id;
                         this.setState({newLoan: Object.assign({}, this.state.newLoan, {loan_number: l_number})});
-                    }else{
+                    } else {
                         alert("Branch ID, Center ID or Customer ID not found")
                     }
 
