@@ -105,7 +105,7 @@ const UButton = (props) => {
         <div className={className}>
             <button style={props.buttonStyle ? props.buttonStyle : divStyle} id={props.buttonId}
                     name={props.buttonName} className={buttonClassName}
-                    onClick={props.onClick}>{props.buttonLabel}</button>
+                    onClick={(e)=>{e.preventDefault();props.onClick();}}>{props.buttonLabel}</button>
         </div>
     );
 };
