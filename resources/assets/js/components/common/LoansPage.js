@@ -9,6 +9,25 @@ import {round} from "lodash";
 export default class LoansPage extends Component {
     constructor(props) {
         super(props);
+        this.initialState = {
+            newLoan: {
+                customer_id: '',
+                obtained_date: '',
+                user_id: '',
+                branch_id: '',
+                center_id: '',
+                nic: '',
+                customer_name: '',
+                group_id: '',
+                loan_amount: '',
+                weeks: '',
+                rate: '',
+                net_amount: '',
+                weekly_installment: '',
+                total_interest: '',
+                loan_number: ''
+            }
+        };
         this.state = {
             loanTable: {
                 columns: [
@@ -157,8 +176,8 @@ export default class LoansPage extends Component {
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {
                             nic: event.target.value,
-                            customer_name: cus? cus.full_name : '',
-                            group_id: cus? cus.group_id : ''
+                            customer_name: cus ? cus.full_name : '',
+                            group_id: cus ? cus.group_id : ''
                         })
                     })
                 },
@@ -326,7 +345,8 @@ export default class LoansPage extends Component {
         return (
             <div className="container">
                 <button type="button" className="btn btn-secondary btn-lg" data-toggle="modal"
-                        data-target="#newLoanForm">New Loan
+                        data-target="#newLoanForm" onClick={() => this.setState({newLoan: this.initialState.newLoan})}>
+                    New Loan
                 </button>
                 <br/>
                 <br/>
