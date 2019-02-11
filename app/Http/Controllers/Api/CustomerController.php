@@ -69,7 +69,7 @@ class CustomerController extends Controller
      */
     public function getCustomersWithNoLoans()
     {
-        $customers = Customer::where('is_loan_settled', 0)->where('group_id', '>', 0)->get();
+        $customers = Customer::where('is_loan_settled', 1)->where('group_id', '>', 0)->get();
         return response()->json($customers);
     }
 

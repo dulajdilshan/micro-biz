@@ -63,12 +63,14 @@ class LoanController extends Controller
             if ($center == null) return response()->json($wrongCenterIdResponse);
 
             $loan = new Loan();
+            $customer = Customer::find($request['customer_id']);
+
             $loan['loan_number'] = $request['loan_number'];
             $loan['customer_id'] = $request['customer_id'];
             $loan['group_id'] = $request['group_id'];
             $loan['branch_id'] = $request['branch_id'];
             $loan['center_id'] = $request['center_id'];
-            $loan['cashier_id'] = $request['cashier_id'];
+            $loan['cashier_id'] = $request['user_id'];
             $loan['is_settled'] = 0;
             $loan['is_approved'] = 0;
             $loan['loan_amount'] = $request['loan_amount'];
@@ -83,9 +85,13 @@ class LoanController extends Controller
             $loan['next_payment_date'] = $request['obtained_date'];
             $loan['obtained_date'] = $request['obtained_date'];
             $loan['end_date'] = $request['obtained_date'];
+            $loan->save();
+
+            $customer['is_loan_settled'] = 0;
+            $customer->save();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json($failedOperation);
+            return response()->json($e);
         }
         DB::commit();
         return response()->json($successOperation);

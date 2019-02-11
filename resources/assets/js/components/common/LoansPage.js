@@ -113,8 +113,8 @@ export default class LoansPage extends Component {
             console.log(this.state.newLoan);
             axios.post('/api/loan/create', this.state.newLoan)
                 .then(res => {
-                    alert(res.data);
-                    console.log(res);
+                    // alert(res.data);
+                    console.log(res.data);
                     window.location = '/manager-loans'
                 })
                 .catch(error => alert("[ FAILED ] Loan NOT Added"));
