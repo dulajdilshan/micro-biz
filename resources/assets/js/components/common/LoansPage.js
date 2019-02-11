@@ -90,6 +90,7 @@ export default class LoansPage extends Component {
                     let cusList = [];
                     for (let cus in list) {
                         let c = {};
+                        c.customer_id = list[cus].id;
                         c.value = list[cus].nic;
                         c.full_name = list[cus].full_name;
                         c.group_id = list[cus].group_id;
@@ -104,8 +105,22 @@ export default class LoansPage extends Component {
                 }));
     }
 
-    handleOnSubmit() {
-        console.log("Loan Form Submitting ..")
+    handleOnSubmit(event) {
+        event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to add this Loan?');
+        if (retConfirm) {
+            $('#newLoanForm').modal('hide');
+            console.log(this.state.newLoan);
+            axios.post('/api/loan/create', this.state.newLoan)
+                .then(res => {
+                    alert(res.data);
+                    console.log(res);
+                    window.location = '/manager-loans'
+                })
+                .catch(error => alert("[ FAILED ] Loan NOT Added"));
+        } else {
+            alert("[ FAILED ] Loan NOT Added");
+        }
     }
 
     render() {
@@ -176,6 +191,7 @@ export default class LoansPage extends Component {
                     this.setState({
                         newLoan: Object.assign({}, this.state.newLoan, {
                             nic: event.target.value,
+                            customer_id: cus ? cus.customer_id : '',
                             customer_name: cus ? cus.full_name : '',
                             group_id: cus ? cus.group_id : ''
                         })
@@ -315,8 +331,8 @@ export default class LoansPage extends Component {
                 id: "loan_number",
                 name: "loan_number",
                 required: true,
-                pattern: "^[0-9]+$",
-                message: "Numbers Only",
+                // pattern: "^[0-9]+$",
+                message: "Suitable pattern Only",
                 value: this.state.newLoan.loan_number,
                 onChange: (event) =>
                     this.setState({
