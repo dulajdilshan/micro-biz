@@ -40,6 +40,6 @@ Route::post('/center/create','Api\CenterController@create');                //Ce
 //Route::post('/Branch/create','Api\BranchController@create');                //Branch
 Route::post('/loan/create','Api\LoanController@create');                    //Loan
 Route::post('/payment/create','Api\PaymentController@create');              //Payment
-Route::post('/document-fees/create','Api\DocumentFeeController@create');    //Document Fee
+Route::post('/document-fee/create','Api\DocumentFeeController@create');    //Document Fee
 Route::post('/cashier/create','Api\CashierController@create');              //Cashier
 

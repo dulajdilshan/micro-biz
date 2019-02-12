@@ -72,7 +72,7 @@ export default class PaymentsPage extends Component {
         if (retConfirm) {
             $('#newDocumentFeeForm').modal('hide');
             console.log(this.state.newDocumentFee);
-            axios.post('/api/document-fees/create', this.state.newDocumentFee)
+            axios.post('/api/document-fee/create', this.state.newDocumentFee)
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
@@ -495,7 +495,19 @@ export default class PaymentsPage extends Component {
                     value: this.state.newDocumentFee.total,
                     onChange: (event) =>
                         this.setState({
-                            newCashier: Object.assign({}, this.state.newDocumentFee, {total: event.target.value})
+                            newDocumentFee: Object.assign({}, this.state.newDocumentFee, {total: event.target.value})
+                        }),
+                },{
+                    label: "Cashier ID",
+                    id: "cashier_id",
+                    name: "cashier_id",
+                    required: true,
+                    pattern: "^-?\\d+$",
+                    message: "ID Only",
+                    value: this.state.newDocumentFee.cashier_id,
+                    onChange: (event) =>
+                        this.setState({
+                            newDocumentFee: Object.assign({}, this.state.newDocumentFee, {cashier_id: event.target.value})
                         }),
                 }
             ]];

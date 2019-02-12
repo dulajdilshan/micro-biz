@@ -28,6 +28,7 @@ class DocumentFeeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -41,7 +42,7 @@ class DocumentFeeController extends Controller
 
         try {
             $branch = Branch::where('id', (int)$request['branch_id'])->first();
-            if ($branch == null) return response()->json($wrongBranchIdResponse);
+            if ($branch == null) return response()->json($request['branch_id']);
 
             $center = Center::where('id', (int)$request['center_id'])->first();
             if ($center == null) return response()->json($wrongCenterIdResponse);
@@ -53,15 +54,15 @@ class DocumentFeeController extends Controller
             $docFee['loan_id'] = $request['loan_id'];
             $docFee['cashier_id'] = $request['cashier_id'];
             $docFee['amount'] = $request['total'];
-            $docFee['percentage'] = $request['percentage'];
-            $docFee['date'] = $request['date'];
+            $docFee['percentage'] = 0;
+            $docFee['date'] = $request['loan_date'];
             $docFee->save();
 
-            $loan['is_settle'] = 1;
+            $loan['is_settled'] = 1;
             $loan->save();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json($failedOperation, $e);
+            return response()->json($e);
         }
         DB::commit();
         return response()->json($successOperation);
@@ -81,13 +82,15 @@ class DocumentFeeController extends Controller
             foreach ($loans as $loan) {
                 if ($loan['is_settled'] == 1) {
                     $loan_details['customer_nic'] = $customer_nic;
+                    $loan_details['customer_id'] = $customer['id'];
                     $loan_details['customer_name'] = $customer['full_name'];
                     $loan_details['branch_id'] = $loan['branch_id'];
                     $loan_details['center_id'] = $loan['center_id'];
                     $loan_details['loan_number'] = $loan['loan_number'];
+                    $loan_details['loan_id'] = $loan['id'];
                     $loan_details['loan_amount'] = $loan['loan_amount'];
                     $loan_details['loan_rate'] = $loan['rate'];
-                    $loan_details['loan_date'] = $loan['created_at']->format('m-d-Y');
+                    $loan_details['loan_date'] = $loan['created_at']->format('Y-m-d');
 
                     return response()->json($loan_details);
                 }
