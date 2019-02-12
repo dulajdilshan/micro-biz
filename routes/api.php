@@ -39,6 +39,7 @@ Route::post('/group/create','Api\GroupController@create');                  //Gr
 Route::post('/center/create','Api\CenterController@create');                //Center
 //Route::post('/Branch/create','Api\BranchController@create');                //Branch
 Route::post('/loan/create','Api\LoanController@create');                    //Loan
-Route::post('/Payment/create','Api\PaymentController@create');              //Payment
+Route::post('/payment/create','Api\PaymentController@create');              //Payment
+Route::post('/document-fees/create','Api\DocumentFeeController@create');    //Document Fee
 Route::post('/cashier/create','Api\CashierController@create');              //Cashier
 

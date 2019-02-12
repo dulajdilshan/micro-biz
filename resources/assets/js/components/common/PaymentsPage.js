@@ -68,24 +68,38 @@ export default class PaymentsPage extends Component {
 
     handleAddDocumentFeeOnSubmit() {
         event.preventDefault();       //This makes not to load again
-        let retConfirm = confirm('Are you sure you want to add this Loan?');
+        let retConfirm = confirm('Are you sure you want to add this Document Fee?');
         if (retConfirm) {
-            $('#newLoanForm').modal('hide');
-            console.log(this.state.newLoan);
-            axios.post('/api/loan/create', this.state.newLoan)
+            $('#newDocumentFeeForm').modal('hide');
+            console.log(this.state.newDocumentFee);
+            axios.post('/api/document-fees/create', this.state.newDocumentFee)
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location = '/manager-loans'
+                    window.location = '/manager-payment'
                 })
-                .catch(error => alert("[ FAILED ] Loan NOT Added"));
+                .catch(error => alert("[ FAILED ] Document Fee NOT Added"));
         } else {
-            alert("[ FAILED ] Loan NOT Added");
+            alert("[ FAILED ] Document Fee NOT Added");
         }
     }
 
     handleAddPaymentOnSubmit() {
-        console.log("Submitting. ...")
+        event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to add this Document Fee?');
+        if (retConfirm) {
+            $('#newPaymentForm').modal('hide');
+            console.log(this.state.newPayment);
+            axios.post('/api/payment/create', this.state.newPayment)
+                .then(res => {
+                    // alert(res.data);
+                    console.log(res.data);
+                    window.location = '/manager-payment'
+                })
+                .catch(error => alert("[ FAILED ] Payment NOT Added"));
+        } else {
+            alert("[ FAILED ] Payment NOT Added");
+        }
     }
 
     render() {
