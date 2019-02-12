@@ -105,7 +105,7 @@ class PaymentController extends Controller
             $loan['paid_weeks'] = (int)$loan['paid_weeks'] + 1;
             $loan['paid_amount'] = (int)$loan['paid_amount'] + (int)$request['amount'];
 
-            if ((int)$loan['balance'] - (int)$request['amount'] <= 0){
+            if ((int)$loan['balance'] - (int)$request['amount'] <= 0) {
                 $customer = Customer::find($request['customer_id']);
                 $loan['is_settle'] = 2;
                 $customer['is_loan_settled'] = 1;
