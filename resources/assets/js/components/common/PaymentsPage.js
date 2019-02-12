@@ -105,6 +105,12 @@ export default class PaymentsPage extends Component {
                 name: "btn_form_fill",
                 onClick: () => {
                     console.log("Filling Form.......");
+                    axios.get('/api/document-fees/get-details-with-nic/'.concat(this.state.newDocumentFee.customer_nic))
+                        .then(res => {
+                            console.log(res.data);
+                            this.setState({newDocumentFee:res.data});
+                        })
+                        .catch(error => alert("[ FAILED ] Details NOT Added"));
                 }
             }, {
                 label: "Branch ID",
@@ -176,6 +182,7 @@ export default class PaymentsPage extends Component {
                 label: "Loan Date",
                 id: "loan_date",
                 name: "loan_date",
+                type:'datetime',
                 required: true,
                 colSize: '4',
                 // pattern: "^[0-9]+$",
@@ -190,7 +197,7 @@ export default class PaymentsPage extends Component {
                 label: "Member Fee",
                 id: "member_fee",
                 name: "member_fee",
-                type:'number',
+                type: 'number',
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Number Only",
@@ -203,7 +210,7 @@ export default class PaymentsPage extends Component {
                 label: "Risk Fee",
                 id: "risk_fee",
                 name: "risk_fee",
-                type:'number',
+                type: 'number',
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Number Only",
@@ -216,7 +223,7 @@ export default class PaymentsPage extends Component {
                 label: "Document Charges",
                 id: "doc_charge",
                 name: "doc_charge",
-                type:'number',
+                type: 'number',
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Number Only",
@@ -229,7 +236,7 @@ export default class PaymentsPage extends Component {
                 label: "Insurance Charges",
                 id: "insurance_charge",
                 name: "insurance_charge",
-                type:'number',
+                type: 'number',
                 required: true,
                 pattern: "^[0-9]+$",
                 message: "Number Only",

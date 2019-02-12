@@ -28,6 +28,7 @@ Route::get('/groups','Api\GroupController@index');
 Route::get('/centers','Api\CenterController@index');
 Route::get('/document-fees','Api\DocumentFeeController@index');
 Route::get('/cashiers','Api\CashierController@index');
+Route::get('/document-fees/get-details-with-nic/{nic}','Api\DocumentFeeController@getLoanDetailsWithNic');
 
 //----------------------------------------
 //Create Routes
