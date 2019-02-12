@@ -12,7 +12,7 @@ export default class PaymentsPage extends Component {
             newPayment: {},
             newDocumentFee: {
                 customer_id: '', loan_id: '', cashier_id: '', amount: '', percentage: '',
-                customer_nic: '', customer_name: '', loan_number: '', lona_amount: '', loan_rate: '', loan_date: '',
+                customer_nic: '', customer_name: '', loan_number: '', loan_amount: '', loan_rate: '', loan_date: '',
                 branch_id: '', center_id: '', group_id: '',
                 member_fee: '', risk_fee: '', doc_charge: '', insurance_charge: '', total: ''
             }
@@ -41,10 +41,14 @@ export default class PaymentsPage extends Component {
                     }
                 ],
             },
-            newPayment: {},
+            newPayment: {
+                cashier_id: '',branch_id: '', center_id: '', customer_nic: '', customer_name: '', group_id: '',
+                loan_number: '', net_amount: '', to_be_paid: '', remaining_weeks: '',
+                weekly_installment: '', for_week: ''
+            },
             newDocumentFee: {
                 customer_id: '', loan_id: '', cashier_id: '', amount: '', percentage: '',
-                customer_nic: '', customer_name: '', loan_number: '', lona_amount: '', loan_rate: '', loan_date: '',
+                customer_nic: '', customer_name: '', loan_number: '', loan_amount: '', loan_rate: '', loan_date: '',
                 branch_id: '', center_id: '', group_id: '',
                 member_fee: '', risk_fee: '', doc_charge: '', insurance_charge: '', total: ''
             }
@@ -71,7 +75,186 @@ export default class PaymentsPage extends Component {
     }
 
     render() {
-        const newPaymentFormStructure = [[], []];
+        const newPaymentFormStructure = [[
+            {
+                label: "Cashier ID",
+                id: "cashier_id",
+                name: "cashier_id",
+                required: true,
+                pattern: "^-?\\d+$",
+                message: "ID Only",
+                value: this.state.newPayment.cashier_id,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {cashier_id: event.target.value})
+                    }),
+            },{
+                label: "Branch ID",
+                id: "branch_id",
+                name: "branch_id",
+                required: true,
+                disabled: true,
+                colSize: '2',
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.branch_id,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {branch_id: event.target.value})
+                    }),
+            },{
+                label: "Center ID",
+                id: "center_id",
+                name: "center_id",
+                required: true,
+                colSize: '2',
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.center_id,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {center_id: event.target.value})
+                    }),
+            }
+        ],[
+            {
+                label: "Customer NIC",
+                id: "customer_nic",
+                name: "customer_nic",
+                required: true,
+                message: "NIC Only",
+                value: this.state.newPayment.customer_nic,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {customer_nic: event.target.value})
+                    }),
+            }, {
+                label: "Customer Name",
+                id: "customer_name",
+                name: "customer_name",
+                required: true,
+                disabled: true,
+                colSize: 4,
+                message: "NIC Only",
+                value: this.state.newPayment.customer_name,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {customer_name: event.target.value})
+                    }),
+            }, {
+                label: "Group NO",
+                id: "group_id",
+                name: "group_id",
+                required: true,
+                disabled: true,
+                colSize: 2,
+                message: "NIC Only",
+                value: this.state.newPayment.group_id,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {group_id: event.target.value})
+                    }),
+            }, {
+                button: true,
+                label: "Fill Form",
+                id: "btn_form_fill",
+                name: "btn_form_fill",
+                onClick: () => {
+                    console.log("Filling Form.......");
+                    axios.get('/api/payment/get-details-with-nic/'.concat(this.state.newPayment.customer_nic))
+                        .then(res => {
+                            console.log(res.data);
+                            this.setState({newPayment: res.data});
+                        })
+                        .catch(error => alert("[ FAILED ] Details NOT Added"));
+                }
+            }
+        ], [
+            {
+                label: "Loan Number",
+                id: "loan_number",
+                name: "loan_number",
+                required: true,
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.loan_number,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {loan_number: event.target.value})
+                    }),
+            }, {
+                label: "Net Amount",
+                id: "net_amount",
+                name: "net_amount",
+                required: true,
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.net_amount,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {net_amount: event.target.value})
+                    }),
+            },{
+                label: "To Be Paid",
+                id: "to_be_paid",
+                name: "to_be_paid",
+                required: true,
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.to_be_paid,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {to_be_paid: event.target.value})
+                    }),
+            },{
+                label: "Remaining Weeks",
+                id: "remaining_weeks",
+                name: "remaining_weeks",
+                required: true,
+                colSize: '2',
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.remaining_weeks,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {remaining_weeks: event.target.value})
+                    }),
+            },
+        ], [
+            {
+                label: "Weekly Installment",
+                id: "weekly_installment",
+                name: "weekly_installment",
+                required: true,
+                disabled: true,
+                pattern: "^[0-9]+$",
+                message: "Numbers Only",
+                value: this.state.newPayment.weekly_installment,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {weekly_installment: event.target.value})
+                    }),
+            },{
+                label: "For Week",
+                id: "for_week",
+                name: "for_week",
+                required: true,
+                colSize: '2',
+                disabled: true,
+                // pattern: "^[0-9]+$",
+                message: "NIC Only",
+                value: this.state.newPayment.for_week,
+                onChange: (event) =>
+                    this.setState({
+                        newPayment: Object.assign({}, this.state.newPayment, {for_week: event.target.value})
+                    }),
+            }
+        ]];
         const newDocumentFeeFormStructure = [[
             {
                 label: "Customer NIC",
@@ -90,7 +273,7 @@ export default class PaymentsPage extends Component {
                 id: "customer_name",
                 name: "customer_name",
                 required: true,
-                disabled:true,
+                disabled: true,
                 colSize: 4,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
@@ -109,7 +292,7 @@ export default class PaymentsPage extends Component {
                     axios.get('/api/document-fees/get-details-with-nic/'.concat(this.state.newDocumentFee.customer_nic))
                         .then(res => {
                             console.log(res.data);
-                            this.setState({newDocumentFee:res.data});
+                            this.setState({newDocumentFee: res.data});
                         })
                         .catch(error => alert("[ FAILED ] Details NOT Added"));
                 }
@@ -118,7 +301,7 @@ export default class PaymentsPage extends Component {
                 id: "branch_id",
                 name: "branch_id",
                 required: true,
-                disabled:true,
+                disabled: true,
                 colSize: '2',
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
@@ -134,7 +317,7 @@ export default class PaymentsPage extends Component {
                 name: "center_id",
                 required: true,
                 colSize: '2',
-                disabled:true,
+                disabled: true,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
                 value: this.state.newDocumentFee.center_id,
@@ -148,7 +331,7 @@ export default class PaymentsPage extends Component {
                 name: "loan_number",
                 required: true,
                 colSize: '2',
-                disabled:true,
+                disabled: true,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
                 value: this.state.newDocumentFee.loan_number,
@@ -162,7 +345,7 @@ export default class PaymentsPage extends Component {
                 name: "loan_amount",
                 required: true,
                 colSize: '2',
-                disabled:true,
+                disabled: true,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
                 value: this.state.newDocumentFee.loan_amount,
@@ -176,7 +359,7 @@ export default class PaymentsPage extends Component {
                 name: "loan_rate",
                 required: true,
                 colSize: '2',
-                disabled:true,
+                disabled: true,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
                 value: this.state.newDocumentFee.loan_rate,
@@ -189,7 +372,7 @@ export default class PaymentsPage extends Component {
                 id: "loan_date",
                 name: "loan_date",
                 required: true,
-                disabled:true,
+                disabled: true,
                 colSize: '4',
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
@@ -276,7 +459,7 @@ export default class PaymentsPage extends Component {
                 id: "total",
                 name: "total",
                 required: true,
-                disabled:true,
+                disabled: true,
                 // pattern: "^[0-9]+$",
                 message: "NIC Only",
                 value: this.state.newDocumentFee.total,
