@@ -66,7 +66,7 @@ export default class PaymentsPage extends Component {
             });
     }
 
-    handleAddDocumentFeeOnSubmit() {
+    handleAddDocumentFeeOnSubmit(event) {
         event.preventDefault();       //This makes not to load again
         let retConfirm = confirm('Are you sure you want to add this Document Fee?');
         if (retConfirm) {
@@ -76,7 +76,7 @@ export default class PaymentsPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location = '/manager-payment'
+                    window.location = '/manager-payments'
                 })
                 .catch(error => alert("[ FAILED ] Document Fee NOT Added"));
         } else {
@@ -84,7 +84,7 @@ export default class PaymentsPage extends Component {
         }
     }
 
-    handleAddPaymentOnSubmit() {
+    handleAddPaymentOnSubmit(event) {
         event.preventDefault();       //This makes not to load again
         let retConfirm = confirm('Are you sure you want to add this Document Fee?');
         if (retConfirm) {
@@ -94,7 +94,7 @@ export default class PaymentsPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location = '/manager-payment'
+                    window.location = '/manager-payments'
                 })
                 .catch(error => alert("[ FAILED ] Payment NOT Added"));
         } else {
