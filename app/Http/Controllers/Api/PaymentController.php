@@ -16,7 +16,21 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::all();
-        return response()->json($payments);
+        $nPayments = [];
+        foreach ($payments as $payment) {
+            $customer = $payment->customer()->first();
+            $loan = $payment->loan()->first();
+
+            $pay['loan_number'] = $loan['loan_number'];
+            $pay['nic'] = $customer ['nic'];
+            $pay['customer_name'] = $customer['full_name'];
+            $pay['group_id'] = $customer['group_id'];
+            $pay['amount'] = $payment['amount'];
+            $pay['for_week'] = $payment['for_week'];
+            $pay['payment_date'] = $payment['created_at']->format('m-d-Y');
+            $nPayments[] = $pay;
+        }
+        return response()->json($nPayments);
     }
 
     /**

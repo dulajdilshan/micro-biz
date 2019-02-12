@@ -305,7 +305,7 @@ export default class PaymentsPage extends Component {
                 <br/>
                 <br/>
                 <DataTable columns={this.state.paymentTable.columns}
-                           data={this.state.paymentTable.dummyPaymentTableData}/>
+                           data={this.state.paymentTableData}/>
                 <Form name="newPaymentForm" title="Add Payment" rows={newPaymentFormStructure}
                       handleOnSubmit={this.handleAddPaymentOnSubmit.bind(this)}/>
                 <Form name="newDocumentFeeForm" title="Add Document Fee" rows={newDocumentFeeFormStructure}
