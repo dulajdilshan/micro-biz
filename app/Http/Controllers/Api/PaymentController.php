@@ -106,7 +106,7 @@ class PaymentController extends Controller
             $loan = $payment->loan()->first();
             $loan['remaining_weeks'] = (int)$loan['remaining_weeks'] - 1;
             $loan['paid_weeks'] = (int)$loan['paid_weeks'] + 1;
-            $loan['paid_amount'] = (int)$loan['paid_amount'] + (int)$request['amount'];
+            $loan['paid_amount'] = (int)$loan['paid_amount'] + (int)$request['weekly_installment'];
 
             if ((int)$loan['balance'] - (int)$request['weekly_installment'] <= 0) {
                 $customer = Customer::find($request['customer_id']);
