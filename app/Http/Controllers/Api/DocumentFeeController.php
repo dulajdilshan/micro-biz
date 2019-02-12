@@ -80,7 +80,7 @@ class DocumentFeeController extends Controller
             $loans = $customer->loan()->get();
 
             foreach ($loans as $loan) {
-                if ($loan['is_settled'] == 1) {
+                if ($loan['is_settled'] == 0) {
                     $loan_details['customer_nic'] = $customer_nic;
                     $loan_details['customer_id'] = $customer['id'];
                     $loan_details['customer_name'] = $customer['full_name'];
