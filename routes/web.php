@@ -12,19 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/manager-loans');
 });
 
 Auth::routes();
 
 //Route::get('/users','Api\UserController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dash','ManagerController@index');
+//Route::get('/dash','ManagerController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 // -------------------------------------------------------------
