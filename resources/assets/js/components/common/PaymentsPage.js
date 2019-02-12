@@ -43,7 +43,7 @@ export default class PaymentsPage extends Component {
             },
             newPayment: {
                 cashier_id: '', branch_id: '', center_id: '', customer_nic: '', customer_name: '', group_id: '',
-                loan_number: '', net_amount: '', to_be_paid: '', remaining_weeks: '',
+                loan_id: '', loan_number: '', net_amount: '', to_be_paid: '', remaining_weeks: '',
                 weekly_installment: '', for_week: ''
             },
             newDocumentFee: {

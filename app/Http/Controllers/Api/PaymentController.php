@@ -7,6 +7,7 @@ use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -52,6 +53,7 @@ class PaymentController extends Controller
                     $payment_details['group_id'] = $customer['group_id'];
                     $payment_details['center_id'] = $loan['center_id'];
                     $payment_details['loan_number'] = $loan['loan_number'];
+                    $payment_details['loan_id'] = $loan['id'];
                     $payment_details['net_amount'] = $loan['net_amount'];
                     $payment_details['weekly_installment'] = $loan['weekly_installment'];
                     $payment_details['to_be_paid'] = (int)$loan['net_amount'] - (int)$loan['paid_amount'];
@@ -72,9 +74,52 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $wrongBranchIdResponse = '{success:false,message:\'Branch Id is not match with a current one\'}';
+        $wrongCenterIdResponse = '{success:false,message:\'Center Id is not match with a current one\'}';
+        $failedOperation = '{success:false, message:\'Operation Failed\'}';
+        $successOperation = '{success:true, message:\'Payment added successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $branch = Branch::where('id', (int)$request['branch_id'])->first();
+            if ($branch == null) return response()->json($wrongBranchIdResponse);
+
+            $center = Center::where('id', (int)$request['center_id'])->first();
+            if ($center == null) return response()->json($wrongCenterIdResponse);
+
+            $payment = new Payment();
+            $payment['loan_id'] = $request['loan_id'];
+            $payment['branch_id'] = $request['branch_id'];
+            $payment['center_id'] = $request['center_id'];
+            $payment['customer_id'] = $request['customer_id'];
+            $payment['cashier_id'] = $request['cashier_id'];
+            $payment['amount'] = $request['amount'];
+            $payment['for_week'] = $request['for_week'];
+            $payment->save();
+
+            $loan = $payment->loan();
+            $loan['remaining_weeks'] = (int)$loan['remaining_weeks'] - 1;
+            $loan['paid_weeks'] = (int)$loan['paid_weeks'] + 1;
+            $loan['paid_amount'] = (int)$loan['paid_amount'] + (int)$request['amount'];
+
+            if ((int)$loan['balance'] - (int)$request['amount'] <= 0){
+                $customer = Customer::find($request['customer_id']);
+                $loan['is_settle'] = 2;
+                $customer['is_loan_settled'] = 1;
+                $customer->save();
+            }
+            $loan['balance'] = (int)$loan['balance'] - (int)$request['amount'];
+            $loan->save();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json($failedOperation, $e);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**
