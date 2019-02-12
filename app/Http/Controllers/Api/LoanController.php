@@ -91,7 +91,7 @@ class LoanController extends Controller
             $customer->save();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json($e);
+            return response()->json($failedOperation, $e);
         }
         DB::commit();
         return response()->json($successOperation);
