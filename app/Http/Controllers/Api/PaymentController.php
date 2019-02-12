@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Branch;
+use App\Center;
 use App\Customer;
 use App\Payment;
 use Illuminate\Http\Request;
@@ -49,6 +51,7 @@ class PaymentController extends Controller
                 if ($loan['is_settled'] == 1) {
                     $payment_details['customer_nic'] = $customer_nic;
                     $payment_details['customer_name'] = $customer['full_name'];
+                    $payment_details['customer_id'] = $customer['id'];
                     $payment_details['branch_id'] = $loan['branch_id'];
                     $payment_details['group_id'] = $customer['group_id'];
                     $payment_details['center_id'] = $loan['center_id'];
@@ -96,27 +99,27 @@ class PaymentController extends Controller
             $payment['center_id'] = $request['center_id'];
             $payment['customer_id'] = $request['customer_id'];
             $payment['cashier_id'] = $request['cashier_id'];
-            $payment['amount'] = $request['amount'];
+            $payment['amount'] = $request['weekly_installment'];
             $payment['for_week'] = $request['for_week'];
             $payment->save();
 
-            $loan = $payment->loan();
+            $loan = $payment->loan()->first();
             $loan['remaining_weeks'] = (int)$loan['remaining_weeks'] - 1;
             $loan['paid_weeks'] = (int)$loan['paid_weeks'] + 1;
             $loan['paid_amount'] = (int)$loan['paid_amount'] + (int)$request['amount'];
 
-            if ((int)$loan['balance'] - (int)$request['amount'] <= 0) {
+            if ((int)$loan['balance'] - (int)$request['weekly_installment'] <= 0) {
                 $customer = Customer::find($request['customer_id']);
-                $loan['is_settle'] = 2;
+                $loan['is_settled'] = 2;
                 $customer['is_loan_settled'] = 1;
                 $customer->save();
             }
-            $loan['balance'] = (int)$loan['balance'] - (int)$request['amount'];
+            $loan['balance'] = (int)$loan['balance'] - (int)$request['weekly_installment'];
             $loan->save();
 
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json($failedOperation, $e);
+            return response()->json($e);
         }
         DB::commit();
         return response()->json($successOperation);

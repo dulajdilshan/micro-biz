@@ -42,9 +42,20 @@ export default class PaymentsPage extends Component {
                 ],
             },
             newPayment: {
-                cashier_id: '', branch_id: '', center_id: '', customer_nic: '', customer_name: '', group_id: '',
-                loan_id: '', loan_number: '', net_amount: '', to_be_paid: '', remaining_weeks: '',
-                weekly_installment: '', for_week: ''
+                cashier_id: '',
+                branch_id: '',
+                center_id: '',
+                customer_id: '',
+                customer_nic: '',
+                customer_name: '',
+                group_id: '',
+                loan_id: '',
+                loan_number: '',
+                net_amount: '',
+                to_be_paid: '',
+                remaining_weeks: '',
+                weekly_installment: '',
+                for_week: ''
             },
             newDocumentFee: {
                 customer_id: '', loan_id: '', cashier_id: '', amount: '', percentage: '',
@@ -86,7 +97,7 @@ export default class PaymentsPage extends Component {
 
     handleAddPaymentOnSubmit(event) {
         event.preventDefault();       //This makes not to load again
-        let retConfirm = confirm('Are you sure you want to add this Document Fee?');
+        let retConfirm = confirm('Are you sure you want to add this Payment?');
         if (retConfirm) {
             $('#newPaymentForm').modal('hide');
             console.log(this.state.newPayment);
@@ -96,7 +107,10 @@ export default class PaymentsPage extends Component {
                     console.log(res.data);
                     window.location = '/manager-payments'
                 })
-                .catch(error => alert("[ FAILED ] Payment NOT Added"));
+                .catch(error => {
+                    alert("[ FAILED ] Payment NOT Added");
+                    console.log(error);
+                });
         } else {
             alert("[ FAILED ] Payment NOT Added");
         }
@@ -193,8 +207,9 @@ export default class PaymentsPage extends Component {
                         console.log("Filling Form.......");
                         axios.get('/api/payment/get-details-with-nic/'.concat(this.state.newPayment.customer_nic))
                             .then(res => {
+                                let cashier_id = this.state.newPayment.cashier_id;
                                 console.log(res.data);
-                                this.setState({newPayment: res.data});
+                                this.setState({newPayment: Object.assign({}, res.data, {cashier_id: cashier_id})});
                             })
                             .catch(error => alert("[ FAILED ] Details NOT Added"));
                     }
@@ -497,7 +512,7 @@ export default class PaymentsPage extends Component {
                         this.setState({
                             newDocumentFee: Object.assign({}, this.state.newDocumentFee, {total: event.target.value})
                         }),
-                },{
+                }, {
                     label: "Cashier ID",
                     id: "cashier_id",
                     name: "cashier_id",
