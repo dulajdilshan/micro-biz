@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/manager-payments')}}">Payments <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/cashier-payments')}}">Payments <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -43,8 +43,8 @@
                         Loans
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('/manager-loans')}}">All Loans</a>
-                        <a class="dropdown-item" href={{ url('/manager-pending-loans') }}>Pending Loans</a>
+                        <a class="dropdown-item" href="{{ url('/cashier-loans')}}">All Loans</a>
+                        <a class="dropdown-item" href={{ url('/cashier-pending-loans') }}>Pending Loans</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown active">
@@ -53,20 +53,10 @@
                         Customers
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('/manager-customers')}}">View Customers</a>
-                        <a class="dropdown-item" href={{ url('/manager-groups') }}>View Groups</a>
+                        <a class="dropdown-item" href="{{ url('/cashier-customers')}}">View Customers</a>
+                        <a class="dropdown-item" href={{ url('/cashier-groups') }}>View Groups</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Add New Customer</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Branch
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{url('/manager-cashiers')}}">Cashiers</a>
-                        <a class="dropdown-item" href="{{url('/manager-centres')}}">Centres</a>
                     </div>
                 </li>
             </ul>

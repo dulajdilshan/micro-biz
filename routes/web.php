@@ -38,3 +38,23 @@ Route::get('/manager-groups','ManagerController@groups');
 Route::get('/manager-addnew-customer','ManagerController@groups');
 Route::get('/manager-payments','ManagerController@payments');
 Route::get('/manager-pending-loans','ManagerController@pendingLoans');
+
+// -------------------------------------------------------------
+// Cashier account Routes for pages
+// -------------------------------------------------------------
+Route::get('/cashier-loans','CashierController@index');
+Route::get('/cashier-customers','CashierController@customers');
+Route::get('/cashier-groups','CashierController@groups');
+Route::get('/cashier-payments','CashierController@payments');
+
+
+// -------------------------------------------------------------
+// Admin account Routes for pages
+// -------------------------------------------------------------
+Route::get('/manager-loans','ManagerController@index');
+Route::get('/manager-customers','ManagerController@customers');
+Route::get('/manager-centres','ManagerController@centres');
+Route::get('/manager-cashiers','ManagerController@cashiers');
+Route::get('/manager-groups','ManagerController@groups');
+Route::get('/manager-payments','ManagerController@payments');
+Route::get('/manager-pending-loans','ManagerController@pendingLoans');
