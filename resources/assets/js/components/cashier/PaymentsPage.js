@@ -87,7 +87,7 @@ export default class PaymentsPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location.reload();
+                    window.location = '/manager-payments'
                 })
                 .catch(error => alert("[ FAILED ] Document Fee NOT Added"));
         } else {
@@ -105,7 +105,7 @@ export default class PaymentsPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location.reload();
+                    window.location = '/manager-payments'
                 })
                 .catch(error => {
                     alert("[ FAILED ] Payment NOT Added");

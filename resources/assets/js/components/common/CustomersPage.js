@@ -188,6 +188,7 @@ export default class CustomersPage extends Component {
                 console.log(res);
                 alert("Customer Added Successfully");
                 this.setState({isFormVisible: false});
+                window.location.reload();
             })
             .catch(error => {
                 alert("[ FAILED ] Customer not added");

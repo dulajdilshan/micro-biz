@@ -93,7 +93,7 @@ class GroupForm extends Component {
                 .then(res => {
                     alert(res.data);
                     console.log(res);
-                    window.location = '/manager-groups'
+                    window.location.reload();
                 })
                 .catch(error => alert("[ FAILED ] Group NOT Added"));
         } else {

@@ -115,7 +115,7 @@ export default class LoansPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location = '/manager-loans'
+                    window.location.reload();
                 })
                 .catch(error => alert("[ FAILED ] Loan NOT Added"));
         } else {
