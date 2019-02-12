@@ -6,6 +6,7 @@ use App\Branch;
 use App\Center;
 use App\Customer;
 use App\DocumentFee;
+use App\Loan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
@@ -45,6 +46,8 @@ class DocumentFeeController extends Controller
             $center = Center::where('id', (int)$request['center_id'])->first();
             if ($center == null) return response()->json($wrongCenterIdResponse);
 
+            $loan = Loan::find($request['loan_id']);
+
             $docFee = new DocumentFee();
             $docFee['customer_id'] = $request['customer_id'];
             $docFee['loan_id'] = $request['loan_id'];
@@ -53,6 +56,9 @@ class DocumentFeeController extends Controller
             $docFee['percentage'] = $request['percentage'];
             $docFee['date'] = $request['date'];
             $docFee->save();
+
+            $loan['is_settle'] = 1;
+            $loan->save();
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json($failedOperation, $e);
