@@ -14,9 +14,9 @@
                             </div>
                         @endif
                         <h4>You are logged in!</h4>
-                        <a>User ID:    {{ Auth::user()->id }}</a><br/>
-                        <a>Name:       {{ Auth::user()->name }}</a><br/>
-                        <a>Email:      {{ Auth::user()->email }}</a>
+                        <a>User ID: {{ Auth::user()->id }}</a><br/>
+                        <a>Name: {{ Auth::user()->name }}</a><br/>
+                        <a>Email: {{ Auth::user()->email }}</a>
 
                     </div>
                 </div>
