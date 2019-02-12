@@ -59,7 +59,7 @@ class PaymentController extends Controller
                     $payment_details['loan_id'] = $loan['id'];
                     $payment_details['net_amount'] = $loan['net_amount'];
                     $payment_details['weekly_installment'] = $loan['weekly_installment'];
-                    $payment_details['to_be_paid'] = (int)$loan['net_amount'] - (int)$loan['paid_amount'];
+                    $payment_details['to_be_paid'] = (int)$loan['balance'];
                     $payment_details['remaining_weeks'] = $loan['remaining_weeks'];
                     $payment_details['for_week'] = (int)$loan['paid_weeks'] + 1;
 
