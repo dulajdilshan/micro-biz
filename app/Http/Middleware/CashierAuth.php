@@ -18,6 +18,6 @@ class CashierAuth
         if(auth()->user()->cashier()->exists()){
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/logout');
     }
 }

@@ -19,6 +19,6 @@ class AdminAuth
         if(auth()->user()->admin()->exists()){
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/logout');
     }
 }

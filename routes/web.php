@@ -32,31 +32,31 @@ Auth::routes();
 // -------------------------------------------------------------
 // Manager account Routes for pages
 // -------------------------------------------------------------
-Route::get('/manager-loans','ManagerController@index');
-Route::get('/manager-customers','ManagerController@customers');
-Route::get('/manager-centres','ManagerController@centres');
-Route::get('/manager-cashiers','ManagerController@cashiers');
-Route::get('/manager-groups','ManagerController@groups');
-Route::get('/manager-addnew-customer','ManagerController@groups');
-Route::get('/manager-payments','ManagerController@payments');
-Route::get('/manager-pending-loans','ManagerController@pendingLoans');
+Route::get('/manager-loans','ManagerController@index')->middleware('manager_auth');
+Route::get('/manager-customers','ManagerController@customers')->middleware('manager_auth');
+Route::get('/manager-centres','ManagerController@centres')->middleware('manager_auth');
+Route::get('/manager-cashiers','ManagerController@cashiers')->middleware('manager_auth');
+Route::get('/manager-groups','ManagerController@groups')->middleware('manager_auth');
+Route::get('/manager-addnew-customer','ManagerController@groups')->middleware('manager_auth');
+Route::get('/manager-payments','ManagerController@payments')->middleware('manager_auth');
+Route::get('/manager-pending-loans','ManagerController@pendingLoans')->middleware('manager_auth');
 
 // -------------------------------------------------------------
 // Cashier account Routes for pages
 // -------------------------------------------------------------
-Route::get('/cashier-loans','CashierController@index');
-Route::get('/cashier-customers','CashierController@customers');
-Route::get('/cashier-groups','CashierController@groups');
-Route::get('/cashier-payments','CashierController@payments');
+Route::get('/cashier-loans','CashierController@index')->middleware('cashier_auth');
+Route::get('/cashier-customers','CashierController@customers')->middleware('cashier_auth');
+Route::get('/cashier-groups','CashierController@groups')->middleware('cashier_auth');
+Route::get('/cashier-payments','CashierController@payments')->middleware('cashier_auth');
 
 
 // -------------------------------------------------------------
 // Admin account Routes for pages
 // -------------------------------------------------------------
-Route::get('/admin-loans','AdminController@index');
-Route::get('/admin-customers','AdminController@customers');
-Route::get('/admin-centres','AdminController@centres');
-Route::get('/admin-cashiers','AdminController@cashiers');
-Route::get('/admin-groups','AdminController@groups');
-Route::get('/admin-payments','AdminController@payments');
-Route::get('/admin-pending-loans','AdminController@pendingLoans');
+Route::get('/admin-loans','AdminController@index')->middleware('admin_auth');
+Route::get('/admin-customers','AdminController@customers')->middleware('admin_auth');
+Route::get('/admin-centres','AdminController@centres')->middleware('admin_auth');
+Route::get('/admin-cashiers','AdminController@cashiers')->middleware('admin_auth');
+Route::get('/admin-groups','AdminController@groups')->middleware('admin_auth');
+Route::get('/admin-payments','AdminController@payments')->middleware('admin_auth');
+Route::get('/admin-pending-loans','AdminController@pendingLoans')->middleware('admin_auth');

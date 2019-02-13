@@ -18,6 +18,6 @@ class ManagerAuth
         if(auth()->user()->manager()->exists()){
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/logout');
     }
 }
