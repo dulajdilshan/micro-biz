@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return redirect('/manager-loans');
+//    if(Auth::user()->admin()->exists()) return redirect('/admin-loans');
+//    if(Auth::user()->manager()->exists()) return redirect('/manager-loans');
+//    if(Auth::user()->cashier()->exists()) return redirect('/cashier-loans');
+    return redirect('/home');
 });
 
 Auth::routes();
