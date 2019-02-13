@@ -25,11 +25,14 @@ export default class CashiersPage extends Component {
         this.state = {
             cashierTable: {
                 columns: [
+                    {Header: 'Cashier ID', accessor: 'id'},
                     {Header: 'Full Name', accessor: 'full_name'},
+                    {Header: 'USER ID', accessor: 'user_id'},
                     {Header: 'NIC', accessor: 'nic'},
                     {Header: 'Contact No', accessor: 'contact_no'},
                     {Header: 'Center ID', accessor: 'center_id'},
-                    {Header: 'Options', accessor: 'options'},
+                    {Header: 'Branch ID', accessor: 'branch_id'},
+                    
                 ],
                 dummyCashierTableData: [
                     {full_name: 'Dulaj Dilshan', nic: '95113247v', contact_no: '0710889867', center_id: 3}
