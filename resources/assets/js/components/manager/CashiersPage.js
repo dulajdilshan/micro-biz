@@ -11,7 +11,7 @@ export default class CashiersPage extends Component {
         this.initialState = {
             newCashier: {
                 branch_id: '',
-                user_id: 0,
+                user_id: '0',
                 center_id: '',
                 full_name: '',
                 nic: '',
@@ -38,7 +38,7 @@ export default class CashiersPage extends Component {
             cashierTableData: [],
             newCashier: {
                 branch_id: '',
-                user_id: 0,
+                user_id: '0',
                 center_id: '',
                 full_name: '',
                 nic: '',
@@ -118,6 +118,19 @@ export default class CashiersPage extends Component {
                 onChange: (event) =>
                     this.setState({
                         newCashier: Object.assign({}, this.state.newCashier, {gs_division: event.target.value})
+                    }),
+            },{
+                label: "USER ID",
+                id: "user_id",
+                name: "user_id",
+                required: true,
+                colSize: '3',
+                pattern: "^[0-9]+$",
+                message: "numbers only",
+                value: this.state.newCashier.user_id,
+                onChange: (event) =>
+                    this.setState({
+                        newCashier: Object.assign({}, this.state.newCashier, {user_id: event.target.value})
                     }),
             }], [{
                 label: "NIC",
