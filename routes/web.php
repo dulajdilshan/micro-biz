@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-//    if(Auth::user()->admin()->exists()) return redirect('/admin-loans');
-//    if(Auth::user()->manager()->exists()) return redirect('/manager-loans');
-//    if(Auth::user()->cashier()->exists()) return redirect('/cashier-loans');
-    return redirect('/home');
-});
+//Route::get('/', function () {
+//    return redirect('/home');
+//});
+
+Route::get('/','HomeController@auth');
 
 Auth::routes();
 
@@ -54,10 +53,10 @@ Route::get('/cashier-payments','CashierController@payments');
 // -------------------------------------------------------------
 // Admin account Routes for pages
 // -------------------------------------------------------------
-Route::get('/manager-loans','ManagerController@index');
-Route::get('/manager-customers','ManagerController@customers');
-Route::get('/manager-centres','ManagerController@centres');
-Route::get('/manager-cashiers','ManagerController@cashiers');
-Route::get('/manager-groups','ManagerController@groups');
-Route::get('/manager-payments','ManagerController@payments');
-Route::get('/manager-pending-loans','ManagerController@pendingLoans');
+Route::get('/admin-loans','AdminController@index');
+Route::get('/admin-customers','AdminController@customers');
+Route::get('/admin-centres','AdminController@centres');
+Route::get('/admin-cashiers','AdminController@cashiers');
+Route::get('/admin-groups','AdminController@groups');
+Route::get('/admin-payments','AdminController@payments');
+Route::get('/admin-pending-loans','AdminController@pendingLoans');
