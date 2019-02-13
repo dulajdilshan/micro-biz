@@ -56,7 +56,7 @@ export default class CentresPage extends Component {
                 .then(res => {
                     alert(res.data);
                     console.log(res);
-                    window.location = '/manager-centres'
+                    window.location.reload();
                 })
                 .catch(error => alert("[ FAILED ] Center NOT Added"));
         } else {

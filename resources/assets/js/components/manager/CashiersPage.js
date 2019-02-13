@@ -72,7 +72,7 @@ export default class CashiersPage extends Component {
                 .then(res => {
                     // alert(res.data);
                     console.log(res.data);
-                    window.location = '/manager-cashiers'
+                    window.location.reload();
                 })
                 .catch(error => alert("[ FAILED ] Cashier NOT Added"));
         } else {
