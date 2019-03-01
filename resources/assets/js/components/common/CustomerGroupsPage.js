@@ -31,7 +31,6 @@ export default class CustomerGroupsPage extends Component {
                     {Header: 'Branch ID', accessor: 'branch_id'},
                     {Header: 'Center Code', accessor: 'center_code'},
                     {Header: 'Center Name', accessor: 'center_name'},
-                    {Header: 'Controllers', accessor: '#ed'},
                 ]
             }
         }

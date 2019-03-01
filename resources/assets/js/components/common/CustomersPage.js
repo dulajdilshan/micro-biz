@@ -66,9 +66,9 @@ export default class CustomersPage extends Component {
                     {Header: 'Name', accessor: 'full_name'},
                     {Header: 'NIC', accessor: 'nic'},
                     {Header: 'Group Number', accessor: 'group_id'},
-                    {Header: 'Loan number', accessor: 'first_name'},
-                    {Header: 'Loan Amount', accessor: 'first_name'},
-                    {Header: 'Weekly Payment (Amount)', accessor: 'gender'},
+                    {Header: 'Center ID', accessor: 'center_id'},
+                    {Header: 'Branch ID', accessor: 'branch_id'},
+                    {Header: 'GS Division', accessor: 'gs_division'},
                     {Header: 'Phone number', accessor: 'contact_no1'},
 
                 ], data: [{
