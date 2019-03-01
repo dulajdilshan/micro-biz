@@ -15,15 +15,15 @@ class CreateManagersTable extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('branch_id');
             $table->unsignedInteger('user_id');
-            $table->string('full_name');
+            $table->unsignedInteger('branch_id');
             $table->string('nic');
-            $table->string('gs_division');
-            $table->dateTime('birthday');
+            $table->string('name');
+            $table->unsignedInteger('gs_division_id');
+            $table->date('birthday');
             $table->unsignedInteger('age');
-            $table->string('contact_no');
-            $table->string('address');
+            $table->string('phone');
+            $table->text('address');
             $table->timestamps();
         });
     }

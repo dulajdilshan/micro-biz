@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchesTable extends Migration
+class CreateLastGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('last_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('index', 2);
-            $table->char('branch_no', 4);
-            $table->string('code');
-            $table->string('name');
-            $table->string('town');
+            $table->unsignedInteger('branch_id');
+            $table->char('last_group_index', 3);
+            $table->unsignedInteger('group_id');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('last_groups');
     }
 }

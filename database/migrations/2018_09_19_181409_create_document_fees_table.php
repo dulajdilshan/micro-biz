@@ -19,8 +19,7 @@ class CreateDocumentFeesTable extends Migration
             $table->unsignedInteger('loan_id');
             $table->unsignedInteger('cashier_id');
             $table->bigInteger('amount');
-            $table->unsignedInteger('percentage');
-            $table->dateTime('date');
+            $table->date('date');
             $table->timestamps();
         });
     }

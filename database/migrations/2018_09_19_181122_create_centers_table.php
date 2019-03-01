@@ -15,9 +15,10 @@ class CreateCentersTable extends Migration
     {
         Schema::create('centers', function (Blueprint $table) {
             $table->increments('id');
+            $table->char('index', 3);
             $table->unsignedInteger('branch_id');
-            $table->string('center_code');
-            $table->string('center_name');
+            $table->string('code');
+            $table->string('name');
             $table->timestamps();
         });
     }

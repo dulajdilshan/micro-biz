@@ -15,26 +15,28 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('loan_number');
+            $table->char('index', 3);
+            $table->char('loan_no', 20);
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('branch_id');
             $table->unsignedInteger('center_id');
             $table->unsignedInteger('cashier_id');
-            $table->boolean('is_settled');
+            $table->unsignedInteger('state');  // 0 - Created Not approved, 1 - Doc chargers paid, 2 - Settled
             $table->boolean('is_approved');
+            $table->boolean('is_active');
             $table->bigInteger('loan_amount');
             $table->bigInteger('net_amount');
             $table->unsignedInteger('rate');
             $table->unsignedInteger('weeks');
-            $table->unsignedInteger('remaining_weeks');
             $table->unsignedInteger('paid_weeks');
             $table->bigInteger('weekly_installment');
             $table->bigInteger('paid_amount');
             $table->bigInteger('balance');
-            $table->dateTime('next_payment_date');
-            $table->dateTime('obtained_date');
-            $table->dateTime('end_date');
+            $table->date('active_date');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->date('next_payment_date');
             $table->timestamps();
         });
     }
