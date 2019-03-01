@@ -9,7 +9,11 @@ export default class PaymentsPage extends Component {
     constructor(props) {
         super(props);
         this.initialState = {
-            newPayment: {},
+            newPayment: {
+                cashier_id: '',branch_id: '',center_id: '',customer_id: '',customer_nic: '',customer_name: '',
+                group_id: '',loan_id: '',loan_number: '',net_amount: '',to_be_paid: '',remaining_weeks: '',
+                weekly_installment: '',payment_amount:'',for_week: ''
+            },
             newDocumentFee: {
                 customer_id: '', loan_id: '', cashier_id: '', amount: '', percentage: '',
                 customer_nic: '', customer_name: '', loan_number: '', loan_amount: '', loan_rate: '', loan_date: '',
@@ -55,6 +59,7 @@ export default class PaymentsPage extends Component {
                 to_be_paid: '',
                 remaining_weeks: '',
                 weekly_installment: '',
+                payment_amount:'',
                 for_week: ''
             },
             newDocumentFee: {
@@ -289,13 +294,24 @@ export default class PaymentsPage extends Component {
                     name: "for_week",
                     required: true,
                     colSize: '2',
-                    disabled: true,
-                    // pattern: "^[0-9]+$",
+                    pattern: "^[0-9]+$",
                     message: "NIC Only",
                     value: this.state.newPayment.for_week,
                     onChange: (event) =>
                         this.setState({
                             newPayment: Object.assign({}, this.state.newPayment, {for_week: event.target.value})
+                        }),
+                },{
+                    label: "Payment Amount",
+                    id: "payment_amount",
+                    name: "payment_amount",
+                    required: true,
+                    pattern: "^[0-9]+$",
+                    message: "Numbers Only",
+                    value: this.state.newPayment.payment_amount,
+                    onChange: (event) =>
+                        this.setState({
+                            newPayment: Object.assign({}, this.state.newPayment, {payment_amount: event.target.value})
                         }),
                 }
             ]];

@@ -16,10 +16,10 @@ export default class CentresPage extends Component {
             },
             centerTable: {
                 columns: [
-                    {Header: 'Branch ID', accessor: 'branch_id'},
+                    {Header: 'Center ID', accessor: 'id'},
                     {Header: 'Center Code', accessor: 'center_code'},
                     {Header: 'Center Name', accessor: 'center_name'},
-                    {Header: 'Options', accessor: 'options'},
+                    {Header: 'Branch ID', accessor: 'branch_id'},
                 ],
             },
             centerTableData: [],
