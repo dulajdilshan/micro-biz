@@ -1,0 +1,63 @@
+0000000000000000000000000000000000000000 2aed4365fc489df3231628a72422f7b43382fbd0 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1537273678 +0530	clone: from https://github.com/dulajdilshan/micro-biz.git
+2aed4365fc489df3231628a72422f7b43382fbd0 2d0deaa510d189a1527223be697c1067defd60b0 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1538284473 +0530	checkout: moving from master to dev-windows
+2d0deaa510d189a1527223be697c1067defd60b0 03fa0f4a23c0fc8de3fc732945ec4df907202c92 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1538532142 +0530	commit: last commit Thursday
+03fa0f4a23c0fc8de3fc732945ec4df907202c92 c49b5f55769c952f4f81c59a88ed2bea50c32551 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1538698721 +0530	commit: last commit Thursday
+c49b5f55769c952f4f81c59a88ed2bea50c32551 bc5faaf97c85e3bddb2d013eccfda83ae5248f84 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545486498 +0530	merge origin/dev-windows: Fast-forward
+bc5faaf97c85e3bddb2d013eccfda83ae5248f84 ca839449a54ac4d73d26218ca92ec8846dc30f95 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545486591 +0530	checkout: moving from dev-windows to dev
+ca839449a54ac4d73d26218ca92ec8846dc30f95 ca839449a54ac4d73d26218ca92ec8846dc30f95 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580207 +0530	reset: moving to HEAD
+ca839449a54ac4d73d26218ca92ec8846dc30f95 e9206f42188aa31d7dc69143a6f7a9c15328bd48 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580207 +0530	checkout: moving from dev to dev-1.0.1/single-page
+e9206f42188aa31d7dc69143a6f7a9c15328bd48 11af0e214c382d6fec80a3770b63d809517fcbdf dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580531 +0530	commit: package.json and package-lock.json conflicts removed
+11af0e214c382d6fec80a3770b63d809517fcbdf ca839449a54ac4d73d26218ca92ec8846dc30f95 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580623 +0530	checkout: moving from dev-1.0.1/single-page to dev
+ca839449a54ac4d73d26218ca92ec8846dc30f95 11af0e214c382d6fec80a3770b63d809517fcbdf dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580656 +0530	checkout: moving from dev to dev-1.0.1/single-page
+11af0e214c382d6fec80a3770b63d809517fcbdf 8273a78c70668ae697278b029ac0c5015ccee2f8 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545580733 +0530	commit (merge): Merge remote-tracking branch 'origin/dev' into dev-1.0.1/single-page
+8273a78c70668ae697278b029ac0c5015ccee2f8 96d1ff105a2e7a844f7739933a384097db5d8245 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545681209 +0530	commit: package-lock and package.json updated
+96d1ff105a2e7a844f7739933a384097db5d8245 5e3488e2755b25aa7bd79e4bafdba08069189990 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545939401 +0530	commit: unnecessary changes done in customers
+5e3488e2755b25aa7bd79e4bafdba08069189990 352b3349b575f6897ae75497e0b1e893abcf0614 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545944747 +0530	commit: unwanted FormCustomer commented
+352b3349b575f6897ae75497e0b1e893abcf0614 9027f9c0e6b13b98064feffe869ec40ad38cd5c5 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545944772 +0530	commit: closing the modal after submitting the form
+9027f9c0e6b13b98064feffe869ec40ad38cd5c5 8de5e1912dce575997ca97de089151e3a6b8127f dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1545945033 +0530	commit: commented the 'crate group' button, removed unused column names variable
+8de5e1912dce575997ca97de089151e3a6b8127f 73f26d00cec40eec5d4b1dcffad71016b2ffa80d dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1546013816 +0530	commit: Layout of the group page: related to buttons
+73f26d00cec40eec5d4b1dcffad71016b2ffa80d af9c5663819f659b7c59189b297e5ba868077823 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1546022458 +0530	commit: ooo
+af9c5663819f659b7c59189b297e5ba868077823 c27dbc2580bae779140ee6be6d6cc458ce6d44e8 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1546087360 +0530	commit: removed the redundant function( getAllWithNoGroups)
+c27dbc2580bae779140ee6be6d6cc458ce6d44e8 1011811f1a6a6d09da5501575fe93a725112eed3 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1546087442 +0530	commit: replace customers-with-nogroup with get-groupless
+1011811f1a6a6d09da5501575fe93a725112eed3 d728348c997bcfb4345155cc64ec0ca002c94a09 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1546225167 +0530	commit: [Started] show customers in creating group form
+d728348c997bcfb4345155cc64ec0ca002c94a09 292244dafb28b944e4730473e521dc0559d57fee dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547948667 +0530	commit: Group
+292244dafb28b944e4730473e521dc0559d57fee 5594d7a9aec1c0fc2124b7fa0948e1b2e52d5758 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547950357 +0530	commit: showing customer NIC in all the select buttons
+5594d7a9aec1c0fc2124b7fa0948e1b2e52d5758 e9d8ab518e6f833bfdde5b6fcda6618d8f680dd4 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547968689 +0530	commit: Select customer. but - no removal the selected customer
+e9d8ab518e6f833bfdde5b6fcda6618d8f680dd4 e1424074c3627f33fe7d12bf73461b60ec8da4a7 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547984444 +0530	commit: Select customers and standby to create the group | few bugs need to be corrected
+e1424074c3627f33fe7d12bf73461b60ec8da4a7 2f654aa407a32419b5118831bbf709300db04182 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547984465 +0530	commit: Create API routes declared
+2f654aa407a32419b5118831bbf709300db04182 339f033eac0b52850bb1a7f2528f8b82fc31d7b8 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547984653 +0530	commit: [minor changes] on formatting
+339f033eac0b52850bb1a7f2528f8b82fc31d7b8 941221d71338328af717c5687ccce7fadee6b8c1 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547988410 +0530	commit: pre-changes
+941221d71338328af717c5687ccce7fadee6b8c1 d146a1112f7c3195e225fc35f20ea62613c2fa43 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1547996344 +0530	commit: onSubmit in the submit button of the GroupForm removed
+d146a1112f7c3195e225fc35f20ea62613c2fa43 810fabbb6aafcfd40b8b43c930874ef0fd52497d dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548002775 +0530	commit: css for input error in form
+810fabbb6aafcfd40b8b43c930874ef0fd52497d f5f63b127c9f90f93d5eed618524823723bbb331 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548002801 +0530	commit: form for universal usage
+f5f63b127c9f90f93d5eed618524823723bbb331 d599ac9ca5d2b5eb6c95ab8ea094eab29ef17e04 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548018850 +0530	commit: Form Structure declared and button changed to pop up the modal
+d599ac9ca5d2b5eb6c95ab8ea094eab29ef17e04 ca839449a54ac4d73d26218ca92ec8846dc30f95 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548018904 +0530	checkout: moving from dev-1.0.1/single-page to dev
+ca839449a54ac4d73d26218ca92ec8846dc30f95 f902cb0f096a2c5dcda8f0bc0e6de0b3dd7ecdc4 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548018921 +0530	pull --progress --no-stat -v --progress origin dev: Fast-forward
+f902cb0f096a2c5dcda8f0bc0e6de0b3dd7ecdc4 a25abf1b5a5372f339a15e851ce2cda1ff60da8c dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548018950 +0530	merge dev-1.0.1/single-page: Merge made by the 'recursive' strategy.
+a25abf1b5a5372f339a15e851ce2cda1ff60da8c 80cebd35f71935fe88cbbbb008f334c033be5541 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548571231 +0530	commit: Api/Group/create returns the request
+80cebd35f71935fe88cbbbb008f334c033be5541 092205507f2fc147da52f280089daa78e8effed1 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548585823 +0530	commit: Controller (group) - minor changes
+092205507f2fc147da52f280089daa78e8effed1 75b6687088b99ff13adbbcf082ce223482b17288 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548638994 +0530	commit: updating after creating group
+75b6687088b99ff13adbbcf082ce223482b17288 568876618a73ce8eb7e56b2fe8079d27dbbaaf46 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548873992 +0530	commit: commented not used routes
+568876618a73ce8eb7e56b2fe8079d27dbbaaf46 48ed19d64bdf5ca109a045ebed929ef30c8e42cc dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548874026 +0530	commit: Customers save with changed group id
+48ed19d64bdf5ca109a045ebed929ef30c8e42cc aac448cd246d1883b41ecbe2e6103a82226abf33 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548984719 +0530	commit: General form
+aac448cd246d1883b41ecbe2e6103a82226abf33 687954c8611ff819d34c25d49abd9dcf83308978 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548984771 +0530	commit: Centers Loading, New Center Creating form | Frontend
+687954c8611ff819d34c25d49abd9dcf83308978 10fb6e298563ddd031f9917fc5d154a4d719d0c8 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1548987636 +0530	commit: CenterController initiated
+10fb6e298563ddd031f9917fc5d154a4d719d0c8 42f275b4075de3cf6eddcafd906b174d3f37da8d dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549072030 +0530	commit: New Center creating
+42f275b4075de3cf6eddcafd906b174d3f37da8d e1d82ec716c66b6c4141cfa85ebd53cb39ac01bb dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549111370 +0530	commit: Form add colSize
+e1d82ec716c66b6c4141cfa85ebd53cb39ac01bb e4db215ee6aa91fe3da7a4ebb0f8f582dc37f2ec dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549111493 +0530	commit: Cashiers loading, Cashier page, basic form(no date and age selection), cashier API, - No submitting
+e4db215ee6aa91fe3da7a4ebb0f8f582dc37f2ec 566330175d21dc40b6775275bbfba11d8bf3ab35 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549477778 +0530	commit: Changed to show birthday input
+566330175d21dc40b6775275bbfba11d8bf3ab35 bfdd32458fc6af407ccbc1a7fd641aadbe66ec4d dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549484303 +0530	commit: Changed age to a number
+bfdd32458fc6af407ccbc1a7fd641aadbe66ec4d 13e50682cd9503b7718a294aff7d644e9bedfcaa dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549505396 +0530	commit: Button attribute added
+13e50682cd9503b7718a294aff7d644e9bedfcaa 35291753ec5bcca8de4d0fff99134ebb092294fe dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549505421 +0530	commit: Loan page : test form and table
+35291753ec5bcca8de4d0fff99134ebb092294fe 69961adfdb5ab4a9489e33f0fccf859b5ccffac3 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549584535 +0530	commit: Loan page : onClick
+69961adfdb5ab4a9489e33f0fccf859b5ccffac3 3314ba49149430cf4eaeb73e05c04311b281ddf1 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549584560 +0530	commit: Loan form designed
+3314ba49149430cf4eaeb73e05c04311b281ddf1 2b60e80527a9423f8f33ff4e6d93672cfbe86076 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549585692 +0530	commit: Loan form calculate button function
+2b60e80527a9423f8f33ff4e6d93672cfbe86076 ed8284ca34236d61fd3c19d83e25bf35f50b50e7 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549585720 +0530	commit: Formatting :Loan page
+ed8284ca34236d61fd3c19d83e25bf35f50b50e7 ae2577b684720b2015579b1d41424da845c971ef dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549586121 +0530	commit: - disabled option for input added
+ae2577b684720b2015579b1d41424da845c971ef 2146b94611b96441d8b308eb6d56c6e7e5802266 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549677863 +0530	commit: --
+2146b94611b96441d8b308eb6d56c6e7e5802266 38a1f765d6946ba16caeedee4e574fc0b73636d2 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549739908 +0530	commit: Remove bug
+38a1f765d6946ba16caeedee4e574fc0b73636d2 6b9059bb3512aec4ef540f305cfef93989866e38 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549739937 +0530	commit: Create Function
+6b9059bb3512aec4ef540f305cfef93989866e38 6f50d43e42a6517667db78edabb0bc9065c91d1f dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549741551 +0530	commit: Create Function
+6f50d43e42a6517667db78edabb0bc9065c91d1f 44f57c5e710f1bd9c6404318a9490a0467d4ad72 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549767327 +0530	commit: get current user details [Not Done]
+44f57c5e710f1bd9c6404318a9490a0467d4ad72 53301cff0e87e98510c98e555022a75cbf99a6b9 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549767366 +0530	commit: get user api route [Not done]
+53301cff0e87e98510c98e555022a75cbf99a6b9 1072c93f243ab7ee6248d748b2459f883856d5c1 dulajdilshan <dulaj.15@cse.mrt.ac.lk> 1549769055 +0530	commit: -get all loan list converted to a viewable way

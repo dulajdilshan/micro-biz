@@ -95,10 +95,12 @@ class CustomerForm extends Component {
 
     handleOnSubmit(event) {
         event.preventDefault();
+        $('#customerForm').modal('hide');
         this.props._handleCreateCustomer(event);
     }
 
     render() {
+        console.log('Customer Form Loading');
         return (
             <div className="modal fade" id="customerForm" role="dialog">
                 <div className="modal-dialog modal-lg">
@@ -110,7 +112,7 @@ class CustomerForm extends Component {
                         <div style={{margin: '10px', display: this.state.isError ? 'block' : 'none'}}>
                             <h5 style={{color: 'red'}}>***Please put valid Details</h5>
                         </div>
-                        <form onSubmit={this.handleOnSubmit.bind(this)}>
+                        <form onSubmit={this.handleOnSubmit.bind(this)} onclose={() => {this.setState({isError: false})}}>
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
