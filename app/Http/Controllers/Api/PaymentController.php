@@ -59,6 +59,7 @@ class PaymentController extends Controller
                     $payment_details['loan_id'] = $loan['id'];
                     $payment_details['net_amount'] = $loan['net_amount'];
                     $payment_details['weekly_installment'] = $loan['weekly_installment'];
+                    $payment_details['payment_amount'] = $loan['weekly_installment'];
                     $payment_details['to_be_paid'] = (int)$loan['balance'];
                     $payment_details['remaining_weeks'] = $loan['remaining_weeks'];
                     $payment_details['for_week'] = (int)$loan['paid_weeks'] + 1;
@@ -99,7 +100,7 @@ class PaymentController extends Controller
             $payment['center_id'] = $request['center_id'];
             $payment['customer_id'] = $request['customer_id'];
             $payment['cashier_id'] = $request['cashier_id'];
-            $payment['amount'] = $request['weekly_installment'];
+            $payment['amount'] = $request['payment_amount'];
             $payment['for_week'] = $request['for_week'];
             $payment->save();
 

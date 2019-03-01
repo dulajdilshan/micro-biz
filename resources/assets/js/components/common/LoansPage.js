@@ -268,7 +268,7 @@ export default class LoansPage extends Component {
                     let loan = this.state.newLoan.loan_amount === '' ? 0 : this.state.newLoan.loan_amount;
                     let irate = (this.state.newLoan.rate === '' ? 0 : this.state.newLoan.rate) / 100;
                     let no_of_weeks = this.state.newLoan.weeks === '' ? 0 : this.state.newLoan.weeks;
-                    let interest = loan * irate * no_of_weeks;
+                    let interest = loan * irate;
                     let net = parseInt(loan) + parseInt(interest);
                     let weekly_in = round(net / no_of_weeks);
                     this.setState({
