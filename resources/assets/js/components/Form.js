@@ -60,7 +60,9 @@ class Form extends Component {
                                 ))}
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">ADD</button>
+                                <button type="submit"
+                                        className="btn btn-primary">
+                                    {this.props.submitButtonName ? this.props.submitButtonName : 'ADD'}</button>
                                 <button type="reset" className="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -105,7 +107,10 @@ const UButton = (props) => {
         <div className={className}>
             <button style={props.buttonStyle ? props.buttonStyle : divStyle} id={props.buttonId}
                     name={props.buttonName} className={buttonClassName}
-                    onClick={(e)=>{e.preventDefault();props.onClick();}}>{props.buttonLabel}</button>
+                    onClick={(e) => {
+                        e.preventDefault();
+                        props.onClick();
+                    }}>{props.buttonLabel}</button>
         </div>
     );
 };
@@ -116,7 +121,8 @@ const USelect = (props) => {
     return (
         <div className={className}>
             <label>{props.label}</label>
-            <input className="form-control" list={props.id} name={props.name} value={props.value} required={props.required}
+            <input className="form-control" list={props.id} name={props.name} value={props.value}
+                   required={props.required}
                    disabled={props.disabled}
                    onChange={props.onChange ? props.onChange : () => console.log(props.name + " onChange ..")}/>
             <datalist id={props.id}
