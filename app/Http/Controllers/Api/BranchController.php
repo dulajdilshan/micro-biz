@@ -28,8 +28,8 @@ class BranchController extends Controller
      */
     public function create(Request $request)
     {
-        $failedOperation = '{success:false, message:\'Operation Failed\'}';
-        $successOperation = '{success:true, message:\'Center created successfully\'}';
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
 
         DB::beginTransaction();
 
