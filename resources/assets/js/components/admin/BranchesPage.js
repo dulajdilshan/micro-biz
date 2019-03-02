@@ -68,7 +68,20 @@ export default class BranchesPage extends Component {
 
     handleOnSubmit(event) {
         event.preventDefault();       //This makes not to load again
-        return 0;
+        let retConfirm = confirm('Are you sure you want to add this Branch?');
+        if (retConfirm) {
+            $('#newBranchForm').modal('hide');
+            console.log(this.state.newBranch);
+            axios.post('/api/branch/create', this.state.newBranch)
+                .then(res => {
+                    alert(res.statusText);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Branch NOT Added"));
+        } else {
+            alert("[ FAILED ] Branch NOT Added");
+        }
     }
 
     render() {

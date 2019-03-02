@@ -38,7 +38,7 @@ Route::get('/payment/get-details-with-nic/{nic}','Api\PaymentController@getDetai
 Route::post('/customer/create','Api\CustomerController@create');            //Customer
 Route::post('/group/create','Api\GroupController@create');                  //Group
 Route::post('/center/create','Api\CenterController@create');                //Center
-//Route::post('/Branch/create','Api\BranchController@create');                //Branch
+Route::post('/branch/create','Api\BranchController@create');                //Branch
 Route::post('/loan/create','Api\LoanController@create');                    //Loan
 Route::post('/payment/create','Api\PaymentController@create');              //Payment
 Route::post('/document-fee/create','Api\DocumentFeeController@create');    //Document Fee

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Branch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use \Exception;
 
 class BranchController extends Controller
 {
@@ -15,7 +17,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::all() ;
+        $branches = Branch::all();
         return response()->json($branches);
     }
 
@@ -24,15 +26,40 @@ class BranchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $failedOperation = '{success:false, message:\'Operation Failed\'}';
+        $successOperation = '{success:true, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $branchWithSameIndex = Branch::where('index', $request['index'])->get();
+            $branchWithSameBranchNo = Branch::where('branch_no', $request['branch_no'])->get();
+
+            if (sizeof($branchWithSameBranchNo) > 0 or sizeof($branchWithSameIndex) > 0) {
+                return response()->json($failedOperation);
+            } else {
+                $branch = new Branch();
+                $branch['index'] = $request['index'];
+                $branch['branch_no'] = $request['branch_no'];
+                $branch['code'] = $request['code'];
+                $branch['name'] = $request['name'];
+                $branch['town'] = $request['town'];
+                $branch->save();
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +70,7 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +81,7 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +92,8 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +104,7 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
