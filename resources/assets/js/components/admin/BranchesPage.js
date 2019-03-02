@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import "react-table/react-table.css";
-import DataTable from "./DataTable";
-import Form from "./Form";
+import DataTable from "../DataTable";
+import Form from "../Form";
 import axios from "axios";
 
 export default class BranchesPage extends Component {
