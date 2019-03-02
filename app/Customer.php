@@ -17,4 +17,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\Payment');
     }
+
+    public function lastCustomer()
+    {
+        return $this->hasOne('App\LastCustomer');
+    }
 }

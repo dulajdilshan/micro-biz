@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Center extends Model
 {
-    //
+    public function loan()
+    {
+        return $this->hasMany('App\Loan');
+    }
+
+    public function lastCustomer()
+    {
+        return $this->hasMany('App\LastCustomer');
+    }
+
+    public function payment()
+    {
+        return $this->hasMany('App\Payment');
+    }
 }
