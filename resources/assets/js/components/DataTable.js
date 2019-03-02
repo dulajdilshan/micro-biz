@@ -61,6 +61,7 @@ class DataTable extends Component {
                                     this.setState({
                                         selected: rowInfo
                                     });
+                                    this.props.rowOnClick ? this.props.rowOnClick(rowInfo.row) : console.log("row info");
                                 },
                                 style: {
                                     background: rowInfo.index === this.state.selected.index ? '#00afec' : 'white',
