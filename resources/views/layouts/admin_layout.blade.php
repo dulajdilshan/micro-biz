@@ -67,7 +67,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{url('/admin-branches')}}">Branches</a>
                         <a class="dropdown-item" href="{{url('/admin-cashiers')}}">Cashiers</a>
-                        <a class="dropdown-item" href="{{url('/admin-centres')}}">Centres</a>
+                        <a class="dropdown-item" href="{{url('/admin-centers')}}">Centers</a>
                     </div>
                 </li>
             </ul>

@@ -55,7 +55,7 @@ Route::get('/cashier-payments','CashierController@payments')->middleware('cashie
 // -------------------------------------------------------------
 Route::get('/admin-loans','AdminController@index')->middleware('admin_auth');
 Route::get('/admin-customers','AdminController@customers')->middleware('admin_auth');
-Route::get('/admin-centres','AdminController@centres')->middleware('admin_auth');
+Route::get('/admin-centers','AdminController@centers')->middleware('admin_auth');
 Route::get('/admin-cashiers','AdminController@cashiers')->middleware('admin_auth');
 Route::get('/admin-groups','AdminController@groups')->middleware('admin_auth');
 Route::get('/admin-payments','AdminController@payments')->middleware('admin_auth');

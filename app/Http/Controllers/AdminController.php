@@ -26,9 +26,9 @@ class AdminController extends Controller
         return view('admin.admin_customers');
     }
 
-    public function centres()
+    public function centers()
     {
-        return view('admin.admin_centres');
+        return view('admin.admin_centers');
     }
 
     public function cashiers()

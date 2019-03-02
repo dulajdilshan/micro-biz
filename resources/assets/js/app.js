@@ -21,4 +21,5 @@ require('./components/common/CustomerGroupsPage');
 require('./components/manager/CentresPage');
 require('./components/manager/CashiersPage');
 require('./components/admin/BranchesPage');
+require('./components/admin/CentersPage');
 
