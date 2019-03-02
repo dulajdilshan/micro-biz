@@ -41,6 +41,11 @@ class AdminController extends Controller
         return view('admin.admin_payments');
     }
 
+    public function branches()
+    {
+        return view('admin.admin_branches');
+    }
+
     public function pendingLoans()
     {
         return view('admin.admin_loans');

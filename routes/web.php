@@ -60,3 +60,4 @@ Route::get('/admin-cashiers','AdminController@cashiers')->middleware('admin_auth
 Route::get('/admin-groups','AdminController@groups')->middleware('admin_auth');
 Route::get('/admin-payments','AdminController@payments')->middleware('admin_auth');
 Route::get('/admin-pending-loans','AdminController@pendingLoans')->middleware('admin_auth');
+Route::get('/admin-branches','AdminController@branches')->middleware('admin_auth');
