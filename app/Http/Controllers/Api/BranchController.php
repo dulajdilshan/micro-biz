@@ -84,9 +84,27 @@ class BranchController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $branch = Branch::findOrFail($request['id']);
+            $branch['index'] = $request['index'];
+            $branch['branch_no'] = $request['branch_no'];
+            $branch['code'] = $request['code'];
+            $branch['name'] = $request['name'];
+            $branch['town'] = $request['town'];
+            $branch->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**
@@ -109,6 +127,19 @@ class BranchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $branch = Branch::findOrFail($id);
+            $branch->delete();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 }

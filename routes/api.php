@@ -44,3 +44,12 @@ Route::post('/payment/create','Api\PaymentController@create');              //Pa
 Route::post('/document-fee/create','Api\DocumentFeeController@create');    //Document Fee
 Route::post('/cashier/create','Api\CashierController@create');              //Cashier
 
+//----------------------------------------
+//Update Routes
+//----------------------------------------
+Route::post('/branch/edit','Api\BranchController@edit');                    //Branch
+
+//----------------------------------------
+//Delete Routes
+//----------------------------------------
+Route::delete('/branch/delete/{id}','Api\BranchController@destroy');        //Branch
