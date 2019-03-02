@@ -11,6 +11,11 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | View Pages
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         return view('admin.admin_loans');
@@ -51,6 +56,12 @@ class AdminController extends Controller
         return view('admin.admin_loans');
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Functions
+    |--------------------------------------------------------------------------
+    */
     public function getAllAdmins()
     {
         $adminList = \App\Admin::all();
