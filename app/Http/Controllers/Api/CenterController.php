@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Branch;
 use App\Center;
+use App\LastCenter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -43,22 +44,37 @@ class CenterController extends Controller
     public function create(Request $request)
     {
         $wrongBranchIdResponse = '{success:false,message:\'Branch Id is not match with a current one\'}';
-        $failedOperation = '{success:false, message:\'Operation Failed\'}';
-        $successOperation = '{success:true, message:\'Center created successfully\'}';
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
 
         DB::beginTransaction();
 
         try {
-            $branch = Branch::where('id', (int)$request['branch_id'])->first();
+            $branch = Branch::find((int)$request['branch_id']);
 
             //check about the branch
             if ($branch == null) return response()->json($wrongBranchIdResponse);
 
             $center = new Center();
+            $center['index'] = $request['index'];
             $center['branch_id'] = $request['branch_id'];
-            $center['center_code'] = $request['center_code'];
-            $center['center_name'] = $request['center_name'];
+            $center['code'] = $request['code'];
+            $center['name'] = $request['name'];
             $center->save();
+
+            $lastCenter = LastCenter::find($request['branch_id']);
+            if ($lastCenter != null) {
+                $lastCenter['last_center_index'] = $request['index'];
+                $lastCenter['center_id'] = $center['id'];
+                $lastCenter->save();
+            } else {
+                $newLastCenter = new LastCenter();
+                $lastCenter['last_center_index'] = $request['index'];
+                $lastCenter['center_id'] = $center['id'];
+                $lastCenter['branch_id'] = $request['branch_id'];
+                $newLastCenter->save();
+            }
+
         } catch (Exception $exception) {
             DB::rollBack();
             return response()->json($failedOperation);

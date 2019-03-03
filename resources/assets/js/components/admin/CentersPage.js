@@ -9,14 +9,8 @@ export default class CentersPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newCenter: {
-                branch_no: '',
-                branch_name: '',
-                index: '',
-                branch_id: '',
-                code: '',
-                name: ''
-            },
+            initialNewCenter: {branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
+            newCenter: {branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
             branchList: [],
             centerTable: {
                 columns: [
@@ -49,13 +43,13 @@ export default class CentersPage extends Component {
                 console.log(err);
                 alert("Centers loading failed !! server may be down ..try starting the server and reload the page again");
             })
-            .then(()=>axios.get('/api/branch/get-centers-branches')
-                .then(res => this.setState({branchList:res.data}))
-                .catch( err => alert("Branch List Did not load.. please refresh the page"))
+            .then(() => axios.get('/api/branch/get-centers-branches')
+                .then(res => this.setState({branchList: res.data}))
+                .catch(err => alert("Branch List Did not load.. please refresh the page"))
             );
     }
 
-    handleOnSubmit(event) {
+    handleAddOnSubmit(event) {
         event.preventDefault();       //This makes not to load again
         let retConfirm = confirm('Are you sure you want to add this group?');
         if (retConfirm) {
@@ -64,7 +58,7 @@ export default class CentersPage extends Component {
             axios.post('/api/center/create', this.state.newCenter)
                 .then(res => {
                     alert(res.data);
-                    console.log(res);
+                    console.log(res.data);
                     window.location.reload();
                 })
                 .catch(error => alert("[ FAILED ] Center NOT Added"));
@@ -92,9 +86,9 @@ export default class CentersPage extends Component {
                     this.setState({
                         newCenter: Object.assign({}, this.state.newCenter, {
                             branch_name: event.target.value,
-                            branch_id: branch ? branch.id : '',
-                            branch_no: branch ? branch.branch_no:'',
-                            index: branch ? ('000' + parseInt(branch.next_center_index)).substr(-3):''
+                            branch_id: branch ? branch.branch_id : '',
+                            branch_no: branch ? branch.branch_no : '',
+                            index: branch ? ('000' + parseInt(branch.next_center_index)).substr(-3) : ''
                         })
                     })
                 }
@@ -104,7 +98,7 @@ export default class CentersPage extends Component {
                 name: "branch_no",
                 required: true,
                 // pattern: "^RB[0-9]{4}$",
-                disabled:true,
+                disabled: true,
                 message: "Numeric Only",
                 value: this.state.newCenter.branch_no,
                 onChange: (event) =>
@@ -116,7 +110,7 @@ export default class CentersPage extends Component {
                 id: "index",
                 name: "index",
                 required: true,
-                disabled:true,
+                disabled: true,
                 // pattern: "^[A-Za-z]+$",
                 message: "Numeric Only",
                 value: this.state.newCenter.index,
@@ -155,14 +149,15 @@ export default class CentersPage extends Component {
                 <div className="row">
                     <div className="col-sm-3">
                         <button className="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#newCenterForm"> New Centre
+                                data-target="#newCenterForm"
+                                onClick={() => this.setState({newCenter: this.state.initialNewCenter})}> New Centre
                         </button>
                     </div>
                 </div>
                 <br/>
                 <DataTable columns={this.state.centerTable.columns} data={this.state.centerTableData}/>
                 <Form name="newCenterForm" title="Add Center" rows={newCenterFormStructure}
-                      handleOnSubmit={this.handleOnSubmit.bind(this)}/>
+                      handleOnSubmit={this.handleAddOnSubmit.bind(this)}/>
             </div>
         );
     }
