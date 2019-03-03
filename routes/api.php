@@ -49,6 +49,7 @@ Route::post('/cashier/create','Api\CashierController@create');              //Ca
 //Update Routes
 //----------------------------------------
 Route::post('/branch/edit','Api\BranchController@edit');                    //Branch
+Route::post('/center/edit','Api\CenterController@edit');                    //Center
 
 //----------------------------------------
 //Delete Routes

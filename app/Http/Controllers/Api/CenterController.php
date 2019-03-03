@@ -24,6 +24,8 @@ class CenterController extends Controller
         $centers_all = Center::all();
         foreach ($centers_all as $element) {
             $branch = $element->branch()->first();
+            $center['id'] = $element['id'];
+            $center['branch_id'] = $branch['id'];;
             $center['index'] = $element['index'];
             $center['name'] = $element['name'];
             $center['code'] = $element['code'];
@@ -62,7 +64,7 @@ class CenterController extends Controller
             $center['name'] = $request['name'];
             $center->save();
 
-            $lastCenter = LastCenter::find($request['branch_id']);
+            $lastCenter = $branch->lastCenter()->first();
             if ($lastCenter != null) {
                 $lastCenter['last_center_index'] = $request['index'];
                 $lastCenter['center_id'] = $center['id'];
@@ -112,9 +114,24 @@ class CenterController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $center = Center::findOrFail($request['id']);
+            $center['code'] = $request['code'];
+            $center['name'] = $request['name'];
+            $center->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**

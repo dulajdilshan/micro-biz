@@ -25,4 +25,9 @@ class Center extends Model
     {
         return $this->belongsTo('App\Branch');
     }
+
+    public function lastCenter()
+    {
+        return $this->hasOne('App\LastCenter');
+    }
 }

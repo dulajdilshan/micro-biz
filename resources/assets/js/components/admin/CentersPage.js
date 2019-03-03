@@ -11,6 +11,8 @@ export default class CentersPage extends Component {
         this.state = {
             initialNewCenter: {branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
             newCenter: {branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
+            editCenter: {id: '', branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
+            selectedCenter: {id: '', branch_no: '', branch_name: '', index: '', branch_id: '', code: '', name: ''},
             branchList: [],
             centerTable: {
                 columns: [
@@ -64,6 +66,24 @@ export default class CentersPage extends Component {
                 .catch(error => alert("[ FAILED ] Center NOT Added"));
         } else {
             alert("[ FAILED ] Center NOT Added");
+        }
+    }
+
+    handleEditOnSubmit(event) {
+        event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to Save this Center?');
+        if (retConfirm) {
+            $('#editCenterForm').modal('hide');
+            console.log(this.state.editCenter);
+            axios.post('/api/center/edit', this.state.editCenter)
+                .then(res => {
+                    alert(res.statusText);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Center NOT Saved"));
+        } else {
+            alert("[ FAILED ] Center NOT saved");
         }
     }
 
@@ -144,6 +164,62 @@ export default class CentersPage extends Component {
                     }),
             }]
         ];
+
+        const editCenterFormStructure = [
+            [{
+                label: "Branch Name",
+                id: "branch_name",
+                name: "branch_name",
+                required: true,
+                disabled:true,
+                options: this.state.branchList,
+                pattern: "^[A-Za-z]+$",
+                message: "Strings Only",
+                value: this.state.editCenter.branch_name,
+            }, {
+                label: "Branch NO",
+                id: "branch_no",
+                name: "branch_no",
+                required: true,
+                // pattern: "^RB[0-9]{4}$",
+                disabled: true,
+                message: "Numeric Only",
+                value: this.state.editCenter.branch_no,
+            }, {
+                label: "Center Index",
+                id: "index",
+                name: "index",
+                required: true,
+                disabled: true,
+                // pattern: "^[A-Za-z]+$",
+                message: "Numeric Only",
+                value: this.state.editCenter.index,
+            }], [{
+                label: "Center Code",
+                id: "code",
+                name: "code",
+                required: true,
+                pattern: "^[A-Za-z]{4}$",
+                message: "4 Alphanumeric letters Only",
+                value: this.state.editCenter.code,
+                onChange: (event) =>
+                    this.setState({
+                        editCenter: Object.assign({}, this.state.editCenter, {code: event.target.value})
+                    }),
+            }, {
+                label: "Center Name",
+                id: "name",
+                name: "name",
+                required: true,
+                pattern: "^[A-Za-z]+$",
+                message: "invalid",
+                value: this.state.editCenter.name,
+                onChange: (event) =>
+                    this.setState({
+                        editCenter: Object.assign({}, this.state.editCenter, {name: event.target.value})
+                    }),
+            }]
+        ];
         return (
             <div className="container">
                 <div className="row">
@@ -153,11 +229,21 @@ export default class CentersPage extends Component {
                                 onClick={() => this.setState({newCenter: this.state.initialNewCenter})}> New Centre
                         </button>
                     </div>
+                    <div className="col-sm-3">
+                        <button className="btn btn-info btn-lg" disabled={this.state.selectedCenter.index === ''}
+                                data-toggle="modal"
+                                data-target="#editCenterForm"
+                                onClick={() => this.setState({editCenter: this.state.selectedCenter})}>Edit Center
+                        </button>
+                    </div>
                 </div>
                 <br/>
-                <DataTable columns={this.state.centerTable.columns} data={this.state.centerTableData}/>
+                <DataTable columns={this.state.centerTable.columns} data={this.state.centerTableData}
+                           rowOnClick={(rowInfo) => this.setState({selectedCenter: rowInfo._original})}/>
                 <Form name="newCenterForm" title="Add Center" rows={newCenterFormStructure}
                       handleOnSubmit={this.handleAddOnSubmit.bind(this)}/>
+                <Form name="editCenterForm" title="Edit Center" rows={editCenterFormStructure}
+                      handleOnSubmit={this.handleEditOnSubmit.bind(this)} submitButtonName="SAVE"/>
             </div>
         );
     }
