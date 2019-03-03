@@ -20,4 +20,9 @@ class Center extends Model
     {
         return $this->hasMany('App\Payment');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Branch');
+    }
 }

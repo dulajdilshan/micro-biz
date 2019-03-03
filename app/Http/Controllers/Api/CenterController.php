@@ -19,8 +19,20 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::all();
-        return response()->json($centers);
+        $centerDetails = array();
+        $centers_all = Center::all();
+        foreach ($centers_all as $element) {
+            $branch = $element->branch()->first();
+            $center['index'] = $element['index'];
+            $center['name'] = $element['name'];
+            $center['code'] = $element['code'];
+            $center['branch_no'] = $branch['branch_no'];
+            $center['branch_name'] = $branch['name'];
+
+            $centerDetails[] = $center;
+
+        }
+        return response()->json($centerDetails);
     }
 
     /**

@@ -21,6 +21,25 @@ class BranchController extends Controller
         return response()->json($branches);
     }
 
+    public function getCentersBranches()
+    {
+        $branches = array();
+        $branches_list = Branch::all();
+
+        foreach ($branches_list as $element) {
+            $last_center = $element->lastCenter()->first();
+            $branch['value'] = $element['name'];
+            $branch['branch_id'] = $element['id'];
+            $branch['branch_no'] = $element['branch_no'];
+            $branch['branch_name'] = $element['name'];
+            $branch['next_center_index'] = (int)$last_center['last_center_index'] + 1;
+
+            $branches[] = $branch;
+        }
+
+        return response()->json($branches);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
