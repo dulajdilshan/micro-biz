@@ -87,6 +87,24 @@ export default class CentersPage extends Component {
         }
     }
 
+    handleDeleteOnClick() {
+        //event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to delete this Center?');
+        if (retConfirm) {
+            $('#editCenterForm').modal('hide');
+            console.log(this.state.editCenter.id);
+            axios.delete('/api/center/delete/'.concat(this.state.editCenter.id))
+                .then(res => {
+                    alert(res.statusText);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Center NOT Deleted"));
+        } else {
+            alert("[ FAILED ] Center NOT Deleted");
+        }
+    }
+
     render() {
         const newCenterFormStructure = [
             [{
@@ -218,6 +236,12 @@ export default class CentersPage extends Component {
                     this.setState({
                         editCenter: Object.assign({}, this.state.editCenter, {name: event.target.value})
                     }),
+            }],[{
+                button: true,
+                label: "Delete",
+                id: "delete",
+                name: "delete",
+                onClick: this.handleDeleteOnClick.bind(this)
             }]
         ];
         return (

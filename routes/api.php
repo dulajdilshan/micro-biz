@@ -55,3 +55,4 @@ Route::post('/center/edit','Api\CenterController@edit');                    //Ce
 //Delete Routes
 //----------------------------------------
 Route::delete('/branch/delete/{id}','Api\BranchController@destroy');        //Branch
+Route::delete('/center/delete/{id}','Api\CenterController@destroy');        //Center

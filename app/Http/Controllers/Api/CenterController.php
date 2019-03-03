@@ -154,6 +154,39 @@ class CenterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $center = Center::findOrFail($id);
+            $lastCenter = $center->lastCenter()->first();
+            if ($lastCenter != null) {
+                $branch = $center->branch()->first();
+                $centerList = $branch->center()->where('id', '!=', $id)->get();
+                if (sizeof($centerList) > 0) {
+                    $maxId = 0;
+                    foreach ($centerList as $element) {
+                        if ($element['id'] > $maxId) {
+                            $maxId = $element['id'];
+                            $newLastCenter = $element;
+                        }
+                    }
+                    $lastCenter['center_id'] = $maxId;
+                    $lastCenter['last_center_index'] = $newLastCenter['index'];
+                    $lastCenter->save();
+                } else {
+                    $lastCenter->delete();
+                }
+
+            }
+            $center->delete();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 }
