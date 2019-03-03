@@ -77,7 +77,7 @@ class CenterController extends Controller
 
         } catch (Exception $exception) {
             DB::rollBack();
-            return response()->json($newLastCenter);
+            return response()->json($failedOperation);
         }
         DB::commit();
         return response()->json($successOperation);
