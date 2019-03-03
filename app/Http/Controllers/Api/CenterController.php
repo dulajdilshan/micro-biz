@@ -69,15 +69,15 @@ class CenterController extends Controller
                 $lastCenter->save();
             } else {
                 $newLastCenter = new LastCenter();
-                $lastCenter['last_center_index'] = $request['index'];
-                $lastCenter['center_id'] = $center['id'];
-                $lastCenter['branch_id'] = $request['branch_id'];
+                $newLastCenter['last_center_index'] = $request['index'];
+                $newLastCenter['center_id'] = $center['id'];
+                $newLastCenter['branch_id'] = $request['branch_id'];
                 $newLastCenter->save();
             }
 
         } catch (Exception $exception) {
             DB::rollBack();
-            return response()->json($failedOperation);
+            return response()->json($newLastCenter);
         }
         DB::commit();
         return response()->json($successOperation);
