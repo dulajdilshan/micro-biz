@@ -79,7 +79,7 @@ export default class BranchesPage extends Component {
         event.preventDefault();       //This makes not to load again
         let retConfirm = confirm('Are you sure you want to Save this Branch?');
         if (retConfirm) {
-            $('#newEditForm').modal('hide');
+            $('#editBranchForm').modal('hide');
             console.log(this.state.editBranch);
             axios.post('/api/branch/edit', this.state.editBranch)
                 .then(res => {
