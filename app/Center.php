@@ -13,7 +13,7 @@ class Center extends Model
 
     public function lastCustomer()
     {
-        return $this->hasMany('App\LastCustomer');
+        return $this->hasOne('App\LastCustomer');
     }
 
     public function payment()
