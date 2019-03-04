@@ -35,8 +35,8 @@ class CustomerController extends Controller
             $customer['full_name'] = $element['full_name'];
             $customer['phone1'] = $element['phone1'];
             $customer['phone2'] = $element['phone2'];
-            $customer['address1'] = $element['address1'];
-            $customer['address2'] = $element['address2'];
+            $customer['address_1'] = $element['address_1'];
+            $customer['address_2'] = $element['address_2'];
             $customer['group_id'] = $element['group_id'];
             $customer['has_active_loan'] = $element['has_active_loan'];
 

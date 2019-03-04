@@ -14,7 +14,7 @@ export default class CustomersPage extends Component {
                 name_initials:'', index:'', gs_division_name:'',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
-                address1: '', address2: ''
+                address_1: '', address_2: ''
             },
             newCustomer: {},
             editCustomer: {},
@@ -23,7 +23,7 @@ export default class CustomersPage extends Component {
                 name_initials:'', index:'', gs_division_name:'',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
-                address1: '', address2: ''
+                address_1: '', address_2: ''
             },
             customers: [],
             customerTableData: [{
@@ -39,11 +39,11 @@ export default class CustomersPage extends Component {
                 columns: [
                     {Header: 'Name', accessor: 'full_name'},
                     {Header: 'NIC', accessor: 'nic'},
-                    {Header: 'Group Number', accessor: 'group_id'},
-                    {Header: 'Center ID', accessor: 'center_id'},
-                    {Header: 'Branch ID', accessor: 'branch_id'},
-                    {Header: 'GS Division', accessor: 'gs_division_id'},
-                    {Header: 'Phone number', accessor: 'phone1'},
+                    {Header: 'Group No', accessor: 'group_index'},
+                    {Header: 'Center Name', accessor: 'center_name'},
+                    {Header: 'Branch Name', accessor: 'branch_name'},
+                    {Header: 'GS Division', accessor: 'gs_division_name'},
+                    {Header: 'Loan Active ?', accessor: 'has_active_loan'},
                 ]
             },
 
@@ -335,29 +335,29 @@ export default class CustomersPage extends Component {
                     }),
             }],[{
                 label: "Address 1",
-                id: "address1",
-                name: "address1",
+                id: "address_1",
+                name: "address_1",
                 required: true,
                 colSize: '6',
                 pattern: "^.{3,}$",
                 message: "Letters and numbers not less than 3 characters",
-                value: this.state.newCustomer.address1,
+                value: this.state.newCustomer.address_1,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {address1: event.target.value})
+                        newCustomer: Object.assign({}, this.state.newCustomer, {address_1: event.target.value})
                     }),
             },{
                 label: "Address 2",
-                id: "address2",
-                name: "address2",
+                id: "address_2",
+                name: "address_2",
                 required: true,
                 colSize: '6',
                 pattern: "^.{3,}$",
                 message: "Letters and numbers not less than 3 characters",
-                value: this.state.newCustomer.address2,
+                value: this.state.newCustomer.address_2,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {address2: event.target.value})
+                        newCustomer: Object.assign({}, this.state.newCustomer, {address_2: event.target.value})
                     }),
             }]
         ];
@@ -370,35 +370,35 @@ export default class CustomersPage extends Component {
                 disabled:true,
                 // pattern: "^[A-Za-z]+$",
                 // message: "Strings Only",
-                value: this.state.newCustomer.branch_id,
+                value: this.state.editCustomer.branch_id,
             }, {
                 label: "Branch NO",
                 id: "branch_no",
                 name: "branch_no",
                 colSize: 2,
                 disabled: true,
-                value: this.state.newCustomer.branch_no,
+                value: this.state.editCustomer.branch_no,
             }, {
                 label: "Center Name",
                 id: "center_name",
                 name: "center_name",
                 disabled:true,
                 colSize: 3,
-                value: this.state.newCustomer.center_id,
+                value: this.state.editCustomer.center_id,
             }, {
                 label: "Center NO",
                 id: "center_no",
                 name: "center_no",
                 colSize: 2,
                 disabled: true,
-                value: this.state.newCustomer.center_no,
+                value: this.state.editCustomer.center_no,
             }], [{
                 label: "Customer NO",
                 id: "customer_no",
                 name: "customer_no",
                 colSize: 3,
                 disabled: true,
-                value: this.state.newCustomer.customer_no,
+                value: this.state.editCustomer.customer_no,
             },{
                 label: "NIC",
                 id: "nic",
@@ -407,10 +407,10 @@ export default class CustomersPage extends Component {
                 required: true,
                 pattern: "[0-9]{9}[x|X|v|V]$",
                 message: "Should be in NIC pattern",
-                value: this.state.newCustomer.nic,
+                value: this.state.editCustomer.nic,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {nic: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {nic: event.target.value})
                     }),
             },{
                 label: "Grama Sevaka Division",
@@ -420,10 +420,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$",
                 message: "Alphabetic letters and space only",
-                value: this.state.newCustomer.gs_division_name,
+                value: this.state.editCustomer.gs_division_name,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {gs_division_name: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {gs_division_name: event.target.value})
                     }),
             }], [{
                 label: "Name Initials",
@@ -433,10 +433,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^[A-Z]+$",
                 message: "Capital Letters Only",
-                value: this.state.newCustomer.name_initials,
+                value: this.state.editCustomer.name_initials,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {name_initials: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {name_initials: event.target.value})
                     }),
             }, {
                 label: "First Name",
@@ -446,10 +446,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$",
                 message: "Alphabetic letters and space only",
-                value: this.state.newCustomer.first_name,
+                value: this.state.editCustomer.first_name,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {first_name: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {first_name: event.target.value})
                     }),
             }, {
                 label: "Last Name",
@@ -459,10 +459,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$",
                 message: "Alphabetic letters and space only",
-                value: this.state.newCustomer.last_name,
+                value: this.state.editCustomer.last_name,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {last_name: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {last_name: event.target.value})
                     }),
             }, {
                 label: "Birthday",
@@ -473,10 +473,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
                 message: "Should be in Date Format",
-                value: this.state.newCustomer.birthday,
+                value: this.state.editCustomer.birthday,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {birthday: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {birthday: event.target.value})
                     }),
             }], [{
                 label: "Age",
@@ -487,10 +487,10 @@ export default class CustomersPage extends Component {
                 colSize: '2',
                 pattern: "^[0-9]{2}$",
                 message: "Numbers only",
-                value: this.state.newCustomer.age,
+                value: this.state.editCustomer.age,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {age: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {age: event.target.value})
                     }),
             }, {
                 label: "Gender",
@@ -502,10 +502,10 @@ export default class CustomersPage extends Component {
                 options: [{id: 'male', value: 'Male'}, {id: 'female', value: 'Female'}],
                 // pattern: "^[0-9]*$",
                 // message: "Age is not valid",
-                value: this.state.newCustomer.gender,
+                value: this.state.editCustomer.gender,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {gender: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {gender: event.target.value})
                     }),
             }, {
                 label: "Married",
@@ -517,10 +517,10 @@ export default class CustomersPage extends Component {
                 options: [{id: 0, value: 'No'}, {id: 1, value: 'Yes'}],
                 // pattern: "^[0-9]*$",
                 // message: "Age is not valid",
-                value: this.state.newCustomer.married,
+                value: this.state.editCustomer.married,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {married: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {married: event.target.value})
                     }),
             },{
                 label: "Phone Number",
@@ -530,10 +530,10 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
                 message: "Phone numbers format only",
-                value: this.state.newCustomer.phone1,
+                value: this.state.editCustomer.phone1,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {phone1: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {phone1: event.target.value})
                     }),
             },{
                 label: "Mobile Number",
@@ -543,36 +543,36 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 pattern: "^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
                 message: "Phone numbers format only",
-                value: this.state.newCustomer.phone2,
+                value: this.state.editCustomer.phone2,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {phone2: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {phone2: event.target.value})
                     }),
             }],[{
                 label: "Address 1",
-                id: "address1",
-                name: "address1",
+                id: "address_1",
+                name: "address_1",
                 required: true,
                 colSize: '6',
                 pattern: "^.{3,}$",
                 message: "Letters and numbers not less than 3 characters",
-                value: this.state.newCustomer.address1,
+                value: this.state.editCustomer.address_1,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {address1: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {address_1: event.target.value})
                     }),
             },{
                 label: "Address 2",
-                id: "address2",
-                name: "address2",
+                id: "address_2",
+                name: "address_2",
                 required: true,
                 colSize: '6',
                 pattern: "^.{3,}$",
                 message: "Letters and numbers not less than 3 characters",
-                value: this.state.newCustomer.address2,
+                value: this.state.editCustomer.address_2,
                 onChange: (event) =>
                     this.setState({
-                        newCustomer: Object.assign({}, this.state.newCustomer, {address2: event.target.value})
+                        editCustomer: Object.assign({}, this.state.editCustomer, {address_2: event.target.value})
                     }),
             }],[{
                 button: true,
