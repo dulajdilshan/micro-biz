@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Customer;
 use App\GsDivision;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \Exception;
+use App\LastCustomer;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
@@ -106,6 +107,20 @@ class CustomerController extends Controller
             $customer['gs_division_id'] = $gs_division['id'];
             $customer['has_active_loan'] = 0;
             $customer->save();
+
+            $lastCustomer = $customer->lastCenter()->first();
+            if ($lastCustomer != null) {
+                $lastCustomer['last_customer_index'] = $request['index'];
+                $lastCustomer['center_id'] = $customer['center_id'];
+                $lastCustomer['customer_id'] = $customer['id'];
+                $lastCustomer->save();
+            } else {
+                $newLastCustomer = new LastCustomer();
+                $newLastCustomer['last_customer_index'] = $request['index'];
+                $newLastCustomer['center_id'] = $customer['center_id'];
+                $newLastCustomer['customer_id'] = $customer['id'];
+                $newLastCustomer->save();
+            }
         } catch (Exception $exception) {
             DB::rollBack();
             return response()->json($failedOperation);
@@ -170,7 +185,7 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
-            $customer = Customer::find($request['id']);
+            $customer = Customer::findOrFail($request['id']);
             $gs_division = GsDivision::where('name', $request['gs_division_name'])->first();
             if ($gs_division == null) {
                 $gs_division = new GsDivision();
@@ -229,6 +244,41 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        return response();
+
+
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $customer = Customer::findOrFail($id);
+            $lastCustomer = $customer->lastCustomer()->first();
+            if ($lastCustomer != null) {
+                $center = $customer->center()->first();
+                $customerList = $center->customer()->where('id', '!=', $id)->get();
+                if (sizeof($customerList) > 0) {
+                    $maxId = 0;
+                    foreach ($customerList as $element) {
+                        if ($element['id'] > $maxId) {
+                            $maxId = $element['id'];
+                            $newLastCustomer = $element;
+                        }
+                    }
+                    $lastCustomer['customer_id'] = $maxId;
+                    $lastCustomer['last_customer_index'] = $newLastCustomer['index'];
+                    $lastCustomer->save();
+                } else {
+                    $lastCustomer->delete();
+                }
+
+            }
+            $customer->delete();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 }

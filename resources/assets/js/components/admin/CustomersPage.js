@@ -100,11 +100,39 @@ export default class CustomersPage extends Component {
     }
 
     handleEditOnSubmit(event) {
-
+        event.preventDefault();    //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to save this Customer?');
+        if (retConfirm) {
+            $('#editCustomerForm').modal('hide');
+            console.log(this.state.editCustomer);
+            axios.post('/api/customer/edit', this.state.editCustomer)
+                .then(res => {
+                    alert(res.data);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Customer NOT Saved"));
+        } else {
+            alert("[ FAILED ] Customer NOT Saved");
+        }
     }
 
     handleDeleteOnClick() {
-
+        //event.preventDefault();       //This makes not to load again
+        let retConfirm = confirm('Are you sure you want to delete this Customer?');
+        if (retConfirm) {
+            $('#editCustomerForm').modal('hide');
+            console.log(this.state.editCustomer.id);
+            axios.delete('/api/center/delete/'.concat(this.state.editCustomer.id))
+                .then(res => {
+                    alert(res.statusText);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Customer NOT Deleted"));
+        } else {
+            alert("[ FAILED ] Customer NOT Deleted");
+        }
     }
 
     render() {
@@ -384,7 +412,7 @@ export default class CustomersPage extends Component {
                 disabled: true,
                 // pattern: "^[A-Za-z]+$",
                 // message: "Strings Only",
-                value: this.state.editCustomer.branch_id,
+                value: this.state.editCustomer.branch_name,
             }, {
                 label: "Branch NO",
                 id: "branch_no",
@@ -398,7 +426,7 @@ export default class CustomersPage extends Component {
                 name: "center_name",
                 disabled: true,
                 colSize: 3,
-                value: this.state.editCustomer.center_id,
+                value: this.state.editCustomer.center_name,
             }, {
                 label: "Center NO",
                 id: "center_no",

@@ -52,9 +52,11 @@ Route::post('/cashier/create', 'Api\CashierController@create');              //C
 //----------------------------------------
 Route::post('/branch/edit', 'Api\BranchController@edit');                    //Branch
 Route::post('/center/edit', 'Api\CenterController@edit');                    //Center
+Route::post('/customer/edit','Api\CustomerController@edit');                 //Customer
 
 //----------------------------------------
 //Delete Routes
 //----------------------------------------
 Route::delete('/branch/delete/{id}', 'Api\BranchController@destroy');        //Branch
 Route::delete('/center/delete/{id}', 'Api\CenterController@destroy');        //Center
+Route::delete('/customer/delete/{id}','Api\CustomerController@destroy');            //Customer
