@@ -123,7 +123,7 @@ export default class CustomersPage extends Component {
         if (retConfirm) {
             $('#editCustomerForm').modal('hide');
             console.log(this.state.editCustomer.id);
-            axios.delete('/api/center/delete/'.concat(this.state.editCustomer.id))
+            axios.delete('/api/customer/delete/'.concat(this.state.editCustomer.id))
                 .then(res => {
                     alert(res.statusText);
                     console.log(res.data);
