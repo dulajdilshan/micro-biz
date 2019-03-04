@@ -22,6 +22,7 @@ class CustomerController extends Controller
         $customerList = array();
 
         foreach ($customers as $element) {
+            $customer['id'] = $element['id'];
             $customer['branch_id'] = $element['branch_id'];
             $customer['center_id'] = $element['center_id'];
             $customer['index'] = $element['index'];

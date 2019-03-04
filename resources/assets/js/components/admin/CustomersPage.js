@@ -14,7 +14,7 @@ export default class CustomersPage extends Component {
                 name_initials: '', index: '', gs_division_name: '',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
-                address_1: '', address_2: ''
+                address_1: '', address_2: '', id: ''
             },
             newCustomer: {},
             editCustomer: {},
@@ -23,7 +23,7 @@ export default class CustomersPage extends Component {
                 name_initials: '', index: '', gs_division_name: '',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
-                address_1: '', address_2: ''
+                address_1: '', address_2: '', id: ''
             },
             customers: [],
             customerTableData: [{
