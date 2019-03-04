@@ -123,7 +123,7 @@ class CustomerController extends Controller
             }
         } catch (Exception $exception) {
             DB::rollBack();
-            return response()->json($newLastCustomer);
+            return response()->json($failedOperation);
         }
         DB::commit();
         return response()->json($successOperation);
