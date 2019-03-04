@@ -108,10 +108,10 @@ class CustomerController extends Controller
             $customer['has_active_loan'] = 0;
             $customer->save();
 
-            $lastCustomer = $customer->lastCenter()->first();
+            $center = $customer->center()->first();
+            $lastCustomer = $center->lastCustomer()->first();
             if ($lastCustomer != null) {
                 $lastCustomer['last_customer_index'] = $request['index'];
-                $lastCustomer['center_id'] = $customer['center_id'];
                 $lastCustomer['customer_id'] = $customer['id'];
                 $lastCustomer->save();
             } else {
@@ -123,7 +123,7 @@ class CustomerController extends Controller
             }
         } catch (Exception $exception) {
             DB::rollBack();
-            return response()->json($failedOperation);
+            return response()->json($newLastCustomer);
         }
         DB::commit();
         return response()->json($successOperation);
