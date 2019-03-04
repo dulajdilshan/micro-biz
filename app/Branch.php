@@ -11,14 +11,14 @@ class Branch extends Model
         return $this->hasMany('App\Center');
     }
 
-    public function loan()
-    {
-        return $this->hasMany('App\Loan');
-    }
-
     public function customer()
     {
         return $this->hasMany('App\Customer');
+    }
+
+    public function loan()
+    {
+        return $this->hasMany('App\Loan');
     }
 
     public function group()

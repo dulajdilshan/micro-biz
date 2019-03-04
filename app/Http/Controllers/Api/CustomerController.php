@@ -16,7 +16,45 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        return response()->json($customers);
+        $customerList = array();
+
+        foreach ($customers as $element) {
+            $customer['branch_id'] = $element['branch_id'];
+            $customer['center_id'] = $element['center_id'];
+            $customer['index'] = $element['index'];
+            $customer['customer_no'] = $element['customer_no'];
+            $customer['nic'] = $element['nic'];
+            $customer['gs_division_id'] = $element['gs_division_id'];
+            $customer['age'] = $element['age'];
+            $customer['birthday'] = $element['birthday'];
+            $customer['gender'] = $element['gender'];
+            $customer['married'] = $element['married'];
+            $customer['name_initials'] = $element['name_initials'];
+            $customer['first_name'] = $element['first_name'];
+            $customer['last_name'] = $element['last_name'];
+            $customer['full_name'] = $element['full_name'];
+            $customer['phone1'] = $element['phone1'];
+            $customer['phone2'] = $element['phone2'];
+            $customer['address1'] = $element['address1'];
+            $customer['address2'] = $element['address2'];
+            $customer['group_id'] = $element['group_id'];
+            $customer['has_active_loan'] = $element['has_active_loan'];
+
+            $br = $element->branch()->first();
+            $ce = $element->center()->first();
+            $gs = $element->gsDivision()->first();
+            $group = $element->group()->first();
+            $customer['branch_name'] = $br['name'];
+            $customer['branch_no'] = $br['branch_no'];
+            $customer['center_name'] = $ce['name'];
+            $customer['center_no'] = $ce['index'];
+            $customer['group_index'] = $group['index'];
+            $customer['gs_division_name'] = $gs['name'];
+
+            $customerList[] = $customer;
+        }
+
+        return response()->json($customerList);
     }
 
     /**

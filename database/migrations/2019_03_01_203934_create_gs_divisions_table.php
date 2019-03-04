@@ -16,7 +16,6 @@ class CreateGsDivisionsTable extends Migration
         Schema::create('gs_divisions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('table');
             $table->timestamps();
         });
     }

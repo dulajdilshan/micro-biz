@@ -38,6 +38,26 @@ class CenterController extends Controller
         return response()->json($centerDetails);
     }
 
+    public function getCustomerCenters()
+    {
+        $centers = array();
+        $center_list = Center::all();
+
+        foreach ($center_list as $element) {
+            $last_center = $element->lastCustomer()->first();
+            $center['value'] = $element['name'];
+            $center['id'] = $element['id'];
+            $center['branch_id'] = $element['branch_id'];
+            $center['center_name'] = $element['name'];
+            $center['center_no'] = $element['index'];
+            $center['next_customer_index'] = (int)$last_center['last_customer_index'] + 1;
+
+            $centers[] = $center;
+        }
+
+        return response()->json($centers);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

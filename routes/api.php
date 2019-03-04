@@ -30,6 +30,8 @@ Route::get('/document-fees','Api\DocumentFeeController@index');
 Route::get('/cashiers','Api\CashierController@index');
 Route::get('/branches','Api\BranchController@index');
 Route::get('/branch/get-centers-branches','Api\BranchController@getCentersBranches');
+Route::get('/branch/get-customer-branches','Api\BranchController@getCustomerBranches');
+Route::get('/center/get-customer-centers','Api\CenterController@getCustomerCenters');
 Route::get('/document-fees/get-details-with-nic/{nic}','Api\DocumentFeeController@getLoanDetailsWithNic');
 Route::get('/payment/get-details-with-nic/{nic}','Api\PaymentController@getDetailsWithNic');
 

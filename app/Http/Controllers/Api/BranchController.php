@@ -40,6 +40,24 @@ class BranchController extends Controller
         return response()->json($branches);
     }
 
+    public function getCustomerBranches()
+    {
+        $branches = array();
+        $branches_list = Branch::all();
+
+        foreach ($branches_list as $element) {
+            $branch['value'] = $element['name'];
+            $branch['branch_id'] = $element['id'];
+            $branch['id'] = $element['id'];
+            $branch['branch_no'] = $element['branch_no'];
+            $branch['branch_name'] = $element['name'];
+
+            $branches[] = $branch;
+        }
+
+        return response()->json($branches);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

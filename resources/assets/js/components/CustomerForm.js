@@ -112,8 +112,49 @@ class CustomerForm extends Component {
                         <div style={{margin: '10px', display: this.state.isError ? 'block' : 'none'}}>
                             <h5 style={{color: 'red'}}>***Please put valid Details</h5>
                         </div>
-                        <form onSubmit={this.handleOnSubmit.bind(this)} onclose={() => {this.setState({isError: false})}}>
+                        <form onSubmit={this.handleOnSubmit.bind(this)} onClose={() => {this.setState({isError: false})}}>
                             <div className="modal-body">
+                                <div className="row">
+                                    <div className="col-sm-3 form-group">
+                                        <label>Index</label>
+                                        <input type="text" className="form-control" id="nic"
+                                               name="customer_nic" required=""
+                                               value={this.props.newCustomer.nic}
+                                               onChange={(event) => {
+                                                   this.handleNicChange(event);
+                                               }}
+                                        />
+                                    </div>
+                                    <div className="col-sm-3 form-group">
+                                        <label> First Name</label>
+                                        <input type="text" className="form-control" id="first_name"
+                                               name="customer_name" required=""
+                                               value={this.props.newCustomer.first_name}
+                                               onChange={this.handleFirstNameChange.bind(this)}
+                                        />
+                                    </div>
+                                    <div className="col-sm-3 form-group">
+                                        <label> Last Name</label>
+                                        <input type="text" className="form-control" id="last_name"
+                                               name="customer_name" required=""
+                                               value={this.props.newCustomer.last_name}
+                                               onChange={this.handleLastNameChange.bind(this)}
+                                        />
+                                    </div>
+                                    <div className="col-sm-3 form-group">
+                                        <label> Birthday</label>
+                                        <input type="date" className="form-control" id="birthday"
+                                               name="customer_bday" required=""
+                                               value={this.props.newCustomer.birthday}
+                                               onChange={this.handleBirthdayChange.bind(this)}
+                                        />
+                                    </div>
+                                </div>
+
+
+
+
+
                                 <div className="row">
                                     <div className="col-sm-3 form-group">
                                         <label> NIC</label>
