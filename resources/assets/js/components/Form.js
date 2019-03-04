@@ -44,17 +44,30 @@ class Form extends Component {
                                                                  options={col.options ? col.options : [
                                                                      {value: '023'},
                                                                      {value: '024'},
-                                                                     {value: '123'}]}
-                                                        /> :
-                                                        <UInput key={index} label={col.label} id={col.id} name={col.name}
-                                                                type={col.type}
-                                                                colSize={col.colSize}
-                                                                required={col.required}
-                                                                disabled={col.disabled}
-                                                                pattern={col.pattern}
-                                                                message={col.message}
-                                                                value={col.value}
-                                                                onChange={col.onChange}/>)
+                                                                     {value: '123'}]}/> : (
+                                                            col.aselect ?
+                                                                <UASelect key={index} label={col.label} id={col.id}
+                                                                         name={col.name}
+                                                                         colSize={col.colSize}
+                                                                         required={col.required}
+                                                                         disabled={col.disabled}
+                                                                         message={col.message}
+                                                                         value={col.value}
+                                                                         onChange={col.onChange}
+                                                                         options={col.options ? col.options : [
+                                                                             {value: '023'},
+                                                                             {value: '024'},
+                                                                             {value: '123'}]}/> :
+                                                                <UInput key={index} label={col.label} id={col.id}
+                                                                        name={col.name}
+                                                                        type={col.type}
+                                                                        colSize={col.colSize}
+                                                                        required={col.required}
+                                                                        disabled={col.disabled}
+                                                                        pattern={col.pattern}
+                                                                        message={col.message}
+                                                                        value={col.value}
+                                                                        onChange={col.onChange}/>))
                                         ))}
                                     </div>
                                 ))}
@@ -131,6 +144,25 @@ const USelect = (props) => {
                     <option key={index} className="form-control" value={option.id}>{option.value}</option>
                 ))}
             </datalist>
+        </div>
+    )
+};
+
+// Props (all:10, opt:2): options, message, label, id, name, value colSize, required, disabled, onchange
+const UASelect = (props) => {
+    const className = "col-sm-".concat(props.colSize ? props.colSize : "3").concat(" form-group");
+    return (
+        <div className={className}>
+            <label>{props.label}</label>
+            <select className="form-control" id={props.id} name={props.name} value={props.value}
+                    required={props.required}
+                    disabled={props.disabled}
+                    title={props.message}
+                    onChange={props.onChange ? props.onChange : () => console.log(props.name + " onChange ..")}>
+                {props.options.map((option, index) => (
+                    <option key={index} className="form-control" value={option.id}>{option.value}</option>
+                ))}
+            </select>
         </div>
     )
 };
