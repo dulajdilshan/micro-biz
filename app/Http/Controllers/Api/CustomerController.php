@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Customer;
+use App\GsDivision;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \Exception;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -65,30 +68,49 @@ class CustomerController extends Controller
      */
     public function create(Request $request)
     {
-        $customer = new Customer();
-        $customer['nic'] = $request['nic'];
-        $customer['first_name'] = $request['first_name'];
-        $customer['last_name'] = $request['last_name'];
-        $customer['full_name'] = $request['full_name'];
-        $customer['name_prefix'] = $request['name_prefix'];
-        $customer['birthday'] = $request['birthday'];
-        $customer['age'] = $request['age'];
-        $customer['gender'] = $request['gender'];
-        $customer['married'] = $request['married'];
-        $customer['contact_no1'] = $request['contact_no1'];
-        $customer['contact_no2'] = $request['contact_no2'];
-        $customer['address_1'] = $request['address_1'];
-        $customer['address_2'] = $request['address_2'];
-        $customer['gs_division'] = $request['gs_division'];
-        $customer['group_id'] = 0;
-        $customer['center_id'] = $request['center_id'];
-        $customer['branch_id'] = $request['branch_id'];
-        $customer['center_code'] = $request['center_code'];
-        $customer['center_name'] = $request['center_name'];
-        $customer['is_loan_settled'] = 1;
-        $customer->save();
-//        return response()->json($customer);
-        return redirect('/manager-customers');
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $gs_division = GsDivision::where('name', $request['gs_division_name'])->first();
+            if ($gs_division == null) {
+                $gs_division = new GsDivision();
+                $gs_division['name'] = $request['gs_division_name'];
+                $gs_division['table'] = $request['branch_id'];
+                $gs_division->save();
+            }
+            $customer = new Customer();
+
+            $full_name = $request['first_name'] . " " . $request['last_name'] . " " . $request['name_initials'];
+            $customer['nic'] = $request['nic'];
+            $customer['customer_no'] = $request['customer_no'];
+            $customer['index'] = $request['index'];
+            $customer['center_id'] = $request['center_id'];
+            $customer['branch_id'] = $request['branch_id'];
+            $customer['group_id'] = 0;
+            $customer['first_name'] = $request['first_name'];
+            $customer['last_name'] = $request['last_name'];
+            $customer['name_initials'] = $request['name_initials'];
+            $customer['full_name'] = $full_name;
+            $customer['birthday'] = $request['birthday'];
+            $customer['age'] = $request['age'];
+            $customer['gender'] = $request['gender'];
+            $customer['married'] = $request['married'];
+            $customer['phone1'] = $request['phone1'];
+            $customer['phone2'] = $request['phone2'];
+            $customer['address_1'] = $request['address_1'];
+            $customer['address_2'] = $request['address_2'];
+            $customer['gs_division_id'] = $gs_division['id'];
+            $customer['has_active_loan'] = 0;
+            $customer->save();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**
@@ -139,9 +161,51 @@ class CustomerController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        return response();
+        $failedOperation = '{operationStatus:failed, message:\'Operation Failed\'}';
+        $successOperation = '{operationStatus:success, message:\'Center created successfully\'}';
+
+        DB::beginTransaction();
+
+        try {
+            $customer = Customer::find($request['id']);
+            $gs_division = GsDivision::where('name', $request['gs_division_name'])->first();
+            if ($gs_division == null) {
+                $gs_division = new GsDivision();
+                $gs_division['name'] = $request['gs_division_name'];
+                $gs_division['table'] = $request['branch_id'];
+                $gs_division->save();
+            }
+
+            $full_name = $request['first_name'] . " " . $request['last_name'] . " " . $request['name_initials'];
+            $customer['nic'] = $request['nic'];
+            $customer['customer_no'] = $request['customer_no'];
+            $customer['index'] = $request['index'];
+            $customer['center_id'] = $request['center_id'];
+            $customer['branch_id'] = $request['branch_id'];
+            $customer['group_id'] = 0;
+            $customer['first_name'] = $request['first_name'];
+            $customer['last_name'] = $request['last_name'];
+            $customer['name_initials'] = $request['name_initials'];
+            $customer['full_name'] = $full_name;
+            $customer['birthday'] = $request['birthday'];
+            $customer['age'] = $request['age'];
+            $customer['gender'] = $request['gender'];
+            $customer['married'] = $request['married'];
+            $customer['phone1'] = $request['phone1'];
+            $customer['phone2'] = $request['phone2'];
+            $customer['address_1'] = $request['address_1'];
+            $customer['address_2'] = $request['address_2'];
+            $customer['gs_division_id'] = $gs_division['id'];
+            $customer['has_active_loan'] = 0;
+            $customer->save();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            return response()->json($failedOperation);
+        }
+        DB::commit();
+        return response()->json($successOperation);
     }
 
     /**

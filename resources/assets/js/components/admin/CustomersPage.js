@@ -11,7 +11,7 @@ export default class CustomersPage extends Component {
         this.state = {
             initialNewCustomer: {
                 branch_name: '', branch_id: '', center_id: '', center_no: '', branch_no: '', customer_no: '',
-                name_initials:'', index:'', gs_division_name:'',
+                name_initials: '', index: '', gs_division_name: '',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
                 address_1: '', address_2: ''
@@ -20,7 +20,7 @@ export default class CustomersPage extends Component {
             editCustomer: {},
             selectedCustomer: {
                 branch_name: '', branch_id: '', center_id: '', center_no: '', branch_no: '', customer_no: '',
-                name_initials:'', index:'', gs_division_name:'',
+                name_initials: '', index: '', gs_division_name: '',
                 nic: '', first_name: '', last_name: '', birthday: '',
                 age: '', gender: 'male', married: 0, phone1: '', phone2: '',
                 address_1: '', address_2: ''
@@ -83,7 +83,20 @@ export default class CustomersPage extends Component {
 
     handleAddOnSubmit(event) {
         event.preventDefault();    //This makes not to load again
-        console.log(this.state.newCustomer);
+        let retConfirm = confirm('Are you sure you want to add this Customer?');
+        if (retConfirm) {
+            $('#newCustomerForm').modal('hide');
+            console.log(this.state.newCustomer);
+            axios.post('/api/customer/create', this.state.newCustomer)
+                .then(res => {
+                    alert(res.data);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Customer NOT Added"));
+        } else {
+            alert("[ FAILED ] Customer NOT Added");
+        }
     }
 
     handleEditOnSubmit(event) {
@@ -157,6 +170,7 @@ export default class CustomersPage extends Component {
                             center_id: parseInt(event.target.value),
                             center_name: center ? center.center_name : '',
                             center_no: center ? center.center_no : '',
+                            index: center ? ('000' + parseInt(center.next_customer_index)).substr(-3) : '',
                             customer_no: center ? this.state.newCustomer.branch_no
                                 + "/" + center.center_no
                                 + "/" + ('000' + parseInt(center.next_customer_index)).substr(-3)
@@ -184,7 +198,7 @@ export default class CustomersPage extends Component {
                 disabled: true,
                 // message: "Numeric Only",
                 value: this.state.newCustomer.customer_no,
-            },{
+            }, {
                 label: "NIC",
                 id: "nic",
                 name: "nic",
@@ -197,7 +211,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {nic: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Grama Sevaka Division",
                 id: "gs_division_name",
                 name: "gs_division_name",
@@ -223,7 +237,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {name_initials: event.target.value})
                     }),
-            },{
+            }, {
                 label: "First Name",
                 id: "first_name",
                 name: "first_name",
@@ -307,7 +321,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {married: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Phone Number",
                 id: "phone1",
                 name: "phone1",
@@ -320,7 +334,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {phone1: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Mobile Number",
                 id: "phone2",
                 name: "phone2",
@@ -333,7 +347,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {phone2: event.target.value})
                     }),
-            }],[{
+            }], [{
                 label: "Address 1",
                 id: "address_1",
                 name: "address_1",
@@ -346,7 +360,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         newCustomer: Object.assign({}, this.state.newCustomer, {address_1: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Address 2",
                 id: "address_2",
                 name: "address_2",
@@ -367,7 +381,7 @@ export default class CustomersPage extends Component {
                 id: "branch_name",
                 name: "branch_name",
                 colSize: 3,
-                disabled:true,
+                disabled: true,
                 // pattern: "^[A-Za-z]+$",
                 // message: "Strings Only",
                 value: this.state.editCustomer.branch_id,
@@ -382,7 +396,7 @@ export default class CustomersPage extends Component {
                 label: "Center Name",
                 id: "center_name",
                 name: "center_name",
-                disabled:true,
+                disabled: true,
                 colSize: 3,
                 value: this.state.editCustomer.center_id,
             }, {
@@ -399,7 +413,7 @@ export default class CustomersPage extends Component {
                 colSize: 3,
                 disabled: true,
                 value: this.state.editCustomer.customer_no,
-            },{
+            }, {
                 label: "NIC",
                 id: "nic",
                 name: "nic",
@@ -412,7 +426,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {nic: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Grama Sevaka Division",
                 id: "gs_division_name",
                 name: "gs_division_name",
@@ -522,7 +536,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {married: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Phone Number",
                 id: "phone1",
                 name: "phone1",
@@ -535,7 +549,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {phone1: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Mobile Number",
                 id: "phone2",
                 name: "phone2",
@@ -548,7 +562,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {phone2: event.target.value})
                     }),
-            }],[{
+            }], [{
                 label: "Address 1",
                 id: "address_1",
                 name: "address_1",
@@ -561,7 +575,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {address_1: event.target.value})
                     }),
-            },{
+            }, {
                 label: "Address 2",
                 id: "address_2",
                 name: "address_2",
@@ -574,7 +588,7 @@ export default class CustomersPage extends Component {
                     this.setState({
                         editCustomer: Object.assign({}, this.state.editCustomer, {address_2: event.target.value})
                     }),
-            }],[{
+            }], [{
                 button: true,
                 label: "Delete",
                 id: "delete",
