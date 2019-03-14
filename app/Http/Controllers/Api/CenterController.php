@@ -45,12 +45,15 @@ class CenterController extends Controller
 
         foreach ($center_list as $element) {
             $last_center = $element->lastCustomer()->first();
+            $last_group = $element->lastGroup()->first();
+
             $center['value'] = $element['name'];
             $center['id'] = $element['id'];
             $center['branch_id'] = $element['branch_id'];
             $center['center_name'] = $element['name'];
             $center['center_no'] = $element['index'];
             $center['next_customer_index'] = (int)$last_center['last_customer_index'] + 1;
+            $center['next_customer_index'] = (int)$last_group['last_group_index'] + 1;
 
             $centers[] = $center;
         }
