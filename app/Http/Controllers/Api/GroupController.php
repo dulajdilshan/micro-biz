@@ -20,8 +20,24 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $group = Group::all();
-        return response()->json($group);
+        $groups = Group::all();
+        $groupList = array();
+
+        foreach ($groups as $element) {
+            $br = $element->branch()->first();
+            $ce = $element->center()->first();
+            $customerList = $element->customer()->get();
+
+            $group['index'] = $element['index'];
+            $group['branch_name'] = $br['name'];
+            $group['center_name'] = $ce['name'];
+            $group['branch_id'] = $element['branch_id'];
+            $group['center_id'] = $element['center_id'];
+            $group['customer_list'] = $customerList;
+
+            $groupList[] = $group;
+        }
+        return response()->json($groupList);
     }
 
     /**
@@ -70,13 +86,13 @@ class GroupController extends Controller
 
         $ungrouped_customer_ids = [$customer1_id, $customer2_id, $customer3_id, $customer4_id, $customer5_id];
 
-        try{
-            for($i=0; $i < count($ungrouped_customer_ids); $i ++){
-                $customer = Customer::where('id',$ungrouped_customer_ids[$i])->first();
+        try {
+            for ($i = 0; $i < count($ungrouped_customer_ids); $i++) {
+                $customer = Customer::where('id', $ungrouped_customer_ids[$i])->first();
                 $customer['group_id'] = $next_group_id;
                 $customer->save();
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             return redirect('manager-groups');
         }

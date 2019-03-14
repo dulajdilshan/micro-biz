@@ -10,4 +10,14 @@ class Group extends Model
     {
         return $this->hasMany('App\Customer');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Branch');
+    }
+
+    public function center()
+    {
+        return $this->belongsTo('App\Center');
+    }
 }

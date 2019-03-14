@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <div id="customer-groups-page"></div>
+        <div id="admin-groups-page"></div>
     </div>
 @endsection

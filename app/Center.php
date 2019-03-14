@@ -16,6 +16,11 @@ class Center extends Model
         return $this->hasMany('App\Customer');
     }
 
+    public function group()
+    {
+        return $this->hasMany('App\group');
+    }
+
     public function lastCustomer()
     {
         return $this->hasOne('App\LastCustomer');
