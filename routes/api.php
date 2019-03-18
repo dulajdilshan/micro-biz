@@ -34,6 +34,7 @@ Route::get('/branch/get-customer-branches', 'Api\BranchController@getCustomerBra
 Route::get('/center/get-customer-centers', 'Api\CenterController@getCustomerCenters');
 Route::get('/document-fees/get-details-with-nic/{nic}', 'Api\DocumentFeeController@getLoanDetailsWithNic');
 Route::get('/payment/get-details-with-nic/{nic}', 'Api\PaymentController@getDetailsWithNic');
+Route::get('/customer/get-group-less/with-center-id/{center_id}','Api\CustomerController@getGroupLessWithCenterId');
 
 //----------------------------------------
 //Create Routes

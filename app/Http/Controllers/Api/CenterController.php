@@ -53,7 +53,7 @@ class CenterController extends Controller
             $center['center_name'] = $element['name'];
             $center['center_no'] = $element['index'];
             $center['next_customer_index'] = (int)$last_center['last_customer_index'] + 1;
-            $center['next_customer_index'] = (int)$last_group['last_group_index'] + 1;
+            $center['next_group_index'] = (int)$last_group['last_group_index'] + 1;
 
             $centers[] = $center;
         }

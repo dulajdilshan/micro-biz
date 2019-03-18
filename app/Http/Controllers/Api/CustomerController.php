@@ -139,6 +139,17 @@ class CustomerController extends Controller
         return response()->json($customers);
     }
 
+    public function getGroupLessWithCenterId($center_id)
+    {
+        $customers = Customer::where('group_id', '=', 0)->where('center_id', $center_id)->get();
+        $customerList = array();
+        foreach ($customers as $element){
+            $customer = $element;
+            $customer['value'] = $customer['nic'];
+        }
+        return response()->json($customers);
+    }
+
     /**
      * Get customers who have settled loans or no loans
      * @return \Illuminate\Http\Response

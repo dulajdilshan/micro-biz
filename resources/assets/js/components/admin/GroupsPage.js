@@ -11,10 +11,27 @@ export default class GroupsPage extends Component {
         this.initialState = {};
         this.state = {
             initialNewGroup: {
-                branch_no: '', center_no: '', group_index: '', branch_id: '', center_id: '',
-                customerList: []
+                branch_name: '',
+                center_name: '',
+                branch_no: '',
+                center_no: '',
+                group_index: '',
+                branch_id: '',
+                center_id: '',
+                customerList: [],
+                customer1_id: '', customer2_id: '', customer3_id: '', customer4_id: '', customer5_id: ''
             },
-            newGroup: {},
+            newGroup: {
+                branch_name: '',
+                center_name: '',
+                branch_no: '',
+                center_no: '',
+                group_index: '',
+                branch_id: '',
+                center_id: '',
+                customerList: [],
+                customer1_id: '', customer2_id: '', customer3_id: '', customer4_id: '', customer5_id: ''
+            },
             editGroup: {},
             selectedGroup: {index: ''},
             groupTableData: [],
@@ -27,7 +44,9 @@ export default class GroupsPage extends Component {
             },
             branchList: [{branch_id: 0, branch_name: "000", branch_no: "000", value: "<- Select ->"}],
             initialCenterList: [{center_id: 0, center_name: "000", center_no: "000", value: "<- Select ->"}],
-            centerListBuffer: []
+            centerListBuffer: [],
+            centerList: [],
+            customerList: [{id: 0, full_name: "000", value: "<- Select ->"}]
         }
     }
 
@@ -56,7 +75,7 @@ export default class GroupsPage extends Component {
         // this.loadData('/api/customers', this.setCustomerTableData.bind(this), 'Customers');
         this.loadData('/api/groups', this.setGroupTableData.bind(this), 'Groups');
         this.loadData('/api/branch/get-customer-branches', this.setBranchList.bind(this), 'Branches');
-        // this.loadData('/api/center/get-customer-centers', this.setCenterListBuffer.bind(this), 'Centers');
+        this.loadData('/api/center/get-customer-centers', this.setCenterListBuffer.bind(this), 'Centers');
     }
 
     handleAddOnSubmit(event) {
@@ -65,13 +84,13 @@ export default class GroupsPage extends Component {
         if (retConfirm) {
             $('#newGroupForm').modal('hide');
             console.log(this.state.newGroup);
-            //     axios.post('/api/customer/create', this.state.newCustomer)
-            //         .then(res => {
-            //             alert(res.data);
-            //             console.log(res.data);
-            //             window.location.reload();
-            //         })
-            //         .catch(error => alert("[ FAILED ] Customer NOT Added"));
+            axios.post('/api/group/create', this.state.newGroup)
+                .then(res => {
+                    alert(res.data);
+                    console.log(res.data);
+                    window.location.reload();
+                })
+                .catch(error => alert("[ FAILED ] Group NOT Added"));
         } else {
             alert("[ FAILED ] Group NOT Added");
         }
@@ -153,8 +172,119 @@ export default class GroupsPage extends Component {
                 // pattern: "^RB[0-9]{4}$",
                 disabled: true,
                 // message: "Numeric Only",
-                value: this.state.newCustomer.center_no,
-            }], [], [], [], [], []
+                value: this.state.newGroup.center_no,
+            }, {
+                button: true,
+                label: "Load Customers",
+                id: "load_customers",
+                name: "load_customers",
+                onClick: () => {
+                    axios.get('/api/customer/get-group-less/with-center-id/'.concat(this.state.newGroup.center_id))
+                        .then(res => {
+                            this.setState({customerList: res.data})
+                        }).catch(error => alert("[ FAILED ] Details NOT Loaded"));
+                }
+            }], [{
+                label: "Customer 1 NIC",
+                id: "customer1_nic",
+                name: "customer1_nic",
+                required: true,
+                select: true,
+                colSize: 3,
+                disabled: this.state.customerList[0].id === 0 || this.state.customerList.length < 5,
+                options: this.state.customerList,
+                pattern: "[0-9]{9}[x|X|v|V]$",
+                message: "National Identity Card Format",
+                value: this.state.newGroup.customer1_id,
+                onChange: (event) => {
+                    this.setState({
+                        newGroup: Object.assign({}, this.state.newGroup, {
+                            customer1_id: parseInt(event.target.value),
+                            customerList: this.state.newGroup.customerList.concat(parseInt(event.target.value))
+                        })
+                    })
+                }
+            }, {
+                label: "Customer 2 NIC",
+                id: "customer2_nic",
+                name: "customer2_nic",
+                required: true,
+                select: true,
+                colSize: 3,
+                disabled: this.state.customerList[0].id === 0 || this.state.customerList.length < 5,
+                options: this.state.customerList,
+                pattern: "[0-9]{9}[x|X|v|V]$",
+                message: "National Identity Card Format",
+                value: this.state.newGroup.customer2_id,
+                onChange: (event) => {
+                    this.setState({
+                        newGroup: Object.assign({}, this.state.newGroup, {
+                            customer2_id: parseInt(event.target.value),
+                            customerList: this.state.newGroup.customerList.concat(parseInt(event.target.value))
+                        })
+                    })
+                }
+            }], [{
+                label: "Customer 3 NIC",
+                id: "customer3_nic",
+                name: "customer3_nic",
+                required: true,
+                select: true,
+                colSize: 3,
+                disabled: this.state.customerList[0].id === 0 || this.state.customerList.length < 5,
+                options: this.state.customerList,
+                pattern: "[0-9]{9}[x|X|v|V]$",
+                message: "National Identity Card Format",
+                value: this.state.newGroup.customer3_id,
+                onChange: (event) => {
+                    this.setState({
+                        newGroup: Object.assign({}, this.state.newGroup, {
+                            customer3_id: parseInt(event.target.value),
+                            customerList: this.state.newGroup.customerList.concat(parseInt(event.target.value))
+                        })
+                    })
+                }
+            }, {
+                label: "Customer 4 NIC",
+                id: "customer4_nic",
+                name: "customer4_nic",
+                required: true,
+                select: true,
+                colSize: 3,
+                options: this.state.customerList,
+                disabled: this.state.customerList[0].id === 0 || this.state.customerList.length < 5,
+                pattern: "[0-9]{9}[x|X|v|V]$",
+                message: "National Identity Card Format",
+                value: this.state.newGroup.customer4_id,
+                onChange: (event) => {
+                    this.setState({
+                        newGroup: Object.assign({}, this.state.newGroup, {
+                            customer4_id: parseInt(event.target.value),
+                            customerList: this.state.newGroup.customerList.concat(parseInt(event.target.value))
+                        })
+                    })
+                }
+            }, {
+                label: "Customer 5 NIC",
+                id: "customer5_nic",
+                name: "customer5_nic",
+                required: true,
+                select: true,
+                colSize: 3,
+                disabled: this.state.customerList[0].id === 0 || this.state.customerList.length < 5,
+                options: this.state.customerList,
+                pattern: "[0-9]{9}[x|X|v|V]$",
+                message: "National Identity Card Format",
+                value: this.state.newGroup.customer5_id,
+                onChange: (event) => {
+                    this.setState({
+                        newGroup: Object.assign({}, this.state.newGroup, {
+                            customer5_id: parseInt(event.target.value),
+                            customerList: this.state.newGroup.customerList.concat(parseInt(event.target.value))
+                        })
+                    })
+                }
+            }]
         ];
         return (
             <div className="container">

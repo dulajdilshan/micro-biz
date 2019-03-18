@@ -6,6 +6,7 @@ use App\Branch;
 use App\Center;
 use App\Customer;
 use App\Group;
+use App\LastGroup;
 use Illuminate\Http\Request;
 use \Exception;
 use Illuminate\Support\Facades\DB;
@@ -45,59 +46,72 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function _create(Request $request)
+    {
+        return response()->json($request);
+    }
+
     public function create(Request $request)
     {
         DB::beginTransaction();
 
-        //Get last group
-        try {
-            $next_group_id = Group::all()->last()['id'] + 1;
-            if ($next_group_id == null) $next_group_id = 1;
-        } catch (Exception $e) {
-            return redirect('manager-groups');
-        }
-
         //Create the Group
         try {
             $branch = Branch::where('id', (int)$request['branch_id'])->first();
-            $center = Center::where('center_code', $request['center_code'])->first();
+            $center = Center::where('id', (int)$request['center_id'])->first();
 
             $success_msg = 'Group Adding Successful branch_id:' . $branch['id'] . ' center_id:' . $center['id'];
             $failed_msg = 'Group Adding Failed. branch_id:' . $branch['id'] . ' center_id:' . $center['id'];
             if ($branch == null or $center == null) {
                 return response($failed_msg);
             }
+            //Customers
+            $customers = array();
+            $customers[] = $request['$customer1_id'];
+            $customers[] = $request['$customer2_id'];
+            $customers[] = $request['$customer3_id'];
+            $customers[] = $request['$customer4_id'];
+            $customers[] = $request['$customer5_id'];
+
+            //Check for same customer
+            foreach ($customers as $customer1) {
+                foreach ($customers as $customer2) {
+                    if ($customer1 == $customer2) {
+                        return response('Please Do not assign the same NIC for a one group');
+                    }
+                }
+            }
+            //Group
             $group = new Group();
             $group['branch_id'] = $branch['id'];
-            $group['center_code'] = $center['center_code'];
-            $group['center_name'] = $center['center_name'];
+            $group['center_id'] = $center['center_id'];
+            $group['index'] = $center['center_name'];
             $group->save();
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect('manager-groups');
-        }
 
-        //Assigning groups for the ungrouped customers
-        $customer1_id = $request['selectedCustomers']['customer_1']['id'];
-        $customer2_id = $request['selectedCustomers']['customer_2']['id'];
-        $customer3_id = $request['selectedCustomers']['customer_3']['id'];
-        $customer4_id = $request['selectedCustomers']['customer_4']['id'];
-        $customer5_id = $request['selectedCustomers']['customer_5']['id'];
+            $center = $group->center()->first();
+            $lastGroup = $center->lastGroup()->first();
+            if ($lastGroup != null) {
+                $lastGroup['last_group_index'] = $request['index'];
+                $lastGroup['group_id'] = $group['id'];
+                $lastGroup->save();
+            } else {
+                $newLastGroup = new LastGroup();
+                $newLastGroup['last_group_index'] = $request['index'];
+                $newLastGroup['center_id'] = $group['center_id'];
+                $newLastGroup['group_id'] = $group['id'];
+                $newLastGroup->save();
+            }
 
-        $ungrouped_customer_ids = [$customer1_id, $customer2_id, $customer3_id, $customer4_id, $customer5_id];
-
-        try {
-            for ($i = 0; $i < count($ungrouped_customer_ids); $i++) {
-                $customer = Customer::where('id', $ungrouped_customer_ids[$i])->first();
-                $customer['group_id'] = $next_group_id;
+            foreach ( $customers as $customer_id){
+                $customer =  Customer::findOrFail($customer_id);
+                $customer['group_id'] = $group['id'];
                 $customer->save();
             }
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect('manager-groups');
+            return response()->json($failed_msg);
         }
-        DB::commit();
-        return response($success_msg);
+        return response()->json($success_msg);
     }
 
     /**
